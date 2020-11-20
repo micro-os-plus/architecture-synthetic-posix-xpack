@@ -1,55 +1,22 @@
-# POSIX Architecture
+[![license](https://img.shields.io/github/license/micro-os-plus/posix-arch-xpack.svg)](https://github.com/micro-os-plus/posix-arch-xpack/blob/xpack/LICENSE)
+[![Travis](https://img.shields.io/travis/micro-os-plus/posix-arch-xpack.svg)](https://travis-ci.org/micro-os-plus/posix-arch-xpack)
+[![GitHub issues](https://img.shields.io/github/issues/micro-os-plus/posix-arch-xpack.svg)](https://github.com/micro-os-plus/posix-arch-xpack/issues)
+[![GitHub pulls](https://img.shields.io/github/issues-pr/micro-os-plus/posix-arch-xpack.svg)](https://github.com/micro-os-plus/posix-arch-xpack/pulls)
 
-An xPack with POSIX architecture specific files.
+# µOS++ POSIX Architecture Support
 
-## Package
+A source xPack with the **µOS++** files specific to the synthetic POSIX port.
+The project is hosted on GitHub as
+[micro-os-plus/posix-arch-xpack](https://github.com/micro-os-plus/posix-arch-xpack).
 
-[POSIX Architecture](https://github.com/micro-os-plus/posix-arch) package details:
+## Purpose
 
-* type: [xcdl](http://xcdl.github.io)
-* name: `ilg/posix-arch`
-* git repo: https://github.com/micro-os-plus/posix-arch.git
-* homepage: https://github.com/micro-os-plus/posix-arch
-* latest archive: https://github.com/micro-os-plus/posix-arch/archive/xpack.zip
+This xPack provides the implementation for the µOS++ scheduler,
+running on a synthetic POSIX platform, like macOS and GNU/Linux.
 
-## Version
+## Status
 
-* 0.1.1
-
-## Releases
-
-* none
-
-## Package maintainers
-
-* [Liviu Ionescu](http://liviusdotnet.worldpress.com) [&lt;ilg@livius.net&gt;](mailto:ilg@livius.net)
-
-## Content contributors
-
-* [Liviu Ionescu](http://liviusdotnet.worldpress.com) [&lt;ilg@livius.net&gt;](mailto:ilg@livius.net)
-
-## Support
-
-* [all issues](https://github.com/micro-os-plus/posix-arch/issues)
-
-## Dependencies
-
-* none
-
-## Keywords
-
-* posix
-* architecture
-* portable
-
-## License
-
-* [spdx](http://spdx.org/licenses/): MIT
-
---- 
-## Documentation
-
-This xPack provides the implementation for the µOS++ scheduler, running on a synthetic POSIX platform, like macOS and GNU/Linux.
+The µOS++ synthetic POSIX scheduler port is fully functional.
 
 ## Configuration
 
@@ -57,11 +24,11 @@ To include this µOS++ port in a project, consider the following details.
 
 ### Include folders
 
-- `include` 
- 
+- `include`
+
 ### Source folders
 
-- `src` 
+- `src`
 
 ### Symbols
 
@@ -69,11 +36,15 @@ To include this µOS++ port in a project, consider the following details.
 
 ## Limitations
 
-When running on a synthetic POSIX platform, the µOS++ scheduler runs in cooperative mode only.
+When running on a synthetic POSIX platform, the µOS++ scheduler runs 
+in cooperative mode only.
 
 ## Tests
 
 None.
 
+## License
 
---- 
+µOS++ is provided free of charge under the terms of the
+[MIT License](https://opensource.org/licenses/MIT), with all rights
+reserved to [Liviu Ionescu](https://github.com/ilg-ul).

@@ -2,13 +2,13 @@
 .cproject
 .project
 .settings/
-.yotta.json
 Debug/
 Release/
 test-*/
 NOTICE.md
 Thumbs.db
 build/
-upload.tar.gz
-yotta_modules/
-yotta_targets/
+*.tgz
+test/
+*.launch
+scripts/
