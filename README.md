@@ -3,7 +3,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/micro-os-plus/posix-arch-xpack.svg)](https://github.com/micro-os-plus/posix-arch-xpack/issues)
 [![GitHub pulls](https://img.shields.io/github/issues-pr/micro-os-plus/posix-arch-xpack.svg)](https://github.com/micro-os-plus/posix-arch-xpack/pulls)
 
-# µOS++ POSIX Architecture Support
+# µOS++ POSIX architecture support
 
 A source xPack with the **µOS++** files specific to the synthetic POSIX port.
 The project is hosted on GitHub as
@@ -12,7 +12,8 @@ The project is hosted on GitHub as
 ## Purpose
 
 This xPack provides the implementation for the µOS++ scheduler,
-running on a synthetic POSIX platform, like macOS and GNU/Linux.
+running on a synthetic POSIX platform, like an user mode process under
+macOS and GNU/Linux.
 
 ## Status
 
