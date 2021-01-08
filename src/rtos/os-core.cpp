@@ -32,7 +32,7 @@
 #include <cassert>
 
 #include <cmsis-plus/rtos/os.h>
-#include <cmsis-plus/rtos/port/os-inlines.h>
+#include <micro-os-plus/rtos/port/inlines.h>
 
 #include <sys/time.h>
 
