@@ -25,7 +25,7 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include <cmsis-plus/diag/trace.h>
+#include <micro-os-plus/diag/trace.h>
 
 #include <cstdio>
 #include <cassert>

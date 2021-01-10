@@ -33,13 +33,13 @@
  * it with POSIX specific declarations.
  */
 
-#ifndef CMSIS_PLUS_RTOS_PORT_OS_DECLS_H_
-#define CMSIS_PLUS_RTOS_PORT_OS_DECLS_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_DECLS_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_DECLS_H_
 
 // ----------------------------------------------------------------------------
 
 #include <micro-os-plus/config.h>
-#include <cmsis-plus/rtos/port/os-c-decls.h>
+#include <micro-os-plus/rtos/port/os-c-decls.h>
 
 // ----------------------------------------------------------------------------
 
@@ -156,4 +156,4 @@ namespace os
 
 #endif /* __cplusplus */
 
-#endif /* CMSIS_PLUS_RTOS_PORT_OS_DECLS_H_ */
+#endif /* MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_DECLS_H_ */

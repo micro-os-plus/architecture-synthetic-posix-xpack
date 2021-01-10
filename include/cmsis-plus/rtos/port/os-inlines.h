@@ -35,13 +35,13 @@
  * This file is included in all src/os-*.cpp files.
  */
 
-#ifndef CMSIS_PLUS_RTOS_PORT_OS_INLINES_H_
-#define CMSIS_PLUS_RTOS_PORT_OS_INLINES_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_INLINES_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_INLINES_H_
 
 // ----------------------------------------------------------------------------
 
 #include <micro-os-plus/config.h>
-#include <cmsis-plus/rtos/os-c-decls.h>
+#include <micro-os-plus/rtos/os-c-decls.h>
 
 // ----------------------------------------------------------------------------
 
@@ -55,7 +55,7 @@
 // For Linux
 #include <unistd.h>
 
-#include <cmsis-plus/diag/trace.h>
+#include <micro-os-plus/diag/trace.h>
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-parameter"
@@ -208,4 +208,4 @@ namespace os
 
 #endif /* __cplusplus */
 
-#endif /* CMSIS_PLUS_RTOS_PORT_OS_INLINES_H_ */
+#endif /* MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_INLINES_H_ */

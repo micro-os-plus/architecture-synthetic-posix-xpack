@@ -32,7 +32,7 @@
 #if defined(TRACE)
 
 #include <micro-os-plus/config.h>
-#include <cmsis-plus/diag/trace.h>
+#include <micro-os-plus/diag/trace.h>
 #include <cstddef>
 #include <unistd.h>
 

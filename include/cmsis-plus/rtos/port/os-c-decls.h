@@ -42,8 +42,8 @@
  * when they are implemented using the port native objects.
  */
 
-#ifndef CMSIS_PLUS_RTOS_PORT_OS_C_DECLS_H_
-#define CMSIS_PLUS_RTOS_PORT_OS_C_DECLS_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_C_DECLS_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_C_DECLS_H_
 
 #include <stdint.h>
 
@@ -77,4 +77,4 @@ typedef bool os_port_irq_state_t;
 typedef uint64_t os_port_thread_stack_element_t;
 typedef uint64_t os_port_thread_stack_allocation_element_t;
 
-#endif /* CMSIS_PLUS_RTOS_PORT_OS_C_DECLS_H_ */
+#endif /* MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_C_DECLS_H_ */
