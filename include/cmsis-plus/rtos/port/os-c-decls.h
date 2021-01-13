@@ -78,3 +78,5 @@ typedef uint64_t os_port_thread_stack_element_t;
 typedef uint64_t os_port_thread_stack_allocation_element_t;
 
 #endif /* MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_C_DECLS_H_ */
+
+// ----------------------------------------------------------------------------

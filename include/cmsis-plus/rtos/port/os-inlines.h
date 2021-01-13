@@ -209,3 +209,5 @@ namespace os
 #endif /* __cplusplus */
 
 #endif /* MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_INLINES_H_ */
+
+// ----------------------------------------------------------------------------
