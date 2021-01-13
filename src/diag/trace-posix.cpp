@@ -31,42 +31,42 @@
 
 #if defined(TRACE)
 
+#include <cstddef>
 #include <micro-os-plus/config.h>
 #include <micro-os-plus/diag/trace.h>
-#include <cstddef>
 #include <unistd.h>
 
 // ----------------------------------------------------------------------------
 
 namespace os
 {
-  namespace trace
-  {
-    // ------------------------------------------------------------------------
+namespace trace
+{
+// ----------------------------------------------------------------------------
 
-    void
-    initialize (void)
-    {
-      ; // For POSIX no inits are required.
-    }
+void
+initialize (void)
+{
+  ; // For POSIX no inits are required.
+}
 
-    // ------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
-    ssize_t
-    write (const void* buf, std::size_t nbyte)
-    {
+ssize_t
+write (const void* buf, std::size_t nbyte)
+{
 #if defined(OS_USE_TRACE_POSIX_STDOUT)
-      return ::write (1, buf, nbyte); // Forward to STDOUT.
+  return ::write (1, buf, nbyte); // Forward to STDOUT.
 #elif defined(OS_USE_TRACE_POSIX_STDERR)
-      return ::write (2, buf, nbyte); // Forward to STDERR.
+  return ::write (2, buf, nbyte); // Forward to STDERR.
 #else
 #warning "No trace output channel."
-      buf = buf;
-      return nbyte;
+  buf = buf;
+  return nbyte;
 #endif
-    }
+}
 
-  } /* namespace trace */
+} /* namespace trace */
 } /* namespace os */
 
 #endif /* defined(TRACE) */

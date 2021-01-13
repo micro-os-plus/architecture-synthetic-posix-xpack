@@ -27,8 +27,8 @@
 
 #include <micro-os-plus/diag/trace.h>
 
-#include <cstdio>
 #include <cassert>
+#include <cstdio>
 #include <cstring>
 
 #pragma GCC diagnostic push
