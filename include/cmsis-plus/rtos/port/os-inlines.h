@@ -45,12 +45,12 @@
 
 // ----------------------------------------------------------------------------
 
-#ifdef __cplusplus
+#ifdef  __cplusplus
 
 #include <stdlib.h>
 #include <string.h>
-#include <sys/time.h>
 #include <sys/utsname.h>
+#include <sys/time.h>
 
 // For Linux
 #include <unistd.h>
@@ -64,119 +64,142 @@ extern "C" uint32_t signal_nesting;
 
 namespace os
 {
-namespace rtos
-{
-namespace port
-{
-// ----------------------------------------------------------------------------
-
-namespace scheduler
-{
-
-inline void __attribute__ ((always_inline)) greeting (void)
-{
-  struct utsname name;
-  if (::uname (&name) != -1)
+  namespace rtos
+  {
+    namespace port
     {
-      trace::printf ("POSIX synthetic, running on %s %s %s", name.machine,
-                     name.sysname, name.release);
-    }
-  else
-    {
-      trace::printf ("POSIX synthetic");
-    }
+      // ----------------------------------------------------------------------
 
-  trace::puts ("; non-preemptive.");
-}
+      namespace scheduler
+      {
 
-inline port::scheduler::state_t __attribute__ ((always_inline)) lock (void)
-{
-  return locked (state::locked);
-}
+        inline void
+        __attribute__((always_inline))
+        greeting (void)
+        {
+          struct utsname name;
+          if (::uname (&name) != -1)
+            {
+              trace::printf ("POSIX synthetic, running on %s %s %s",
+                             name.machine, name.sysname, name.release);
+            }
+          else
+            {
+              trace::printf ("POSIX synthetic");
+            }
 
-inline port::scheduler::state_t __attribute__ ((always_inline)) unlock (void)
-{
-  return locked (state::unlocked);
-}
+          trace::puts ("; non-preemptive.");
+        }
 
-inline bool __attribute__ ((always_inline)) locked (void)
-{
-  return lock_state != state::unlocked;
-}
+        inline port::scheduler::state_t
+        __attribute__((always_inline))
+        lock (void)
+        {
+          return locked (state::locked);
+        }
 
-inline void __attribute__ ((always_inline)) wait_for_interrupt (void)
-{
+        inline port::scheduler::state_t
+        __attribute__((always_inline))
+        unlock (void)
+        {
+          return locked (state::unlocked);
+        }
+
+        inline bool
+        __attribute__((always_inline))
+        locked (void)
+        {
+          return lock_state != state::unlocked;
+        }
+
+        inline void
+        __attribute__((always_inline))
+        wait_for_interrupt (void)
+        {
 #if defined(OS_TRACE_RTOS_THREAD_CONTEXT)
-  trace::printf ("%s() \n", __func__);
+          trace::printf ("%s() \n", __func__);
 #endif
-  pause ();
-}
+          pause ();
+        }
 
-} /* namespace scheduler */
+      } /* namespace scheduler */
 
-namespace interrupts
-{
+      namespace interrupts
+      {
 
-inline bool __attribute__ ((always_inline)) in_handler_mode (void)
-{
-  return (signal_nesting > 0);
-}
+        inline bool
+        __attribute__((always_inline))
+        in_handler_mode (void)
+        {
+          return (signal_nesting > 0);
+        }
 
-inline bool __attribute__ ((always_inline)) is_priority_valid (void)
-{
-  return true;
-}
+        inline bool
+        __attribute__((always_inline))
+        is_priority_valid (void)
+        {
+          return true;
+        }
 
-// Enter an IRQ critical section
-inline rtos::interrupts::state_t __attribute__ ((always_inline))
-critical_section::enter (void)
-{
-  sigset_t old;
-  sigprocmask (SIG_BLOCK, &clock_set, &old);
+        // Enter an IRQ critical section
+        inline rtos::interrupts::state_t
+        __attribute__((always_inline))
+        critical_section::enter (void)
+        {
+          sigset_t old;
+          sigprocmask (SIG_BLOCK, &clock_set, &old);
 
-  return sigismember (&old, clock::signal_number);
-}
+          return sigismember(&old, clock::signal_number);
+        }
 
-// Exit an IRQ critical section
-inline void __attribute__ ((always_inline))
-critical_section::exit (rtos::interrupts::state_t state)
-{
-  sigprocmask (state ? SIG_BLOCK : SIG_UNBLOCK, &clock_set, nullptr);
-}
+        // Exit an IRQ critical section
+        inline void
+        __attribute__((always_inline))
+        critical_section::exit (rtos::interrupts::state_t state)
+        {
+          sigprocmask (state ? SIG_BLOCK : SIG_UNBLOCK, &clock_set, nullptr);
+        }
 
-// ============================================================================
+        // ====================================================================
 
-// Enter an IRQ uncritical section
-inline rtos::interrupts::state_t __attribute__ ((always_inline))
-uncritical_section::enter (void)
-{
-  sigset_t old;
-  sigprocmask (SIG_UNBLOCK, &clock_set, &old);
+        // Enter an IRQ uncritical section
+        inline rtos::interrupts::state_t
+        __attribute__((always_inline))
+        uncritical_section::enter (void)
+        {
+          sigset_t old;
+          sigprocmask (SIG_UNBLOCK, &clock_set, &old);
 
-  return sigismember (&old, clock::signal_number);
-}
+          return sigismember(&old, clock::signal_number);
+        }
 
-// Exit an IRQ critical section
-inline void __attribute__ ((always_inline))
-uncritical_section::exit (rtos::interrupts::state_t state)
-{
-  sigprocmask (state ? SIG_BLOCK : SIG_UNBLOCK, &clock_set, nullptr);
-}
+        // Exit an IRQ critical section
+        inline void
+        __attribute__((always_inline))
+        uncritical_section::exit (rtos::interrupts::state_t state)
+        {
+          sigprocmask (state ? SIG_BLOCK : SIG_UNBLOCK, &clock_set, nullptr);
+        }
 
-} /* namespace interrupts */
+      } /* namespace interrupts */
 
-// ============================================================================
+      // ======================================================================
 
-namespace this_thread
-{
-inline void __attribute__ ((always_inline)) prepare_suspend (void) { ; }
+      namespace this_thread
+      {
+        inline void
+        __attribute__((always_inline))
+        prepare_suspend (void)
+        {
+          ;
+        }
 
-} /* namespace this_thread */
+      } /* namespace this_thread */
 
-// ============================================================================
+    // ========================================================================
 
-} /* namespace port */
-} /* namespace rtos */
+    } /* namespace port */
+  } /* namespace rtos */
 } /* namespace os */
 
 #pragma GCC diagnostic pop
