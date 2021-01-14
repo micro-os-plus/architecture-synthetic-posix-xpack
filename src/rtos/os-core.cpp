@@ -52,12 +52,12 @@ namespace os
       void
       context::create (void* context, void* func, void* args)
       {
-        class rtos::thread::context* th_ctx =
-            static_cast<class rtos::thread::context*> (context);
-        memset (&th_ctx->port_, 0, sizeof(th_ctx->port_));
+        class rtos::thread::context* th_ctx
+            = static_cast<class rtos::thread::context*> (context);
+        memset (&th_ctx->port_, 0, sizeof (th_ctx->port_));
 
-        ucontext_t* ctx =
-            reinterpret_cast<ucontext_t*> (&(th_ctx->port_.ucontext));
+        ucontext_t* ctx
+            = reinterpret_cast<ucontext_t*> (&(th_ctx->port_.ucontext));
 
 #if defined(OS_TRACE_RTOS_THREAD_CONTEXT)
         trace::printf ("port::context::%s() getcontext %p\n", __func__, ctx);
@@ -97,8 +97,7 @@ namespace os
       namespace interrupts
       {
         sigset_t clock_set;
-
-      } /* namespace interrupts */
+      } // namespace interrupts
 
       // ----------------------------------------------------------------------
 
@@ -117,8 +116,8 @@ namespace os
           signal_nesting = 0;
 
           // Must be done before the first critical section.
-          sigemptyset(&interrupts::clock_set);
-          sigaddset(&interrupts::clock_set, clock::signal_number);
+          sigemptyset (&interrupts::clock_set);
+          sigaddset (&interrupts::clock_set, clock::signal_number);
 
           return result::ok;
         }
@@ -131,16 +130,16 @@ namespace os
         void
         start (void)
         {
-            {
-              rtos::interrupts::critical_section ics;
+          {
+            rtos::interrupts::critical_section ics;
 
-              // Determine the next thread.
-              rtos::scheduler::current_thread_ =
-                  rtos::scheduler::ready_threads_list_.unlink_head ();
-            }
+            // Determine the next thread.
+            rtos::scheduler::current_thread_
+                = rtos::scheduler::ready_threads_list_.unlink_head ();
+          }
 
-          ucontext_t* new_context =
-              reinterpret_cast<ucontext_t*> (&(rtos::scheduler::current_thread_->context_.port_.ucontext));
+          ucontext_t* new_context = reinterpret_cast<ucontext_t*> (
+              &(rtos::scheduler::current_thread_->context_.port_.ucontext));
 
 #if defined(OS_TRACE_RTOS_THREAD_CONTEXT)
           trace::printf ("port::scheduler::%s() ctx %p %s\n", __func__,
@@ -154,7 +153,7 @@ namespace os
           setcontext (new_context);
 #else
           int res = setcontext (new_context);
-          assert(res == 0);
+          assert (res == 0);
 #endif
           abort ();
         }
@@ -164,16 +163,16 @@ namespace os
         state_t
         locked (state_t state)
         {
-          os_assert_throw(!interrupts::in_handler_mode (), EPERM);
+          os_assert_throw (!interrupts::in_handler_mode (), EPERM);
 
           state_t tmp;
 
-            {
-              rtos::interrupts::critical_section ics;
+          {
+            rtos::interrupts::critical_section ics;
 
-              tmp = lock_state;
-              lock_state = state;
-            }
+            tmp = lock_state;
+            lock_state = state;
+          }
 
           return tmp;
         }
@@ -206,29 +205,29 @@ namespace os
           ucontext_t* old_ctx;
           ucontext_t* new_ctx;
 
-            {
-              rtos::interrupts::critical_section ics;
+          {
+            rtos::interrupts::critical_section ics;
 
-              old_thread = rtos::scheduler::current_thread_;
-              if ((old_thread->state_ == rtos::thread::state::running)
-                  || (old_thread->state_ == rtos::thread::state::suspended)
-                  || (old_thread->state_ == rtos::thread::state::ready))
-                {
-                  save = true;
-                }
+            old_thread = rtos::scheduler::current_thread_;
+            if ((old_thread->state_ == rtos::thread::state::running)
+                || (old_thread->state_ == rtos::thread::state::suspended)
+                || (old_thread->state_ == rtos::thread::state::ready))
+              {
+                save = true;
+              }
 #if defined(OS_TRACE_RTOS_THREAD_CONTEXT)
-              trace::printf ("port::scheduler::%s() old %s %d %d\n", __func__,
-                             old_thread->name (), old_thread->state_, save);
+            trace::printf ("port::scheduler::%s() old %s %d %d\n", __func__,
+                           old_thread->name (), old_thread->state_, save);
 #endif
 
-              old_ctx =
-                  reinterpret_cast<ucontext_t*> (&old_thread->context_.port_.ucontext);
+            old_ctx = reinterpret_cast<ucontext_t*> (
+                &old_thread->context_.port_.ucontext);
 
-              rtos::scheduler::internal_switch_threads ();
+            rtos::scheduler::internal_switch_threads ();
 
-              new_ctx =
-                  reinterpret_cast<ucontext_t*> (&rtos::scheduler::current_thread_->context_.port_.ucontext);
-            }
+            new_ctx = reinterpret_cast<ucontext_t*> (
+                &rtos::scheduler::current_thread_->context_.port_.ucontext);
+          }
 
           if (old_ctx != new_ctx)
             {
@@ -236,8 +235,8 @@ namespace os
                 {
 #if defined(OS_TRACE_RTOS_THREAD_CONTEXT)
                   trace::printf (
-                      "port::scheduler::%s() swapcontext %s -> %s \n", __func__,
-                      old_thread->name (),
+                      "port::scheduler::%s() swapcontext %s -> %s \n",
+                      __func__, old_thread->name (),
                       rtos::scheduler::current_thread_->name ());
 #endif
                   if (swapcontext (old_ctx, new_ctx) != 0)
@@ -276,9 +275,9 @@ namespace os
 
 #pragma GCC diagnostic pop
 
-      // ----------------------------------------------------------------------
+        // --------------------------------------------------------------------
 
-      } /* namespace scheduler */
+      } // namespace scheduler
 
       // ----------------------------------------------------------------------
 
@@ -329,7 +328,7 @@ namespace os
 #else
 #error Platform unsupported
 #endif
-        sigemptyset(&sa.sa_mask);
+        sigemptyset (&sa.sa_mask);
         sa.sa_flags = SA_RESTART;
 
         if (sigaction (clock::signal_number, &sa, nullptr) != 0)
@@ -343,9 +342,9 @@ namespace os
         struct itimerval tv;
         // first clear all fields
 #if defined(__APPLE__)
-        memset (&tv, 0, sizeof(tv));
+        memset (&tv, 0, sizeof (tv));
 #else
-        timerclear(&tv.it_value);
+        timerclear (&tv.it_value);
 #endif
         // then set the required ones
 
@@ -356,9 +355,11 @@ namespace os
         tv.it_interval.tv_usec = 1000000 / rtos::clock_systick::frequency_hz;
 #else
         tv.it_value.tv_sec = 1;
-        tv.it_value.tv_usec = 0; //1000000 / rtos::clock_systick::frequency_hz;
+        tv.it_value.tv_usec = 0; // 1000000 /
+                                 // rtos::clock_systick::frequency_hz;
         tv.it_interval.tv_sec = 1;
-        tv.it_interval.tv_usec = 0;//1000000 / rtos::clock_systick::frequency_hz;
+        tv.it_interval.tv_usec
+            = 0; // 1000000 / rtos::clock_systick::frequency_hz;
 #endif
 
         if (setitimer (ITIMER_REAL, &tv, nullptr) != 0)
@@ -382,7 +383,6 @@ namespace os
             write (1, &cn, 1);
           }
 #endif
-
       }
 
       // ======================================================================
@@ -435,9 +435,10 @@ namespace os
         return delta;
       }
 
-    } /* namespace port */
-  } /* namespace rtos */
-} /* namespace os */
+      // ----------------------------------------------------------------------
+    } // namespace port
+  } // namespace rtos
+} // namespace os
 
 // ----------------------------------------------------------------------------
 

@@ -60,16 +60,18 @@
 #endif
 
 #if !defined(OS_INTEGER_RTOS_MAIN_STACK_SIZE_BYTES)
-#define OS_INTEGER_RTOS_MAIN_STACK_SIZE_BYTES (OS_INTEGER_RTOS_DEFAULT_STACK_SIZE_BYTES)
+#define OS_INTEGER_RTOS_MAIN_STACK_SIZE_BYTES \
+  (OS_INTEGER_RTOS_DEFAULT_STACK_SIZE_BYTES)
 #endif
 
 #if !defined(OS_INTEGER_RTOS_IDLE_STACK_SIZE_BYTES)
-#define OS_INTEGER_RTOS_IDLE_STACK_SIZE_BYTES (OS_INTEGER_RTOS_DEFAULT_STACK_SIZE_BYTES)
+#define OS_INTEGER_RTOS_IDLE_STACK_SIZE_BYTES \
+  (OS_INTEGER_RTOS_DEFAULT_STACK_SIZE_BYTES)
 #endif
 
 // ----------------------------------------------------------------------------
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 
 #include <signal.h>
 // Platform definitions
@@ -95,15 +97,15 @@ namespace os
         using allocation_element_t = os_port_thread_stack_allocation_element_t;
 
         // Initial value for the minimum stack size in bytes.
-        constexpr std::size_t min_size_bytes =
-        OS_INTEGER_RTOS_MIN_STACK_SIZE_BYTES;
+        constexpr std::size_t min_size_bytes
+            = OS_INTEGER_RTOS_MIN_STACK_SIZE_BYTES;
 
         // Initial value for the default stack size in bytes.
-        constexpr std::size_t default_size_bytes =
-        OS_INTEGER_RTOS_DEFAULT_STACK_SIZE_BYTES;
+        constexpr std::size_t default_size_bytes
+            = OS_INTEGER_RTOS_DEFAULT_STACK_SIZE_BYTES;
 
         constexpr element_t magic = 0xEFBEADDEEFBEADDE;
-      } /* namespace stack */
+      } // namespace stack
 
       namespace interrupts
       {
@@ -113,11 +115,11 @@ namespace os
         namespace state
         {
           constexpr state_t init = false;
-        } /* namespace state */
+        }
 
         extern sigset_t clock_set;
 
-      } /* namespace interrupts */
+      } // namespace interrupts
 
       namespace scheduler
       {
@@ -128,29 +130,28 @@ namespace os
           constexpr state_t locked = true;
           constexpr state_t unlocked = false;
           constexpr state_t init = unlocked;
-        } /* namespace state */
+        } // namespace state
 
         extern state_t lock_state;
 
-      } /* namespace scheduler */
+      } // namespace scheduler
 
       namespace clock
       {
         constexpr int signal_number = SIGALRM;
-      } /* namespace clock */
+      }
 
       using thread_context_t = struct thread_context_s
-        {
-          // On POSIX, the context is saved on standard (although deprecated)
-          // ucontext_t structures. It requires _XOPEN_SOURCE=700L to compile.
-          ucontext_t ucontext;//
-        };
+      {
+        // On POSIX, the context is saved on standard (although deprecated)
+        // ucontext_t structures. It requires _XOPEN_SOURCE=700L to compile.
+        ucontext_t ucontext; //
+      };
 
-    // ------------------------------------------------------------------------
-
-    } /* namespace port */
-  } /* namespace rtos */
-} /* namespace os */
+      // ----------------------------------------------------------------------
+    } // namespace port
+  } // namespace rtos
+} // namespace os
 
 // ----------------------------------------------------------------------------
 

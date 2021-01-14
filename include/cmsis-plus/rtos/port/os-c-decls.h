@@ -45,15 +45,19 @@
 #ifndef MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_C_DECLS_H_
 #define MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_C_DECLS_H_
 
+// ----------------------------------------------------------------------------
+
 #include <stdint.h>
 
-#if !defined (_XOPEN_SOURCE)
+#if !defined(_XOPEN_SOURCE)
 #error This port requires defining _XOPEN_SOURCE=600L globally
 #endif
 #include <ucontext.h>
 
 #include <signal.h>
 #include <stdbool.h>
+
+// ----------------------------------------------------------------------------
 
 // Must match port::clock::timestamp_t
 typedef uint64_t os_port_clock_timestamp_t;
@@ -76,6 +80,8 @@ typedef bool os_port_irq_state_t;
 
 typedef uint64_t os_port_thread_stack_element_t;
 typedef uint64_t os_port_thread_stack_allocation_element_t;
+
+// ----------------------------------------------------------------------------
 
 #endif /* MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_C_DECLS_H_ */
 

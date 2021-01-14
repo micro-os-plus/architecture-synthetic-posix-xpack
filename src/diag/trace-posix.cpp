@@ -66,8 +66,9 @@ namespace os
 #endif
     }
 
-  } /* namespace trace */
-} /* namespace os */
+    // ------------------------------------------------------------------------
+  } // namespace trace
+} // namespace os
 
 #endif /* defined(TRACE) */
 
