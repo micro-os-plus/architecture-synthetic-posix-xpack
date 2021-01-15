@@ -12,7 +12,7 @@ The project is hosted on GitHub as
 ## Purpose
 
 This xPack provides the implementation for the µOS++ scheduler,
-running on a synthetic POSIX platform, like an user mode process under
+running on a synthetic POSIX platform, as an user mode process under
 macOS and GNU/Linux.
 
 ## Status
@@ -37,7 +37,7 @@ To include this µOS++ port in a project, consider the following details.
 
 ## Limitations
 
-When running on a synthetic POSIX platform, the µOS++ scheduler runs 
+When running on a synthetic POSIX platform, the µOS++ scheduler runs
 in cooperative mode only.
 
 ## Tests

@@ -39,7 +39,7 @@
 // ----------------------------------------------------------------------------
 
 #include <micro-os-plus/config.h>
-#include <micro-os-plus/rtos/port/os-c-decls.h>
+#include <micro-os-plus/rtos/port/declarations-c.h>
 
 // ----------------------------------------------------------------------------
 

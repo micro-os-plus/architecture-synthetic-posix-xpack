@@ -1,5 +1,5 @@
 {
-    "name": "@micro-os-plus/architecture-posix",
+    "name": "@micro-os-plus/architecture-synthetic-posix",
     "version": "0.0.1",
     "description": "A source xPack with the µOS++ synthetic POSIX architecture port",
     "main": "",
@@ -8,23 +8,24 @@
     },
     "repository": {
       "type": "git",
-      "url": "git+https://github.com/micro-os-plus/architecture-posix-xpack.git"
+      "url": "git+https://github.com/micro-os-plus/architecture-synthetic-posix-xpack.git"
     },
     "keywords": [
       "xpack",
       "c++",
       "posix",
+      "synthetic",
       "micro-os-plus"
     ],
-    "homepage": "https://github.com/micro-os-plus/architecture-posix-xpack",
+    "homepage": "https://github.com/micro-os-plus/architecture-synthetic-posix-xpack",
     "author": {
       "name": "Liviu Ionescu",
       "email": "ilg@livius.net",
-      "url": "https://github.com/ilg-ul"
+      "url": "https://github.com/ilg-ul/"
     },
     "license": "MIT",
     "bugs": {
-      "url": "https://github.com/micro-os-plus/architecture-posix-xpack/issues"
+      "url": "https://github.com/micro-os-plus/architecture-synthetic-posix-xpack/issues/"
     },
     "config": {},
     "dependencies": {

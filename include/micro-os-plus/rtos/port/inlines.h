@@ -79,12 +79,12 @@ namespace os
           struct utsname name;
           if (::uname (&name) != -1)
             {
-              trace::printf ("POSIX synthetic, running on %s %s %s",
+              trace::printf ("Synthetic POSIX, running on %s %s %s",
                              name.machine, name.sysname, name.release);
             }
           else
             {
-              trace::printf ("POSIX synthetic");
+              trace::printf ("Synthetic POSIX");
             }
 
           trace::puts ("; non-preemptive.");
