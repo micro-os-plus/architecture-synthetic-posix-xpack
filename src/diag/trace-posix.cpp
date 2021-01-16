@@ -70,10 +70,10 @@ namespace os
   } // namespace trace
 } // namespace os
 
-#endif /* defined(TRACE) */
+#endif // defined(TRACE)
 
 // ----------------------------------------------------------------------------
 
-#endif /* Unix */
+#endif // Unix
 
 // ----------------------------------------------------------------------------

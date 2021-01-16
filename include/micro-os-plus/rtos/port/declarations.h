@@ -56,7 +56,7 @@
 #define OS_INTEGER_RTOS_DEFAULT_STACK_SIZE_BYTES (2 * SIGSTKSZ)
 #else
 #define OS_INTEGER_RTOS_DEFAULT_STACK_SIZE_BYTES (SIGSTKSZ)
-#endif /* defined(__linux__) */
+#endif // defined(__linux__)
 #endif
 
 #if !defined(OS_INTEGER_RTOS_MAIN_STACK_SIZE_BYTES)
@@ -155,8 +155,8 @@ namespace os
 
 // ----------------------------------------------------------------------------
 
-#endif /* __cplusplus */
+#endif // __cplusplus
 
-#endif /* MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_DECLS_H_ */
+#endif // MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_DECLS_H_
 
 // ----------------------------------------------------------------------------
