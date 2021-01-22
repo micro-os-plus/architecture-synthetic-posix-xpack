@@ -13,7 +13,7 @@ message(STATUS "Including micro-os-plus-architecture-synthetic-posix...")
 
 # -----------------------------------------------------------------------------
 
-function(target_sources_micro_os_plus_architecture target)
+function(target_sources_micro_os_plus_architecture_synthetic_posix target)
 
   get_filename_component(xpack_root_folder ${CMAKE_CURRENT_FUNCTION_LIST_DIR} DIRECTORY)
 
@@ -21,14 +21,15 @@ function(target_sources_micro_os_plus_architecture target)
     ${target}
 
     PRIVATE
-      ${xpack_root_folder}/src/lists.cpp
+      ${xpack_root_folder}/src/diag/trace-posix.cpp
+      ${xpack_root_folder}/src/rtos/os-core.cpp
   )
 
 endfunction()
 
 # -----------------------------------------------------------------------------
 
-function(target_include_directories_micro_os_plus_architecture target)
+function(target_include_directories_micro_os_plus_architecture_synthetic_posix target)
 
   get_filename_component(xpack_root_folder ${CMAKE_CURRENT_FUNCTION_LIST_DIR} DIRECTORY)
 
@@ -37,6 +38,20 @@ function(target_include_directories_micro_os_plus_architecture target)
 
     PUBLIC
       ${xpack_root_folder}/include
+  )
+
+endfunction()
+
+# -----------------------------------------------------------------------------
+
+function(target_compile_definitions_micro_os_plus_architecture_synthetic_posix target)
+
+  target_compile_definitions(
+    ${target}
+
+    PUBLIC
+      _XOPEN_SOURCE=700L
+      $<$<STREQUAL:"${CMAKE_BUILD_TYPE}","Debug">:OS_USE_TRACE_POSIX_STDOUT>
   )
 
 endfunction()
