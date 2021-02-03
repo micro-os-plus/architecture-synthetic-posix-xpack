@@ -29,6 +29,14 @@
 
 // ----------------------------------------------------------------------------
 
+#if defined(HAVE_MICRO_OS_PLUS_CONFIG_H)
+#include <micro-os-plus/config.h>
+#endif
+
+#if defined(OS_INCLUDE_RTOS)
+
+// ----------------------------------------------------------------------------
+
 #include <cassert>
 
 #include <micro-os-plus/rtos/os.h>
@@ -439,6 +447,10 @@ namespace os
     } // namespace port
   } // namespace rtos
 } // namespace os
+
+// ----------------------------------------------------------------------------
+
+#endif // defined(OS_INCLUDE_RTOS)
 
 // ----------------------------------------------------------------------------
 
