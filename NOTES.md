@@ -39,6 +39,3 @@ constructor, since it does not need any initialisation.
 ## Memory allocation
 
 The default memory allocator uses the system `malloc()`.
-
-
-
