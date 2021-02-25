@@ -9,51 +9,59 @@
 #
 # -----------------------------------------------------------------------------
 
+if(micro-os-plus-architecture-synthetic-posix-included)
+  return()
+endif()
+
+set(micro-os-plus-architecture-synthetic-posix-included TRUE)
+
 message(STATUS "Including micro-os-plus-architecture-synthetic-posix...")
 
 # -----------------------------------------------------------------------------
+# The current folder.
 
-function(target_sources_micro_os_plus_architecture_synthetic_posix target)
+get_filename_component(xpack_current_folder ${CMAKE_CURRENT_LIST_DIR} DIRECTORY)
 
-  get_filename_component(xpack_root_folder ${CMAKE_CURRENT_FUNCTION_LIST_DIR} DIRECTORY)
+# -----------------------------------------------------------------------------
+
+if(NOT TARGET micro-os-plus-architecture-synthetic-posix-interface)
+
+  add_library(micro-os-plus-architecture-synthetic-posix-interface INTERFACE EXCLUDE_FROM_ALL)
+
+  # ---------------------------------------------------------------------------
+  # Target settings.
 
   target_sources(
-    ${target}
+    micro-os-plus-architecture-synthetic-posix-interface
 
-    PRIVATE
-      ${xpack_root_folder}/src/diag/trace-posix.cpp
-      ${xpack_root_folder}/src/rtos/os-core.cpp
+    INTERFACE
+      ${xpack_current_folder}/src/diag/trace-posix.cpp
+      ${xpack_current_folder}/src/rtos/os-core.cpp
   )
-
-endfunction()
-
-# -----------------------------------------------------------------------------
-
-function(target_include_directories_micro_os_plus_architecture_synthetic_posix target)
-
-  get_filename_component(xpack_root_folder ${CMAKE_CURRENT_FUNCTION_LIST_DIR} DIRECTORY)
 
   target_include_directories(
-    ${target}
+    micro-os-plus-architecture-synthetic-posix-interface
 
-    PUBLIC
-      ${xpack_root_folder}/include
+    INTERFACE
+      ${xpack_current_folder}/include
   )
 
-endfunction()
-
-# -----------------------------------------------------------------------------
-
-function(target_compile_definitions_micro_os_plus_architecture_synthetic_posix target)
-
   target_compile_definitions(
-    ${target}
+    micro-os-plus-architecture-synthetic-posix-interface
 
-    PUBLIC
+    INTERFACE
       _XOPEN_SOURCE=700L
       $<$<STREQUAL:"${CMAKE_BUILD_TYPE}","Debug">:OS_USE_TRACE_POSIX_STDOUT>
   )
 
-endfunction()
+  # ---------------------------------------------------------------------------
+  # Aliases.
+
+  add_library(micro-os-plus::architecture-synthetic-posix ALIAS micro-os-plus-architecture-synthetic-posix-interface)
+  message(STATUS "micro-os-plus::architecture-synthetic-posix")
+  add_library(micro-os-plus::architecture ALIAS micro-os-plus-architecture-synthetic-posix-interface)
+  message(STATUS "micro-os-plus::architecture")
+
+endif()
 
 # -----------------------------------------------------------------------------
