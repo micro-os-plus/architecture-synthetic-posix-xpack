@@ -12,11 +12,59 @@
 # https://cmake.org/cmake/help/v3.18/
 # https://cmake.org/cmake/help/v3.18/manual/cmake-packages.7.html#package-configuration-file
 
-# message(STATUS "Including micro-os-plus-architecture-synthetic-posix-config...")
+if(micro-os-plus-architecture-synthetic-posix-included)
+  return()
+endif()
+
+set(micro-os-plus-architecture-synthetic-posix-included TRUE)
+
+message(STATUS "Including micro-os-plus-architecture-synthetic-posix...")
+
+# -----------------------------------------------------------------------------
+# The current folder.
+
+get_filename_component(xpack_current_folder ${CMAKE_CURRENT_LIST_DIR} DIRECTORY)
 
 # -----------------------------------------------------------------------------
 
-include("${CMAKE_CURRENT_LIST_DIR}/xpack-helper.cmake")
+if(NOT TARGET micro-os-plus-architecture-synthetic-posix-interface)
+
+  add_library(micro-os-plus-architecture-synthetic-posix-interface INTERFACE EXCLUDE_FROM_ALL)
+
+  # ---------------------------------------------------------------------------
+  # Target settings.
+
+  target_sources(
+    micro-os-plus-architecture-synthetic-posix-interface
+
+    INTERFACE
+      ${xpack_current_folder}/src/diag/trace-posix.cpp
+      ${xpack_current_folder}/src/rtos/os-core.cpp
+  )
+
+  target_include_directories(
+    micro-os-plus-architecture-synthetic-posix-interface
+
+    INTERFACE
+      ${xpack_current_folder}/include
+  )
+
+  target_compile_definitions(
+    micro-os-plus-architecture-synthetic-posix-interface
+
+    INTERFACE
+      _XOPEN_SOURCE=700L
+      $<$<STREQUAL:"${CMAKE_BUILD_TYPE}","Debug">:OS_USE_TRACE_POSIX_STDOUT>
+  )
+
+  # ---------------------------------------------------------------------------
+  # Aliases.
+
+  add_library(micro-os-plus::architecture-synthetic-posix ALIAS micro-os-plus-architecture-synthetic-posix-interface)
+  message(STATUS "micro-os-plus::architecture-synthetic-posix")
+  add_library(micro-os-plus::architecture ALIAS micro-os-plus-architecture-synthetic-posix-interface)
+  message(STATUS "micro-os-plus::architecture")
+
+endif()
 
 # -----------------------------------------------------------------------------
-
