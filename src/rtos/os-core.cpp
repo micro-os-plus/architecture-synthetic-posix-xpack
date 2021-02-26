@@ -39,7 +39,7 @@
 
 #include <cassert>
 
-#include <micro-os-plus/rtos/os.h>
+#include <micro-os-plus/rtos.h>
 #include <micro-os-plus/rtos/port/inlines.h>
 
 #include <sys/time.h>

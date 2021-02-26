@@ -41,7 +41,7 @@
 // ----------------------------------------------------------------------------
 
 #include <micro-os-plus/config.h>
-#include <micro-os-plus/rtos/os-c-decls.h>
+#include <micro-os-plus/rtos/declarations-c.h>
 
 // ----------------------------------------------------------------------------
 
