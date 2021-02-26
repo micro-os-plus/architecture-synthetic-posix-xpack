@@ -34,12 +34,13 @@ if(NOT TARGET micro-os-plus-architecture-synthetic-posix-interface)
   # ---------------------------------------------------------------------------
   # Target settings.
 
+  file(GLOB_RECURSE source_files CONFIGURE_DEPENDS "${xpack_current_folder}/src/*.c*")
+
   target_sources(
     micro-os-plus-architecture-synthetic-posix-interface
 
     INTERFACE
-      ${xpack_current_folder}/src/diag/trace-posix.cpp
-      ${xpack_current_folder}/src/rtos/os-core.cpp
+      ${source_files}
   )
 
   target_include_directories(
