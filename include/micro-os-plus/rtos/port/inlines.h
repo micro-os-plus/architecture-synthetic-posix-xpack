@@ -116,7 +116,7 @@ namespace os
         inline __attribute__ ((always_inline)) void
         wait_for_interrupt (void)
         {
-#if defined(OS_TRACE_RTOS_THREAD_CONTEXT)
+#if defined(MICRO_OS_PLUS_TRACE_RTMICRO_OS_PLUS_THREAD_CONTEXT)
           trace::printf ("%s() \n", __func__);
 #endif
           pause ();

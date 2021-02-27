@@ -55,7 +55,7 @@ if(NOT TARGET micro-os-plus-architecture-synthetic-posix-interface)
 
     INTERFACE
       _XOPEN_SOURCE=700L
-      $<$<STREQUAL:"${CMAKE_BUILD_TYPE}","Debug">:OS_USE_TRACE_POSIX_STDOUT>
+      $<$<STREQUAL:"${CMAKE_BUILD_TYPE}","Debug">:MICRO_OS_PLUS_USE_TRACE_POSIX_STDOUT>
   )
 
   # ---------------------------------------------------------------------------

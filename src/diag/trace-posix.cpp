@@ -62,9 +62,9 @@ namespace os
     ssize_t
     write (const void* buf, std::size_t nbyte)
     {
-#if defined(OS_USE_TRACE_POSIX_STDOUT)
+#if defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STDOUT)
       return ::write (1, buf, nbyte); // Forward to STDOUT.
-#elif defined(OS_USE_TRACE_POSIX_STDERR)
+#elif defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STDERR)
       return ::write (2, buf, nbyte); // Forward to STDERR.
 #else
 #warning "No trace output channel."

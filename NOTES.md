@@ -30,8 +30,8 @@ previous other classes to be registered.
 
 ## Trace
 
-The default trace output is STDOUT (`OS_USE_TRACE_POSIX_STDOUT`), but 
-can be redirected to STDERR by using `OS_USE_TRACE_POSIX_STDERR`.
+The default trace output is STDOUT (`MICRO_OS_PLUS_USE_TRACE_POSIX_STDOUT`), but 
+can be redirected to STDERR by using `MICRO_OS_PLUS_USE_TRACE_POSIX_STDERR`.
 
 The trace output is available from the very moment, in the first static 
 constructor, since it does not need any initialisation.

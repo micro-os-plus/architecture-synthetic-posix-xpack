@@ -48,30 +48,30 @@
 
 // ----------------------------------------------------------------------------
 
-#if !defined(OS_INTEGER_SYSTICK_FREQUENCY_HZ)
-#define OS_INTEGER_SYSTICK_FREQUENCY_HZ (1000)
+#if !defined(MICRO_OS_PLUS_INTEGER_SYSTICK_FREQUENCY_HZ)
+#define MICRO_OS_PLUS_INTEGER_SYSTICK_FREQUENCY_HZ (1000)
 #endif
 
-#if !defined(OS_INTEGER_RTOS_MIN_STACK_SIZE_BYTES)
-#define OS_INTEGER_RTOS_MIN_STACK_SIZE_BYTES (SIGSTKSZ)
+#if !defined(MICRO_OS_PLUS_INTEGER_RTOS_MIN_STACK_SIZE_BYTES)
+#define MICRO_OS_PLUS_INTEGER_RTOS_MIN_STACK_SIZE_BYTES (SIGSTKSZ)
 #endif
 
-#if !defined(OS_INTEGER_RTOS_DEFAULT_STACK_SIZE_BYTES)
+#if !defined(MICRO_OS_PLUS_INTEGER_RTOS_DEFAULT_STACK_SIZE_BYTES)
 #if defined(__linux__)
-#define OS_INTEGER_RTOS_DEFAULT_STACK_SIZE_BYTES (2 * SIGSTKSZ)
+#define MICRO_OS_PLUS_INTEGER_RTOS_DEFAULT_STACK_SIZE_BYTES (2 * SIGSTKSZ)
 #else
-#define OS_INTEGER_RTOS_DEFAULT_STACK_SIZE_BYTES (SIGSTKSZ)
+#define MICRO_OS_PLUS_INTEGER_RTOS_DEFAULT_STACK_SIZE_BYTES (SIGSTKSZ)
 #endif // defined(__linux__)
 #endif
 
-#if !defined(OS_INTEGER_RTOS_MAIN_STACK_SIZE_BYTES)
-#define OS_INTEGER_RTOS_MAIN_STACK_SIZE_BYTES \
-  (OS_INTEGER_RTOS_DEFAULT_STACK_SIZE_BYTES)
+#if !defined(MICRO_OS_PLUS_INTEGER_RTOS_MAIN_STACK_SIZE_BYTES)
+#define MICRO_OS_PLUS_INTEGER_RTOS_MAIN_STACK_SIZE_BYTES \
+  (MICRO_OS_PLUS_INTEGER_RTOS_DEFAULT_STACK_SIZE_BYTES)
 #endif
 
-#if !defined(OS_INTEGER_RTOS_IDLE_STACK_SIZE_BYTES)
-#define OS_INTEGER_RTOS_IDLE_STACK_SIZE_BYTES \
-  (OS_INTEGER_RTOS_DEFAULT_STACK_SIZE_BYTES)
+#if !defined(MICRO_OS_PLUS_INTEGER_RTOS_IDLE_STACK_SIZE_BYTES)
+#define MICRO_OS_PLUS_INTEGER_RTOS_IDLE_STACK_SIZE_BYTES \
+  (MICRO_OS_PLUS_INTEGER_RTOS_DEFAULT_STACK_SIZE_BYTES)
 #endif
 
 // ----------------------------------------------------------------------------
@@ -103,11 +103,11 @@ namespace os
 
         // Initial value for the minimum stack size in bytes.
         constexpr std::size_t min_size_bytes
-            = OS_INTEGER_RTOS_MIN_STACK_SIZE_BYTES;
+            = MICRO_OS_PLUS_INTEGER_RTOS_MIN_STACK_SIZE_BYTES;
 
         // Initial value for the default stack size in bytes.
         constexpr std::size_t default_size_bytes
-            = OS_INTEGER_RTOS_DEFAULT_STACK_SIZE_BYTES;
+            = MICRO_OS_PLUS_INTEGER_RTOS_DEFAULT_STACK_SIZE_BYTES;
 
         constexpr element_t magic = 0xEFBEADDEEFBEADDE;
       } // namespace stack
