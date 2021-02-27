@@ -99,7 +99,7 @@ extern "C"
 
 namespace posix
 {
-  namespace arch
+  namespace architecture
   {
     // ------------------------------------------------------------------------
 
@@ -122,35 +122,35 @@ namespace posix
     }
 
     // ------------------------------------------------------------------------
-  } // namespace arch
+  } // namespace architecture
 } // namespace posix
 
 namespace micro_os_plus
 {
-  namespace arch
+  namespace architecture
   {
     // ------------------------------------------------------------------------
 
     inline __attribute__ ((always_inline)) void
     nop (void)
     {
-      posix::arch::nop ();
+      posix::architecture::nop ();
     }
 
     inline __attribute__ ((always_inline)) void
     brk (void)
     {
-      posix::arch::bkpt ();
+      posix::architecture::bkpt ();
     }
 
     inline __attribute__ ((always_inline)) void
     wfi (void)
     {
-      posix::arch::wfi ();
+      posix::architecture::wfi ();
     }
 
     // ------------------------------------------------------------------------
-  } // namespace arch
+  } // namespace architecture
 } // namespace micro_os_plus
 
 #endif // defined(__cplusplus)
