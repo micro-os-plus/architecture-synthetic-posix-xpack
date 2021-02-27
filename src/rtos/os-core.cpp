@@ -48,7 +48,7 @@
 
 uint32_t signal_nesting;
 
-namespace os
+namespace micro_os_plus
 {
   namespace rtos
   {
@@ -448,7 +448,7 @@ namespace os
       // ----------------------------------------------------------------------
     } // namespace port
   } // namespace rtos
-} // namespace os
+} // namespace micro_os_plus
 
 // ----------------------------------------------------------------------------
 

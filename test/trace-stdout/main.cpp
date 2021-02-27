@@ -31,6 +31,12 @@
 #include <cassert>
 #include <cstring>
 
+// ----------------------------------------------------------------------------
+
+using namespace micro_os_plus;
+
+// ----------------------------------------------------------------------------
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 
@@ -38,8 +44,8 @@ int
 main (int argc, char* argv[])
 {
 
-  os::trace::initialize ();
-  os::trace::puts ("C++ Message");
+  trace::initialize ();
+  trace::puts ("C++ Message");
 
   trace_puts ("C Message");
 
@@ -47,3 +53,5 @@ main (int argc, char* argv[])
 }
 
 #pragma GCC diagnostic pop
+
+// ----------------------------------------------------------------------------

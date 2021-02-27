@@ -45,7 +45,7 @@
 
 // ----------------------------------------------------------------------------
 
-namespace os
+namespace micro_os_plus
 {
   namespace trace
   {
@@ -75,7 +75,7 @@ namespace os
 
     // ------------------------------------------------------------------------
   } // namespace trace
-} // namespace os
+} // namespace micro_os_plus
 
 #endif // defined(TRACE)
 
