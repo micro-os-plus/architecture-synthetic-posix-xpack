@@ -26,10 +26,7 @@
  */
 
 /*
- * This file is part of the CMSIS++ proposal, intended as a CMSIS
- * replacement for C++ applications.
- *
- * If contains the scheduler implementation that uses
+ * This file contains the scheduler implementation that uses
  * functions from the POSIX API (macOS and GNU/Linux).
  *
  * This file is included in all src/os-*.cpp files.
