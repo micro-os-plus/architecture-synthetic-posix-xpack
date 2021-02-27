@@ -6,7 +6,7 @@
 # Bash helper script used in project generate.sh scripts.
 # -----------------------------------------------------------------------------
 
-do_add_posix_arch_xpack() {
+do_add_posix_architecture_xpack() {
   local pack_name='posix-arch'
   do_tell_xpack "${pack_name}-xpack"
 

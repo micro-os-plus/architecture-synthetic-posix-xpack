@@ -52,19 +52,19 @@ extern "C"
    * `nop` instruction.
    */
   static void
-  posix_arch_nop (void);
+  posix_architecture_nop (void);
 
   /**
    * `bkpt` instruction.
    */
   static void
-  posix_arch_bkpt (void);
+  posix_architecture_bkpt (void);
 
   /**
    * `wfi` instruction.
    */
   static void
-  posix_arch_wfi (void);
+  posix_architecture_wfi (void);
 
   // --------------------------------------------------------------------------
   // Portable architecture assembly instructions in C.
@@ -73,19 +73,19 @@ extern "C"
    * `nop` instruction.
    */
   static void
-  os_arch_nop (void);
+  os_architecture_nop (void);
 
   /**
    * `break` instruction.
    */
   static void
-  os_arch_brk (void);
+  os_architecture_brk (void);
 
   /**
    * `wfi` instruction.
    */
   static void
-  os_arch_wfi (void);
+  os_architecture_wfi (void);
 
   // --------------------------------------------------------------------------
 

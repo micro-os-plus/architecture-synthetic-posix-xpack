@@ -46,45 +46,45 @@ extern "C"
   // --------------------------------------------------------------------------
 
   static inline __attribute__ ((always_inline)) void
-  posix_arch_nop (void)
+  posix_architecture_nop (void)
   {
     ;
   }
 
   static inline __attribute__ ((always_inline)) void
-  posix_arch_bkpt (void)
+  posix_architecture_bkpt (void)
   {
     ;
   }
 
   static inline __attribute__ ((always_inline)) void
-  posix_arch_wfi (void)
+  posix_architecture_wfi (void)
   {
     ;
   }
 
   static inline __attribute__ ((always_inline)) void
-  os_arch_nop (void)
+  os_architecture_nop (void)
   {
-    posix_arch_nop ();
+    posix_architecture_nop ();
   }
 
   /**
    * `break` instruction.
    */
   static inline __attribute__ ((always_inline)) void
-  os_arch_brk (void)
+  os_architecture_brk (void)
   {
-    posix_arch_bkpt ();
+    posix_architecture_bkpt ();
   }
 
   /**
    * `wfi` instruction.
    */
   static inline __attribute__ ((always_inline)) void
-  os_arch_wfi (void)
+  os_architecture_wfi (void)
   {
-    posix_arch_wfi ();
+    posix_architecture_wfi ();
   }
 
   // --------------------------------------------------------------------------
@@ -106,19 +106,19 @@ namespace posix
     inline __attribute__ ((always_inline)) void
     nop (void)
     {
-      posix_arch_nop ();
+      posix_architecture_nop ();
     }
 
     inline __attribute__ ((always_inline)) void
     bkpt (void)
     {
-      posix_arch_bkpt ();
+      posix_architecture_bkpt ();
     }
 
     inline __attribute__ ((always_inline)) void
     wfi (void)
     {
-      posix_arch_wfi ();
+      posix_architecture_wfi ();
     }
 
     // ------------------------------------------------------------------------
