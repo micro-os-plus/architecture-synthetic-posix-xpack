@@ -65,7 +65,7 @@ typedef struct
   ucontext_t ucontext; //
 } micro_os_plus_port_thread_context_t;
 
-typedef bool micro_os_plus_port_sched_state_t;
+typedef bool micro_os_plus_port_scheduler_state_t;
 
 // Signal set (true if signal blocked)
 typedef bool micro_os_plus_port_irq_state_t;
