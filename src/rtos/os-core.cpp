@@ -60,7 +60,7 @@ namespace micro_os_plus
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
       void
-      context::create (void* context, void* func, void* args)
+      context::create (void* context, void* function, void* args)
       {
         class rtos::thread::context* th_ctx
             = static_cast<class rtos::thread::context*> (context);
@@ -95,7 +95,7 @@ namespace micro_os_plus
 #if defined(MICRO_OS_PLUS_TRACE_RTMICRO_OS_PLUS_THREAD_CONTEXT)
         trace::printf ("port::context::%s() makecontext %p\n", __func__, ctx);
 #endif
-        makecontext (ctx, reinterpret_cast<func_t> (func), 1, args);
+        makecontext (ctx, reinterpret_cast<func_t> (function), 1, args);
 
         // context->port_.saved = false;
       }
