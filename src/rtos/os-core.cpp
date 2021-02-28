@@ -95,7 +95,8 @@ namespace micro_os_plus
 #if defined(MICRO_OS_PLUS_TRACE_RTMICRO_OS_PLUS_THREAD_CONTEXT)
         trace::printf ("port::context::%s() makecontext %p\n", __func__, ctx);
 #endif
-        makecontext (ctx, reinterpret_cast<func_t> (function), 1, arguments);
+        makecontext (ctx, reinterpret_cast<function_t> (function), 1,
+                     arguments);
 
         // context->port_.saved = false;
       }
