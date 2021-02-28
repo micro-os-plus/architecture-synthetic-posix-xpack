@@ -113,7 +113,7 @@ namespace micro_os_plus
       namespace interrupts
       {
         // True if signal blocked
-        using state_t = micro_os_plus_port_irq_state_t;
+        using state_t = micro_os_plus_port_interrupts_state_t;
 
         namespace state
         {
