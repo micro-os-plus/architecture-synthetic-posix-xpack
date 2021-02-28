@@ -64,7 +64,7 @@ extern "C"
   }
 
   static inline __attribute__ ((always_inline)) void
-  os_architecture_nop (void)
+  micro_os_plus_architecture_nop (void)
   {
     posix_architecture_nop ();
   }
@@ -73,7 +73,7 @@ extern "C"
    * `break` instruction.
    */
   static inline __attribute__ ((always_inline)) void
-  os_architecture_brk (void)
+  micro_os_plus_architecture_brk (void)
   {
     posix_architecture_bkpt ();
   }
@@ -82,7 +82,7 @@ extern "C"
    * `wfi` instruction.
    */
   static inline __attribute__ ((always_inline)) void
-  os_architecture_wfi (void)
+  micro_os_plus_architecture_wfi (void)
   {
     posix_architecture_wfi ();
   }

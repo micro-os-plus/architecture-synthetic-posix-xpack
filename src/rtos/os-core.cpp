@@ -173,7 +173,7 @@ namespace micro_os_plus
         state_t
         locked (state_t state)
         {
-          os_assert_throw (!interrupts::in_handler_mode (), EPERM);
+          micro_os_plus_assert_throw (!interrupts::in_handler_mode (), EPERM);
 
           state_t tmp;
 
@@ -315,7 +315,7 @@ namespace micro_os_plus
 
         signal_nesting++;
         // Call the ticks timer ISR.
-        os_systick_handler ();
+        micro_os_plus_systick_handler ();
         signal_nesting--;
       }
 
