@@ -18,7 +18,7 @@ endif()
 
 set(micro-os-plus-architecture-synthetic-posix-included TRUE)
 
-message(STATUS "Including micro-os-plus-architecture-synthetic-posix...")
+message(STATUS "Processing xPack ${PACKAGE_JSON_NAME}@${PACKAGE_JSON_VERSION}...")
 
 # -----------------------------------------------------------------------------
 # The current folder.
