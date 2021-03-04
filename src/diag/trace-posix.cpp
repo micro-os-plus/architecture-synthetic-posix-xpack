@@ -54,7 +54,7 @@ namespace micro_os_plus
     void
     initialize (void)
     {
-      ; // For POSIX no inits are required.
+      // For POSIX no inits are required, STDOUT & STDERR are always available.
     }
 
     // ------------------------------------------------------------------------
@@ -70,6 +70,18 @@ namespace micro_os_plus
 #warning "No trace output channel."
       buf = buf;
       return nbyte;
+#endif
+    }
+
+    void
+    flush (void)
+    {
+#if defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STDOUT)
+      fsync (1); // Sync STDOUT.
+#elif defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STDERR)
+      fsync (2); // Sync STDERR.
+#else
+      ;
 #endif
     }
 
