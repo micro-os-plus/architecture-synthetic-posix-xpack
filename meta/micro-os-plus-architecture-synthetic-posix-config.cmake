@@ -63,9 +63,9 @@ if(NOT TARGET micro-os-plus-architecture-synthetic-posix-interface)
   # Aliases.
 
   add_library(micro-os-plus::architecture-synthetic-posix ALIAS micro-os-plus-architecture-synthetic-posix-interface)
-  message(STATUS "micro-os-plus::architecture-synthetic-posix")
+  message(STATUS "=> micro-os-plus::architecture-synthetic-posix")
   add_library(micro-os-plus::architecture ALIAS micro-os-plus-architecture-synthetic-posix-interface)
-  message(STATUS "micro-os-plus::architecture")
+  message(STATUS "=> micro-os-plus::architecture")
 
 endif()
 
