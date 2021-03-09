@@ -46,6 +46,14 @@
 
 #include <sys/time.h>
 
+// ----------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+
+#if defined(__clang__)
+#pragma clang diagnostic ignored "-Wc++98-compat"
+#endif
+
 uint32_t signal_nesting;
 
 namespace micro_os_plus
@@ -95,8 +103,14 @@ namespace micro_os_plus
 #if defined(MICRO_OS_PLUS_TRACE_RTMICRO_OS_PLUS_THREAD_CONTEXT)
         trace::printf ("port::context::%s() makecontext %p\n", __func__, ctx);
 #endif
+#pragma GCC diagnostic push
+
+#if defined(__clang__)
+#pragma clang diagnostic ignored "-Wc++98-compat-pedantic"
+#endif
         makecontext (ctx, reinterpret_cast<function_t> (function), 1,
                      arguments);
+#pragma GCC diagnostic pop
 
         // context->port_.saved = false;
       }
@@ -450,6 +464,8 @@ namespace micro_os_plus
     } // namespace port
   } // namespace rtos
 } // namespace micro_os_plus
+
+#pragma GCC diagnostic pop
 
 // ----------------------------------------------------------------------------
 

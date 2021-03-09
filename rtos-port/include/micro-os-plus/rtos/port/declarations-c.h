@@ -25,6 +25,11 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_C_DECLS_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_C_DECLS_H_
+
+// ----------------------------------------------------------------------------
+
 /*
  * This file is included in `micro-os-plus/rtos/declarations-c.h` to
  * customise it with port specific declarations.
@@ -34,15 +39,10 @@
  * when they are implemented using the port native objects.
  */
 
-#ifndef MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_C_DECLS_H_
-#define MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_C_DECLS_H_
-
-// ----------------------------------------------------------------------------
-
 #include <stdint.h>
 
 #if !defined(_XOPEN_SOURCE)
-#error This port requires defining _XOPEN_SOURCE=600L globally
+#error This port requires defining _XOPEN_SOURCE=700L globally
 #endif
 #include <ucontext.h>
 

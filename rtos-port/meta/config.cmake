@@ -12,18 +12,19 @@
 # https://cmake.org/cmake/help/v3.18/
 # https://cmake.org/cmake/help/v3.18/manual/cmake-packages.7.html#package-configuration-file
 
-if(micro-os-plus-architecture-synthetic-posix-included)
+if(micro-os-plus-architecture-synthetic-posix-rtos-port-included)
   return()
 endif()
 
-set(micro-os-plus-architecture-synthetic-posix-included TRUE)
+set(micro-os-plus-architecture-synthetic-posix-rtos-port-included TRUE)
 
-message(STATUS "Processing xPack ${PACKAGE_JSON_NAME}@${PACKAGE_JSON_VERSION}...")
+message(STATUS "Processing xPack ${PACKAGE_JSON_NAME}@${PACKAGE_JSON_VERSION} rtos-port...")
 
 # -----------------------------------------------------------------------------
-# Local dependencies.
+# Dependencies.
 
-include("${CMAKE_CURRENT_LIST_DIR}/../rtos-port/meta/config.cmake")
+find_package(micro-os-plus-rtos REQUIRED)
+find_package(micro-os-plus-diag-trace REQUIRED)
 
 # -----------------------------------------------------------------------------
 # The current folder.
@@ -32,9 +33,9 @@ get_filename_component(xpack_current_folder ${CMAKE_CURRENT_LIST_DIR} DIRECTORY)
 
 # -----------------------------------------------------------------------------
 
-if(NOT TARGET micro-os-plus-architecture-synthetic-posix-interface)
+if(NOT TARGET micro-os-plus-architecture-synthetic-posix-rtos-port-interface)
 
-  add_library(micro-os-plus-architecture-synthetic-posix-interface INTERFACE EXCLUDE_FROM_ALL)
+  add_library(micro-os-plus-architecture-synthetic-posix-rtos-port-interface INTERFACE EXCLUDE_FROM_ALL)
 
   # ---------------------------------------------------------------------------
   # Target settings.
@@ -43,33 +44,41 @@ if(NOT TARGET micro-os-plus-architecture-synthetic-posix-interface)
   xpack_display_relative_paths("${source_files}" "${xpack_current_folder}")
 
   target_sources(
-    micro-os-plus-architecture-synthetic-posix-interface
+    micro-os-plus-architecture-synthetic-posix-rtos-port-interface
 
     INTERFACE
       ${source_files}
   )
 
   target_include_directories(
-    micro-os-plus-architecture-synthetic-posix-interface
+    micro-os-plus-architecture-synthetic-posix-rtos-port-interface
 
     INTERFACE
       ${xpack_current_folder}/include
   )
 
   target_compile_definitions(
-    micro-os-plus-architecture-synthetic-posix-interface
+    micro-os-plus-architecture-synthetic-posix-rtos-port-interface
 
     INTERFACE
       _XOPEN_SOURCE=700L
   )
 
+  target_link_libraries(
+    micro-os-plus-architecture-synthetic-posix-rtos-port-interface
+    
+    INTERFACE
+      micro-os-plus::rtos-port
+      micro-os-plus::diag-trace
+  )
+
   # ---------------------------------------------------------------------------
   # Aliases.
 
-  add_library(micro-os-plus::architecture-synthetic-posix ALIAS micro-os-plus-architecture-synthetic-posix-interface)
-  # message(STATUS "=> micro-os-plus::architecture-synthetic-posix")
-  add_library(micro-os-plus::architecture ALIAS micro-os-plus-architecture-synthetic-posix-interface)
-  message(STATUS "=> micro-os-plus::architecture")
+  add_library(micro-os-plus::rtos-port-synthetic-posix ALIAS micro-os-plus-architecture-synthetic-posix-rtos-port-interface)
+  # message(STATUS "=> micro-os-plus::rtos-port-synthetic-posix")
+  add_library(micro-os-plus::rtos-port ALIAS micro-os-plus-architecture-synthetic-posix-rtos-port-interface)
+  message(STATUS "=> micro-os-plus::rtos-port")
 
 endif()
 

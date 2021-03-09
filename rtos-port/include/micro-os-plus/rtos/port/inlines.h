@@ -25,6 +25,11 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_INLINES_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_INLINES_H_
+
+// ----------------------------------------------------------------------------
+
 /*
  * This file contains the scheduler implementation that uses
  * functions from the POSIX API (macOS and GNU/Linux).
@@ -32,8 +37,7 @@
  * This file is included in all src/os-*.cpp files.
  */
 
-#ifndef MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_INLINES_H_
-#define MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_INLINES_H_
+#ifdef __cplusplus
 
 // ----------------------------------------------------------------------------
 
@@ -45,10 +49,6 @@
 
 #include <micro-os-plus/rtos/declarations-c.h>
 
-// ----------------------------------------------------------------------------
-
-#ifdef __cplusplus
-
 #include <stdlib.h>
 #include <string.h>
 #include <sys/utsname.h>
@@ -59,7 +59,12 @@
 
 #include <micro-os-plus/diag/trace.h>
 
+// ----------------------------------------------------------------------------
+
 #pragma GCC diagnostic push
+#if defined(__clang__)
+#pragma clang diagnostic ignored "-Wc++98-compat"
+#endif
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 
 extern "C" uint32_t signal_nesting;
@@ -196,6 +201,8 @@ namespace micro_os_plus
 // ----------------------------------------------------------------------------
 
 #endif // __cplusplus
+
+// ----------------------------------------------------------------------------
 
 #endif // MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_INLINES_H_
 

@@ -25,15 +25,15 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-/*
- * This file is included in `micro-os-plus/rtos.h` to customise
- * it with POSIX specific declarations.
- */
-
 #ifndef MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_DECLS_H_
 #define MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_DECLS_H_
 
 // ----------------------------------------------------------------------------
+
+/*
+ * This file is included in `micro-os-plus/rtos.h` to customise
+ * it with POSIX specific declarations.
+ */
 
 #if defined(HAVE_MICRO_OS_PLUS_CONFIG_H)
 #include <micro-os-plus/config.h>
@@ -75,12 +75,22 @@
 
 #ifdef __cplusplus
 
+// ----------------------------------------------------------------------------
+
 #include <signal.h>
 // Platform definitions
 #include <sys/time.h>
 
 #include <cstdint>
 #include <cstddef>
+
+// ----------------------------------------------------------------------------
+
+#pragma GCC diagnostic push
+
+#if defined(__clang__)
+#pragma clang diagnostic ignored "-Wc++98-compat"
+#endif
 
 namespace micro_os_plus
 {
@@ -156,9 +166,13 @@ namespace micro_os_plus
   } // namespace rtos
 } // namespace micro_os_plus
 
+#pragma GCC diagnostic pop
+
 // ----------------------------------------------------------------------------
 
 #endif // __cplusplus
+
+// ----------------------------------------------------------------------------
 
 #endif // MICRO_OS_PLUS_ARCHITECTURE_POSIX_RTOS_PORT_OS_DECLS_H_
 
