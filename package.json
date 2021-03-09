@@ -1,6 +1,6 @@
 {
   "name": "@micro-os-plus/architecture-synthetic-posix",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A source xPack with the µOS++ synthetic POSIX architecture port",
   "main": "",
   "scripts": {
@@ -28,6 +28,5 @@
     "url": "https://github.com/micro-os-plus/architecture-synthetic-posix-xpack/issues/"
   },
   "config": {},
-  "dependencies": {},
   "xpack": {}
 }
