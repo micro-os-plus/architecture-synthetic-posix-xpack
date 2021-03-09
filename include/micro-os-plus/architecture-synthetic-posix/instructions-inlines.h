@@ -97,6 +97,8 @@ extern "C"
 
 #if defined(__cplusplus)
 
+// ----------------------------------------------------------------------------
+
 namespace posix
 {
   namespace architecture
@@ -125,6 +127,8 @@ namespace posix
   } // namespace architecture
 } // namespace posix
 
+// ----------------------------------------------------------------------------
+
 namespace micro_os_plus
 {
   namespace architecture
@@ -152,6 +156,8 @@ namespace micro_os_plus
     // ------------------------------------------------------------------------
   } // namespace architecture
 } // namespace micro_os_plus
+
+// ----------------------------------------------------------------------------
 
 #endif // defined(__cplusplus)
 
