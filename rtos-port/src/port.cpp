@@ -70,8 +70,13 @@ namespace micro_os_plus
       void
       context::create (void* context, void* function, void* arguments)
       {
+#pragma GCC diagnostic push
+#if defined(__GNUC__) && !defined(__clang__)
+#pragma GCC diagnostic ignored "-Wuseless-cast"
+#endif
         class rtos::thread::context* th_ctx
             = static_cast<class rtos::thread::context*> (context);
+#pragma GCC diagnostic pop
         memset (&th_ctx->port_, 0, sizeof (th_ctx->port_));
 
         ucontext_t* ctx
@@ -158,9 +163,14 @@ namespace micro_os_plus
           {
             rtos::interrupts::critical_section ics;
 
+#pragma GCC diagnostic push
+#if defined(__GNUC__) && !defined(__clang__)
+#pragma GCC diagnostic ignored "-Wuseless-cast"
+#endif
             // Determine the next thread.
             rtos::scheduler::current_thread_
                 = rtos::scheduler::ready_threads_list_.unlink_head ();
+#pragma GCC diagnostic pop
           }
 
           ucontext_t* new_context = reinterpret_cast<ucontext_t*> (
@@ -245,6 +255,10 @@ namespace micro_os_plus
                            old_thread->name (), old_thread->state_, save);
 #endif
 
+#pragma GCC diagnostic push
+#if defined(__GNUC__) && !defined(__clang__)
+#pragma GCC diagnostic ignored "-Wuseless-cast"
+#endif
             old_ctx = reinterpret_cast<ucontext_t*> (
                 &old_thread->context_.port_.ucontext);
 
@@ -252,6 +266,7 @@ namespace micro_os_plus
 
             new_ctx = reinterpret_cast<ucontext_t*> (
                 &rtos::scheduler::current_thread_->context_.port_.ucontext);
+#pragma GCC diagnostic pop
           }
 
           if (old_ctx != new_ctx)
