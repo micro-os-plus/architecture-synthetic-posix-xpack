@@ -8,6 +8,8 @@ and close existing issues and pull requests.
 
 ## 2021-03-11
 
+- v3.0.2
+- fix/silence warnings
 - v3.0.1
 - fix/silence warnings
 
