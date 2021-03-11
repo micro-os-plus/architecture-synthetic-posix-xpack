@@ -76,11 +76,12 @@ namespace micro_os_plus
 #endif
         class rtos::thread::context* th_ctx
             = static_cast<class rtos::thread::context*> (context);
-#pragma GCC diagnostic pop
+
         memset (&th_ctx->port_, 0, sizeof (th_ctx->port_));
 
         ucontext_t* ctx
             = reinterpret_cast<ucontext_t*> (&(th_ctx->port_.ucontext));
+#pragma GCC diagnostic pop
 
 #if defined(MICRO_OS_PLUS_TRACE_RTMICRO_OS_PLUS_THREAD_CONTEXT)
         trace::printf ("port::context::%s() getcontext %p\n", __func__, ctx);
@@ -160,21 +161,21 @@ namespace micro_os_plus
         void
         start (void)
         {
-          {
-            rtos::interrupts::critical_section ics;
-
 #pragma GCC diagnostic push
 #if defined(__GNUC__) && !defined(__clang__)
 #pragma GCC diagnostic ignored "-Wuseless-cast"
 #endif
+          {
+            rtos::interrupts::critical_section ics;
+
             // Determine the next thread.
             rtos::scheduler::current_thread_
                 = rtos::scheduler::ready_threads_list_.unlink_head ();
-#pragma GCC diagnostic pop
           }
 
           ucontext_t* new_context = reinterpret_cast<ucontext_t*> (
               &(rtos::scheduler::current_thread_->context_.port_.ucontext));
+#pragma GCC diagnostic pop
 
 #if defined(MICRO_OS_PLUS_TRACE_RTMICRO_OS_PLUS_THREAD_CONTEXT)
           trace::printf ("port::scheduler::%s() ctx %p %s\n", __func__,
