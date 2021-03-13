@@ -74,8 +74,8 @@ namespace micro_os_plus
 #if defined(__GNUC__) && !defined(__clang__)
 #pragma GCC diagnostic ignored "-Wuseless-cast"
 #endif
-        class rtos::thread::context* th_ctx
-            = static_cast<class rtos::thread::context*> (context);
+        rtos::thread::context* th_ctx
+            = static_cast<rtos::thread::context*> (context);
 
         memset (&th_ctx->port_, 0, sizeof (th_ctx->port_));
 
@@ -380,7 +380,7 @@ namespace micro_os_plus
           }
 
         // set timer
-        struct itimerval tv;
+        itimerval tv;
         // first clear all fields
 #if defined(__APPLE__)
         memset (&tv, 0, sizeof (tv));
@@ -436,7 +436,7 @@ namespace micro_os_plus
       uint64_t
       get_current_micros (void)
       {
-        struct timeval tp;
+        timeval tp;
         gettimeofday (&tp, nullptr);
 
         return static_cast<uint64_t> (tp.tv_sec * 1000000 + tp.tv_usec);

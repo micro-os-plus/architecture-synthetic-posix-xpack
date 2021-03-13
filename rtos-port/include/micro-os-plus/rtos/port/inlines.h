@@ -83,7 +83,7 @@ namespace micro_os_plus
         inline __attribute__ ((always_inline)) void
         greeting (void)
         {
-          struct utsname name;
+          utsname name;
           if (::uname (&name) != -1)
             {
               trace::printf ("Synthetic POSIX, running on %s %s %s",
