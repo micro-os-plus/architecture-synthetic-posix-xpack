@@ -49,7 +49,7 @@ as:
 
 - select the `xpack-develop` branch
 - commit all changes
-- update `CHANGELOG.md`; commit with a message like _CHANGELOG: prepare v3.0.2_
+- update `CHANGELOG.md`; commit with a message like _CHANGELOG: prepare v3.0.3_
 - `npm pack` and check the content of the archive, which should list
   only the `package.json`, the `README.md`, `LICENSE` and `CHANGELOG.md`;
   possibly adjust `.npmignore`
@@ -94,7 +94,7 @@ When the package is considered stable:
 When the release is considered stable, promote it as `latest`:
 
 - `npm dist-tag ls @micro-os-plus/architecture-synthetic-posix`
-- `npm dist-tag add @micro-os-plus/architecture-synthetic-posix@3.0.2 latest`
+- `npm dist-tag add @micro-os-plus/architecture-synthetic-posix@3.0.3 latest`
 - `npm dist-tag ls @@micro-os-plus/architecture-synthetic-posix`
 
 ## Announce to the community
@@ -105,6 +105,6 @@ Post an announcement to the forum.
 
 - in a separate browser windows, open [TweetDeck](https://tweetdeck.twitter.com/)
 - using the `@micro_os_plus` account
-- paste the release name like **µOS++ architecture-synthetic-posix v3.0.2 released**
+- paste the release name like **µOS++ architecture-synthetic-posix v3.0.3 released**
 - paste the link to the Web page release
 - click the **Tweet** button

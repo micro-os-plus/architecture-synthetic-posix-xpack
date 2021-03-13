@@ -6,6 +6,11 @@ Please check
 [GitHub](https://github.com/micro-os-plus/architecture-synthetic-posix-xpack/issues/)
 and close existing issues and pull requests.
 
+## 2021-03-13
+
+- v3.0.3
+- fix warnings
+
 ## 2021-03-11
 
 - v3.0.2
