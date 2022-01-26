@@ -11,7 +11,8 @@ The project is hosted on GitHub:
 
 - <https://github.com/micro-os-plus/architecture-synthetic-posix-xpack.git>
 
-To clone it:
+To clone the stable branch (`xpack`), run the following commands in a
+terminal (on Windows use the _Git Bash_ console):
 
 ```sh
 rm -rf ~/Work/architecture-synthetic-posix-xpack.git && \
