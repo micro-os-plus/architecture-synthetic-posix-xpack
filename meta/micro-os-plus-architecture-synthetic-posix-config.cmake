@@ -42,10 +42,18 @@ get_filename_component(xpack_current_folder ${CMAKE_CURRENT_LIST_DIR} DIRECTORY)
 
 if(NOT TARGET micro-os-plus-architecture-synthetic-posix-interface)
 
-  add_library(micro-os-plus-architecture-synthetic-posix-interface INTERFACE EXCLUDE_FROM_ALL)
+# -----------------------------------------------------------------------------
+## The project library definitions ##
 
-  # ---------------------------------------------------------------------------
-  # Target settings.
+# https://cmake.org/cmake/help/v3.20/command/add_library.html?highlight=interface#normal-libraries
+# PRIVATE: build definitions, used internally
+# INTERFACE: usage definitions, passed up to targets linking to it
+# PUBLIC: both
+
+add_library(micro-os-plus-architecture-synthetic-posix-interface INTERFACE EXCLUDE_FROM_ALL)
+
+# -----------------------------------------------------------------------------
+# Target settings.
 
   xpack_glob_recurse_cxx(source_files "${xpack_current_folder}/src")
   xpack_display_relative_paths("${source_files}" "${xpack_current_folder}")
@@ -71,7 +79,7 @@ if(NOT TARGET micro-os-plus-architecture-synthetic-posix-interface)
       _XOPEN_SOURCE=700L
   )
 
-  # ---------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
   # Aliases.
 
   add_library(micro-os-plus::architecture-synthetic-posix ALIAS micro-os-plus-architecture-synthetic-posix-interface)
