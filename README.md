@@ -114,11 +114,11 @@ To include this µOS++ port in a project, consider the following details.
 
 - `_XOPEN_SOURCE=700L`
 
-#### Namespaces
+#### C++ Namespaces
 
 TBD
 
-#### Classes
+#### C++ Classes
 
 TBD
 
