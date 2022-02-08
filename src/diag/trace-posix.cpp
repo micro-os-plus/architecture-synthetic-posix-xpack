@@ -14,7 +14,7 @@
 
 // ----------------------------------------------------------------------------
 
-#if defined(TRACE)
+#if defined(MICRO_OS_PLUS_TRACE)
 
 // ----------------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ namespace micro_os_plus
   } // namespace trace
 } // namespace micro_os_plus
 
-#endif // defined(TRACE)
+#endif // defined(MICRO_OS_PLUS_TRACE)
 
 // ----------------------------------------------------------------------------
 
