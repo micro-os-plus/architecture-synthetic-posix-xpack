@@ -1,9 +1,9 @@
 [![license](https://img.shields.io/github/license/micro-os-plus/architecture-synthetic-posix-xpack)](https://github.com/micro-os-plus/architecture-synthetic-posix-xpack/blob/xpack/LICENSE)
 [![CI on Push](https://github.com/micro-os-plus/architecture-synthetic-posix-xpack/workflows/CI%20on%20Push/badge.svg)](https://github.com/micro-os-plus/architecture-synthetic-posix-xpack/actions?query=workflow%3A%22CI+on+Push%22)
 
-# A source xPacks with the µOS++ synthetic POSIX architecture definitions
+# A source xPacks with the µOS++ synthetic POSIX platform
 
-A source xPack with the **µOS++** files specific to the synthetic POSIX port.
+A source xPack with the **µOS++** files specific for running on POSIX platfroms.
 
 The project is hosted on GitHub as
 [micro-os-plus/architecture-synthetic-posix-xpack](https://github.com/micro-os-plus/architecture-synthetic-posix-xpack).

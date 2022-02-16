@@ -6,6 +6,14 @@ Please check
 [GitHub](https://github.com/micro-os-plus/architecture-synthetic-posix-xpack/issues/)
 and close existing issues and pull requests.
 
+## 2022-02-16
+
+- v4.0.0
+- 86226c7 tests renamed
+- 3d51561 scripts removed
+- 76fb485 CMake & meson files added
+- 820e129 rtos-port moved to separate package
+
 ## 2021-03-13
 
 - v3.0.3
