@@ -38,10 +38,11 @@ build/
 # pkgconfig/
 # scripts/
 README-*
+NOTES*
 # CHANGELOG.*
 # LICENSE-*
 .appveyor.yml
-.travis.yml 
+.travis.yml
 .clang-format
 
 # End
