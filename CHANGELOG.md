@@ -8,7 +8,7 @@ and close existing issues and pull requests.
 
 ## 2022-02-16
 
-- v4.0.0
+- v4.0.1
 - 86226c7 tests renamed
 - 3d51561 scripts removed
 - 76fb485 CMake & meson files added
