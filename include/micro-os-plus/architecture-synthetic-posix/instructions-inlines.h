@@ -33,19 +33,16 @@ extern "C"
   static inline __attribute__ ((always_inline)) void
   posix_architecture_nop (void)
   {
-    ;
   }
 
   static inline __attribute__ ((always_inline)) void
   posix_architecture_bkpt (void)
   {
-    ;
   }
 
   static inline __attribute__ ((always_inline)) void
   posix_architecture_wfi (void)
   {
-    ;
   }
 
   static inline __attribute__ ((always_inline)) void
