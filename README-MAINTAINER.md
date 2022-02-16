@@ -44,23 +44,6 @@ Code formatting is done using `clang-format --style=file`, either manually
 from a script, or automatically from Visual Studio Code, or the Eclipse
 CppStyle plug-in.
 
-## Prepare a new blog post
-
-In the `micro-os-plus/web-jekyll` GitHub repo:
-
-- select the `develop` branch
-- add a new file to `_posts/architecture-synthetic-posix/releases`
-- name the file like `2020-12-19-architecture-synthetic-posix-v1-1-0-released.md`
-- name the post like: **µOS++ architecture-synthetic-posix vf released**
-- update the `date:` field with the current date
-- update the GitHub Actions URLs using the actual test pages
-
-If any, refer to closed
-[issues](https://github.com/micro-os-plus/architecture-synthetic-posix-xpack/issues/)
-as:
-
-- **[Issue:\[#1\]\(...\)]**.
-
 ## Publish on the npmjs.com server
 
 - select the `xpack-develop` branch
@@ -118,15 +101,3 @@ When the release is considered stable, promote it as `latest`:
 - `npm dist-tag ls @micro-os-plus/architecture-synthetic-posix`
 - `npm dist-tag add @micro-os-plus/architecture-synthetic-posix@4.0.0 latest`
 - `npm dist-tag ls @@micro-os-plus/architecture-synthetic-posix`
-
-## Announce to the community
-
-Post an announcement to the forum.
-
-## Share on Twitter
-
-- in a separate browser windows, open [TweetDeck](https://tweetdeck.twitter.com/)
-- using the `@micro_os_plus` account
-- paste the release name like **µOS++ architecture-synthetic-posix v4.0.0 released**
-- paste the link to the Web page release
-- click the **Tweet** button
