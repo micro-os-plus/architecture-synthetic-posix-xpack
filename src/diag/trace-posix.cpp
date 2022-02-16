@@ -10,7 +10,7 @@
  * be obtained from https://opensource.org/licenses/MIT/.
  */
 
-#if defined(__APPLE__) || defined(__linux__) || defined(__unix__)
+#if defined(__APPLE__) || defined(__linux__) || defined(__unix__) || defined(__MINGW32__)
 
 // ----------------------------------------------------------------------------
 
@@ -22,9 +22,13 @@
 
 // ----------------------------------------------------------------------------
 
+// Borrowed from architecture-synthetic-posix.
+// TODO: get it via dependencies.
+
 #include <micro-os-plus/diag/trace.h>
 #include <cstddef>
 #include <unistd.h>
+#include <cstring>
 
 // ----------------------------------------------------------------------------
 
@@ -34,10 +38,12 @@ namespace micro_os_plus
   {
     // ------------------------------------------------------------------------
 
-    void
+    void __attribute__((constructor))
     initialize (void)
     {
-      // For POSIX no inits are required, STDOUT & STDERR are always available.
+      const char* msg = "micro_os_plus::trace::initialize()\n";
+      write(msg, strlen(msg));
+      // STDOUT & STDERR are always available in POSIX; no inits are required.
     }
 
     // ------------------------------------------------------------------------
@@ -45,6 +51,14 @@ namespace micro_os_plus
     ssize_t
     write (const void* buf, std::size_t nbyte)
     {
+#pragma GCC diagnostic push
+
+#if defined(__MINGW32__)
+// warning: conversion from 'std::size_t' {aka 'long long unsigned int'} to
+// 'unsigned int' may change value [-Wconversion]
+#pragma GCC diagnostic ignored "-Wconversion"
+#endif
+
 #if defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STDOUT)
       return ::write (1, buf, nbyte); // Forward to STDOUT.
 #elif defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STDERR)
@@ -54,17 +68,23 @@ namespace micro_os_plus
       buf = buf;
       return nbyte;
 #endif
+
+#pragma GCC diagnostic pop
     }
 
     void
     flush (void)
     {
+#if !defined(__MINGW32__)
 #if defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STDOUT)
       fsync (1); // Sync STDOUT.
 #elif defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STDERR)
       fsync (2); // Sync STDERR.
 #else
-      ;
+      // Nothing.
+#endif
+#else
+// error: 'fsync' was not declared in this scope
 #endif
     }
 
@@ -76,6 +96,6 @@ namespace micro_os_plus
 
 // ----------------------------------------------------------------------------
 
-#endif // Unix
+#endif // Unix || mingw32
 
 // ----------------------------------------------------------------------------
