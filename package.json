@@ -1,6 +1,6 @@
 {
   "name": "@micro-os-plus/architecture-synthetic-posix",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "A source library xPack with the µOS++ synthetic POSIX architecture port",
   "main": "",
   "scripts": {
