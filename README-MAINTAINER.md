@@ -100,4 +100,4 @@ When the release is considered stable, promote it as `latest`:
 
 - `npm dist-tag ls @micro-os-plus/architecture-synthetic-posix`
 - `npm dist-tag add @micro-os-plus/architecture-synthetic-posix@4.0.2 latest`
-- `npm dist-tag ls @@micro-os-plus/architecture-synthetic-posix`
+- `npm dist-tag ls @micro-os-plus/architecture-synthetic-posix`
