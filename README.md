@@ -106,11 +106,15 @@ To include this µOS++ port in a project, consider the following details.
 
 #### Include folders
 
+The following folders should be passed to the compiler during the build:
+
 - `include`
 
-#### Source folders
+#### Source files
 
-- `src`
+The source files to be added to user projects are:
+
+TODO
 
 #### Preprocessor definitions
 
