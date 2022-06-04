@@ -82,7 +82,7 @@ Pull Requests should be directed to this branch.
 When new releases are published, the `xpack-develop` branch is merged
 into `xpack`.
 
-## User info
+## Developer info
 
 This xPack provides the implementation for the µOS++ scheduler,
 running on a synthetic POSIX platform, as an user mode process under
