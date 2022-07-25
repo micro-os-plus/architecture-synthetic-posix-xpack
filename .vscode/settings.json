@@ -3,12 +3,17 @@
     80
   ],
   "cSpell.ignoreWords": [
+    "Ionescu",
+    "Liviu",
     "POSIX",
+    "XOPEN",
     "buildtype",
+    "cleanup",
     "cmake",
     "cmsis",
     "cortexm",
     "ctest",
+    "diag",
     "eabi",
     "minsize",
     "mkdir",
@@ -21,5 +26,6 @@
     "xpack",
     "xpacks"
   ],
-  "cmake.configureOnOpen": false
+  "cmake.configureOnOpen": false,
+  "editor.wordWrap": "on"
 }
