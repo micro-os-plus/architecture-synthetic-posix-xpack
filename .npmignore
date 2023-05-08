@@ -45,4 +45,6 @@ NOTES*
 .travis.yml
 .clang-format
 
+.gitkeep
+
 # End
