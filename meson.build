@@ -35,6 +35,12 @@ micro_os_plus_architecture_synthetic_posix_dependency = declare_dependency(
   sources: files(
     'src/diag/trace-posix.cpp',
   ),
+  compile_args: [
+    # None.
+  ],
+  dependencies: [
+    # None.
+  ]
 )
 
 message('+ -I include')
