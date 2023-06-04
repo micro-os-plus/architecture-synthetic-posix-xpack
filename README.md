@@ -62,7 +62,7 @@ xpm init # Unless a package.json is already present
 
 xpm install @micro-os-plus/architecture-synthetic-posix@latest
 
-ls -l xpacks/micro-os-plus-architecture-synthetic-posix
+ls -l xpacks/@micro-os-plus/architecture-synthetic-posix
 ```
 
 ### Git submodule
@@ -76,7 +76,7 @@ git init # Unless already a Git project
 mkdir -p xpacks
 
 git submodule add https://github.com/micro-os-plus/architecture-synthetic-posix-xpack.git \
-  xpacks/micro-os-plus-architecture-synthetic-posix
+  xpacks/@micro-os-plus/architecture-synthetic-posix
 ```
 
 ## Branches
@@ -160,7 +160,7 @@ To integrate the architecture-synthetic-posix source library into a CMake applic
 add this folder to the build:
 
 ```cmake
-add_subdirectory("xpacks/micro-os-plus-architecture-synthetic-posix")`
+add_subdirectory("xpacks/@micro-os-plus/architecture-synthetic-posix")`
 ```
 
 The result is an interface library that can be added as an application
@@ -179,7 +179,7 @@ To integrate the architecture-synthetic-posix source library into a meson applic
 add this folder to the build:
 
 ```meson
-subdir('xpacks/micro-os-plus-architecture-synthetic-posix')
+subdir('xpacks/@micro-os-plus/architecture-synthetic-posix')
 ```
 
 The result is a dependency object that can be added
