@@ -1,16 +1,16 @@
 /*
- * This file is part of the µOS++ distribution.
- *   (https://github.com/micro-os-plus/)
- * Copyright (c) 2015 Liviu Ionescu.
+ * This file is part of the µOS++ project (https://micro-os-plus.github.io/).
+ * Copyright (c) 2015-2025 Liviu Ionescu. All rights reserved.
  *
  * Permission to use, copy, modify, and/or distribute this software
  * for any purpose is hereby granted, under the terms of the MIT license.
  *
  * If a copy of the license was not distributed with this file, it can
- * be obtained from https://opensource.org/licenses/MIT/.
+ * be obtained from https://opensource.org/licenses/mit.
  */
 
-#if defined(__APPLE__) || defined(__linux__) || defined(__unix__) || defined(__MINGW32__)
+#if defined(__APPLE__) || defined(__linux__) || defined(__unix__) \
+    || defined(__MINGW32__)
 
 // ----------------------------------------------------------------------------
 
@@ -19,6 +19,8 @@
 #endif // MICRO_OS_PLUS_INCLUDE_CONFIG_H
 
 #if defined(MICRO_OS_PLUS_TRACE)
+#if defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STDOUT) \
+    || defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STDERR)
 
 // ----------------------------------------------------------------------------
 
@@ -32,25 +34,23 @@
 
 // ----------------------------------------------------------------------------
 
-namespace micro_os_plus
+namespace micro_os_plus::trace
 {
-  namespace trace
+  // --------------------------------------------------------------------------
+
+  void __attribute__ ((constructor))
+  initialize (void)
   {
-    // ------------------------------------------------------------------------
+    const char* msg = "micro_os_plus::trace::initialize()\n";
+    write (msg, strlen (msg));
+    // STDOUT & STDERR are always available in POSIX; no inits are required.
+  }
 
-    void __attribute__((constructor))
-    initialize (void)
-    {
-      const char* msg = "micro_os_plus::trace::initialize()\n";
-      write(msg, strlen(msg));
-      // STDOUT & STDERR are always available in POSIX; no inits are required.
-    }
+  // --------------------------------------------------------------------------
 
-    // ------------------------------------------------------------------------
-
-    ssize_t
-    write (const void* buf, std::size_t nbyte)
-    {
+  ssize_t
+  write (const void* buf, std::size_t nbyte)
+  {
 #pragma GCC diagnostic push
 
 #if defined(__MINGW32__)
@@ -60,38 +60,40 @@ namespace micro_os_plus
 #endif
 
 #if defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STDOUT)
-      return ::write (1, buf, nbyte); // Forward to STDOUT.
+    return ::write (1, buf, nbyte); // Forward to STDOUT.
 #elif defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STDERR)
-      return ::write (2, buf, nbyte); // Forward to STDERR.
+    return ::write (2, buf, nbyte); // Forward to STDERR.
 #else
 #warning "No trace output channel."
-      buf = buf;
-      return nbyte;
+    buf = buf;
+    return nbyte;
 #endif
 
 #pragma GCC diagnostic pop
-    }
+  }
 
-    void
-    flush (void)
-    {
+  void
+  flush (void)
+  {
 #if !defined(__MINGW32__)
 #if defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STDOUT)
-      fsync (1); // Sync STDOUT.
+    fsync (1); // Sync STDOUT.
 #elif defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STDERR)
-      fsync (2); // Sync STDERR.
+    fsync (2); // Sync STDERR.
 #else
-      // Nothing.
+    // Nothing.
 #endif
 #else
 // error: 'fsync' was not declared in this scope
 #endif
-    }
+  }
 
-    // ------------------------------------------------------------------------
-  } // namespace trace
-} // namespace micro_os_plus
+  // --------------------------------------------------------------------------
+} // namespace micro_os_plus::trace
 
+#else
+#error "No trace output channel. Define either MICRO_OS_PLUS_USE_TRACE_POSIX_STDOUT or MICRO_OS_PLUS_USE_TRACE_POSIX_STDERR."
+#endif // defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STD*)
 #endif // defined(MICRO_OS_PLUS_TRACE)
 
 // ----------------------------------------------------------------------------
