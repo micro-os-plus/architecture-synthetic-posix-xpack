@@ -34,6 +34,12 @@
 
 // ----------------------------------------------------------------------------
 
+#pragma GCC diagnostic push
+#if defined(__clang__)
+#pragma clang diagnostic ignored "-Wunknown-warning-option"
+#pragma clang diagnostic ignored "-Wpre-c++17-compat"
+#endif
+
 namespace micro_os_plus::trace
 {
   // --------------------------------------------------------------------------
@@ -42,7 +48,12 @@ namespace micro_os_plus::trace
   initialize (void)
   {
     const char* msg = "micro_os_plus::trace::initialize()\n";
+#pragma GCC diagnostic push
+#if defined(__clang__)
+#pragma clang diagnostic ignored "-Wunsafe-buffer-usage-in-libc-call"
+#endif
     write (msg, strlen (msg));
+#pragma GCC diagnostic pop
     // STDOUT & STDERR are always available in POSIX; no inits are required.
   }
 
@@ -90,6 +101,8 @@ namespace micro_os_plus::trace
 
   // --------------------------------------------------------------------------
 } // namespace micro_os_plus::trace
+
+#pragma GCC diagnostic pop
 
 #else
 #error "No trace output channel. Define either MICRO_OS_PLUS_USE_TRACE_POSIX_STDOUT or MICRO_OS_PLUS_USE_TRACE_POSIX_STDERR."
