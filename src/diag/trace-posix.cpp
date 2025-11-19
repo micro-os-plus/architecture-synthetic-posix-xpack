@@ -105,7 +105,8 @@ namespace micro_os_plus::trace
 #pragma GCC diagnostic pop
 
 #else
-#error "No trace output channel. Define either MICRO_OS_PLUS_USE_TRACE_POSIX_STDOUT or MICRO_OS_PLUS_USE_TRACE_POSIX_STDERR."
+#error \
+    "No trace output channel. Define either MICRO_OS_PLUS_USE_TRACE_POSIX_STDOUT or MICRO_OS_PLUS_USE_TRACE_POSIX_STDERR."
 #endif // defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STD*)
 #endif // defined(MICRO_OS_PLUS_TRACE)
 
