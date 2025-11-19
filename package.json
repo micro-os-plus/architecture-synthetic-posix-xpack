@@ -1,11 +1,11 @@
 {
   "name": "@micro-os-plus/architecture-synthetic-posix",
-  "version": "4.0.2",
+  "version": "4.0.3-pre",
   "description": "A source code library with the µOS++ synthetic POSIX architecture port",
   "main": "",
   "scripts": {
     "npm-install": "npm install",
-    "pack": "npm pack",
+    "npm-pack": "npm pack",
     "npm-version-patch": "npm version patch",
     "npm-version-minor": "npm version minor",
     "postversion": "git push origin --all && git push origin --tags",
