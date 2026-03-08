@@ -6,9 +6,16 @@ Please check
 [GitHub](https://github.com/micro-os-plus/architecture-synthetic-posix-xpack/issues/)
 and close existing issues and pull requests.
 
+## 2026-03-08
+
+* v4.0.4
+* fe0424a trace-posix.cpp: silence warnings
+* 3cb574f copyright 2026 update
+
 ## 2025-11-19
 
-* v4.0.3
+* bd7af0d 4.0.3
+* 4fd8faf prepare v4.0.3
 * f826b41 format
 * 0cec1c6 add xpack-development
 * 9d4fc38 trace-posix.cpp silence warnings
