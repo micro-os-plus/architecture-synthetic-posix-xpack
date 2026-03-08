@@ -44,18 +44,18 @@ namespace micro_os_plus::trace
 {
   // --------------------------------------------------------------------------
 
+#pragma GCC diagnostic push
+#if defined(__clang__)
+#pragma clang diagnostic ignored "-Wglobal-constructors"
+#endif
   void __attribute__ ((constructor))
   initialize (void)
   {
-    const char* msg = "micro_os_plus::trace::initialize()\n";
-#pragma GCC diagnostic push
-#if defined(__clang__)
-#pragma clang diagnostic ignored "-Wunsafe-buffer-usage-in-libc-call"
-#endif
-    write (msg, strlen (msg));
-#pragma GCC diagnostic pop
+    static const char msg[] = "micro_os_plus::trace::initialize()\n";
+    write (msg, sizeof (msg) - 1);
     // STDOUT & STDERR are always available in POSIX; no inits are required.
   }
+#pragma GCC diagnostic pop
 
   // --------------------------------------------------------------------------
 
