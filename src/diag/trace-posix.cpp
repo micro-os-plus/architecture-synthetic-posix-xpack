@@ -17,7 +17,8 @@
 #if __has_include(<micro-os-plus/project-config.h>)
 #include <micro-os-plus/project-config.h>
 #elif __has_include(<micro-os-plus/config.h>)
-#pragma message "micro-os-plus/config.h is deprecated, rename to micro-os-plus/project-config.h and include it instead of micro-os-plus/config.h"
+#pragma message \
+    "micro-os-plus/config.h is deprecated, rename to micro-os-plus/project-config.h and include it instead of micro-os-plus/config.h"
 #include <micro-os-plus/config.h>
 #endif // __has_include(<micro-os-plus/project-config.h>)
 
@@ -39,11 +40,12 @@
 
 #pragma GCC diagnostic push
 #if defined(__clang__)
-#pragma clang diagnostic ignored "-Wunknown-warning-option"
+// #pragma clang diagnostic ignored "-Wunknown-warning-option"
+#pragma clang diagnostic ignored "-Wc++98-compat"
 #pragma clang diagnostic ignored "-Wpre-c++17-compat"
 #endif
 
-namespace micro_os_plus::trace
+namespace micro_os_plus::trace::detail
 {
   // --------------------------------------------------------------------------
 
@@ -52,9 +54,9 @@ namespace micro_os_plus::trace
 #pragma clang diagnostic ignored "-Wglobal-constructors"
 #endif
   void __attribute__ ((constructor))
-  initialize (void)
+  implementation::initialise (void) noexcept
   {
-    static const char msg[] = "micro_os_plus::trace::initialize()\n";
+    static const char msg[] = "micro_os_plus::trace::initialise()\n";
     write (msg, sizeof (msg) - 1);
     // STDOUT & STDERR are always available in POSIX; no inits are required.
   }
@@ -63,7 +65,7 @@ namespace micro_os_plus::trace
   // --------------------------------------------------------------------------
 
   ssize_t
-  write (const void* buf, std::size_t nbyte)
+  implementation::write (const void* buf, std::size_t nbyte) noexcept
   {
 #pragma GCC diagnostic push
 
@@ -87,7 +89,7 @@ namespace micro_os_plus::trace
   }
 
   void
-  flush (void)
+  implementation::flush (void) noexcept
   {
 #if !defined(__MINGW32__)
 #if defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STDOUT)
