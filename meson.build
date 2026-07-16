@@ -1,3 +1,4 @@
+
 # -----------------------------------------------------------------------------
 # DO NOT EDIT!
 # Automatically generated from xcdl-package.jsonc.
@@ -19,6 +20,7 @@
 #
 # This creates a dependency that can be linked to a target with:
 #
+# `dependencies: [micro_os_plus_diag_trace_posix_dependency],`
 # `dependencies: [micro_os_plus_architectures_synthetic_posix_dependency],`
 
 # Note: the Meson configuration is provided only as a proof of concept;
@@ -26,8 +28,52 @@
 
 # -----------------------------------------------------------------------------
 
-# The synthetic POSIX architecture is an environment that allows to run µOS++ applications on a POSIX host, using the POSIX API.
+# A source code library with the µOS++ synthetic POSIX architecture port.
 message('Processing xPack @micro-os-plus/architecture-synthetic-posix...')
+
+# -----------------------------------------------------------------------------
+
+# Meson's DSL does not provide introspection methods on dependency objects
+# to retrieve their properties after creation. The `_local_*` variables
+# therefore serve a dual purpose: populating the dependency object and
+# iterating over its components for the `message()` calls at the end.
+
+_local_compile_args = [] # Common C/C++ args.
+_local_compile_c_args = [] # C only args.
+_local_compile_cpp_args = [] # C++ only args.
+_local_include_directories = []
+_local_sources = []
+_local_compile_definitions = []
+_local_dependencies = []
+_local_link_args = []
+_local_link_with = []
+
+_local_sources += [
+  'src/diag/trace-posix.cpp',
+]
+
+# https://mesonbuild.com/Reference-manual_functions.html#declare_dependency
+micro_os_plus_diag_trace_posix_dependency = declare_dependency(
+  include_directories: include_directories(_local_include_directories),
+  compile_args: _local_compile_args,
+  sources: files(_local_sources),
+  dependencies: _local_dependencies,
+  link_args: _local_link_args,
+  link_with: _local_link_with,
+)
+
+# Meson dependencies cannot differentiate between C and C++ compile args;
+# they are therefore exposed as separate variables alongside the dependency.
+micro_os_plus_diag_trace_posix_dependency_compile_c_args = _local_compile_c_args
+micro_os_plus_diag_trace_posix_dependency_compile_cpp_args = _local_compile_cpp_args
+
+foreach name : _local_include_directories
+  message('+ -I ' + name)
+endforeach
+foreach name : _local_sources + _local_compile_definitions + _local_compile_args + _local_compile_c_args + _local_compile_cpp_args
+  message('+ ' + name)
+endforeach
+message('> micro_os_plus_diag_trace_posix_dependency')
 
 # -----------------------------------------------------------------------------
 
@@ -50,12 +96,9 @@ _local_include_directories += [
   'include',
 ]
 
-_local_sources += [
-  'src/diag/trace-posix.cpp',
-]
-
 _local_dependencies += [
   micro_os_plus_diag_trace_dependency,
+  micro_os_plus_diag_trace_posix_dependency,
 ]
 
 # https://mesonbuild.com/Reference-manual_functions.html#declare_dependency

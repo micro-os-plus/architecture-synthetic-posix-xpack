@@ -15,15 +15,14 @@
       "publicIncludeFolders": [
         "include"
       ],
-      "sourceFiles": [
-        "src/diag/trace-posix.cpp"
-      ],
+      "sourceFiles": [],
       "implements": [
         "micro-os-plus.architectures.interface",
         "micro-os-plus.devices.interface"
       ],
       "dependencies": [
-        "micro-os-plus.diag.trace"
+        "micro-os-plus.diag.trace",
+        "micro-os-plus.diag.trace.posix"
       ],
       "generatedFile": {
         "type": "header",
