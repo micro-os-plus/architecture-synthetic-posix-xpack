@@ -22,9 +22,16 @@
 #include <micro-os-plus/config.h>
 #endif // __has_include(<micro-os-plus/project-config.h>)
 
-#if __has_include(<micro-os-plus/diag/trace-defines.h>)
-#include <micro-os-plus/diag/trace-defines.h>
-#endif // __has_include(<micro-os-plus/diag/trace-defines.h>)
+// ----------------------------------------------------------------------------
+
+// Borrowed from architecture-synthetic-posix.
+// TODO: get it via dependencies.
+
+#include <micro-os-plus/diag/trace.h>
+
+#include <cstddef>
+#include <unistd.h>
+#include <cstring>
 
 // ----------------------------------------------------------------------------
 
@@ -32,16 +39,6 @@
 
 #if defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED) \
     || defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED)
-
-// ----------------------------------------------------------------------------
-
-// Borrowed from architecture-synthetic-posix.
-// TODO: get it via dependencies.
-
-#include <micro-os-plus/diag/trace.h>
-#include <cstddef>
-#include <unistd.h>
-#include <cstring>
 
 // ----------------------------------------------------------------------------
 
