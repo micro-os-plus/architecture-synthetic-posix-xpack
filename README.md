@@ -219,6 +219,7 @@ backwards incompatible changes are introduced to the public API.
 The incompatible changes, in reverse chronological order,
 are:
 
+- v5.x: updates for xcdl
 - v4.x: move rtos-port to separate package
 - v3.x: separate rtos-port folder
 - v2.x: rename micro_os_plus
