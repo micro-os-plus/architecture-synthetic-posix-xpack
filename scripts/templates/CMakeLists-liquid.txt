@@ -1,14 +1,5 @@
 {%- assign packageScope = package.name | remove_first: '@' | split: '/' | first %}
 {%- assign packageName = package.name | remove_first: '@' | split: '/' | last %}
-{%- assign component = xcdl.cdlComponents[0] %}
-{%- assign nameDash = component.id | replace: '.', '-' %}
-{%- assign nameDoubleColon = component.id | replace_first: '.', '::' | replace: '.', '-' %}
-{%- assign staticArtefacts = component.cdlArtefacts | where: 'type', 'staticLibrary' %}
-{%- assign staticArtefact = staticArtefacts | first %}
-{%- assign staticSuffix = staticArtefact.id %}
-{%- assign objectsArtefacts = component.cdlArtefacts | where: 'type', 'objectFiles' %}
-{%- assign objectsArtefact = objectsArtefacts | first %}
-{%- assign objectsSuffix = objectsArtefact.id -%}
 # -----------------------------------------------------------------------------
 # DO NOT EDIT! Automatically generated from {{libraryFilePath}}.
 #
@@ -27,40 +18,35 @@
 #
 # `add_subdirectory("xpacks/@{{packageScope}}/{{packageName}}")`
 #
-{%- if staticArtefact or objectsArtefact %}
-# This creates {% if staticArtefact or objectsArtefact %}several libraries{% else %}an interface library{% endif %} that can be linked to a target with{% if staticArtefact or objectsArtefact %} one of{% endif %}:
+# This creates libraries that can be linked to a target with:
 #
 # ~~~
+{%- for component in xcdl.cdlComponents %}
+{%- assign nameDash = component.id | replace: '.', '-' %}
+{%- assign nameDoubleColon = component.id | replace_first: '.', '::' | replace: '.', '-' %}
+{%- assign staticArtefacts = component.cdlArtefacts | where: 'type', 'staticLibrary' %}
+{%- assign staticArtefact = staticArtefacts | first %}
+{%- assign staticSuffix = staticArtefact.id %}
+{%- assign objectsArtefacts = component.cdlArtefacts | where: 'type', 'objectFiles' %}
+{%- assign objectsArtefact = objectsArtefacts | first %}
+{%- assign objectsSuffix = objectsArtefact.id %}
 # target_link_libraries(your-target PUBLIC {{nameDoubleColon}})
 {%- if staticArtefact %}
-#
 # target_link_libraries(your-target PUBLIC {{nameDoubleColon}}-{{staticSuffix}})
 {%- endif %}
 {%- if objectsArtefact %}
-#
 # target_link_libraries(your-target PUBLIC {{nameDoubleColon}}-{{objectsSuffix}})
 {%- endif %}
+{%- endfor %}
 # ~~~
-#
-# Weak symbols in static libraries are not always resolved reliably by the
-# linker. Object libraries are provided as a safer alternative, although they
-# have their own quirks.
-{%- else %}
-# This creates an interface library that can be linked to a target with:
-#
-# `target_link_libraries(your-target PUBLIC {{nameDoubleColon}})`
-{%- endif %}
 
 # -----------------------------------------------------------------------------
 
 # https://cmake.org/cmake/help/v3.20/
 cmake_minimum_required (VERSION 3.20)
-{% if component.description %}
-# {{component.description}}.
-{%- endif %}
 project (
-  {{nameDash}}
-  DESCRIPTION "{{component.display}}"
+  {{packageScope}}-{{packageName}}
+  DESCRIPTION "{{package.description}}"
   LANGUAGES CXX
 )
 
@@ -79,6 +65,16 @@ endif ()
 
 # -----------------------------------------------------------------------------
 
+{%- for component in xcdl.cdlComponents %}
+{%- assign nameDash = component.id | replace: '.', '-' %}
+{%- assign nameDoubleColon = component.id | replace_first: '.', '::' | replace: '.', '-' %}
+{%- assign staticArtefacts = component.cdlArtefacts | where: 'type', 'staticLibrary' %}
+{%- assign staticArtefact = staticArtefacts | first %}
+{%- assign staticSuffix = staticArtefact.id %}
+{%- assign objectsArtefacts = component.cdlArtefacts | where: 'type', 'objectFiles' %}
+{%- assign objectsArtefact = objectsArtefacts | first %}
+{%- assign objectsSuffix = objectsArtefact.id %}
+#
 # The interface library is the main target of this package, which consumers
 # (like embedded applications) link against. It defines the public API and
 # properties of the library; sources are propagated to and compiled by each
@@ -386,3 +382,4 @@ message (
 # -----------------------------------------------------------------------------
 {%- endif %}
 {%- endif %}
+{% endfor %}
