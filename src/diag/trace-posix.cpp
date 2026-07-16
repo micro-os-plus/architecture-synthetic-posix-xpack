@@ -22,9 +22,16 @@
 #include <micro-os-plus/config.h>
 #endif // __has_include(<micro-os-plus/project-config.h>)
 
-#if defined(MICRO_OS_PLUS_TRACE)
-#if defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STDOUT) \
-    || defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STDERR)
+#if __has_include(<micro-os-plus/diag/trace-defines.h>)
+#include <micro-os-plus/diag/trace-defines.h>
+#endif // __has_include(<micro-os-plus/diag/trace-defines.h>)
+
+// ----------------------------------------------------------------------------
+
+#if defined(MICRO_OS_PLUS_DIAG_TRACE_ENABLED)
+
+#if defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED) \
+    || defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED)
 
 // ----------------------------------------------------------------------------
 
@@ -75,9 +82,9 @@ namespace micro_os_plus::trace::detail
 #pragma GCC diagnostic ignored "-Wconversion"
 #endif
 
-#if defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STDOUT)
+#if defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED)
     return ::write (1, buf, nbyte); // Forward to STDOUT.
-#elif defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STDERR)
+#elif defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED)
     return ::write (2, buf, nbyte); // Forward to STDERR.
 #else
 #warning "No trace output channel."
@@ -92,9 +99,9 @@ namespace micro_os_plus::trace::detail
   implementation::flush (void) noexcept
   {
 #if !defined(__MINGW32__)
-#if defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STDOUT)
+#if defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED)
     fsync (1); // Sync STDOUT.
-#elif defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STDERR)
+#elif defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED)
     fsync (2); // Sync STDERR.
 #else
     // Nothing.
@@ -105,15 +112,15 @@ namespace micro_os_plus::trace::detail
   }
 
   // --------------------------------------------------------------------------
-} // namespace micro_os_plus::trace
+} // namespace micro_os_plus::trace::detail
 
 #pragma GCC diagnostic pop
 
 #else
-#error \
-    "No trace output channel. Define either MICRO_OS_PLUS_USE_TRACE_POSIX_STDOUT or MICRO_OS_PLUS_USE_TRACE_POSIX_STDERR."
-#endif // defined(MICRO_OS_PLUS_USE_TRACE_POSIX_STD*)
-#endif // defined(MICRO_OS_PLUS_TRACE)
+#error #    "No trace output channel. Define either MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED or MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED."
+#endif // defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STD*)
+
+#endif // defined(MICRO_OS_PLUS_DIAG_TRACE_ENABLED)
 
 // ----------------------------------------------------------------------------
 
