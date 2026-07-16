@@ -1,0 +1,69 @@
+{
+  "$schema": "https://xpack.github.io/xcdl/schemas/xcdl-2.0.0.json",
+  "minimumXcdlRequired": "2.0.0",
+  "license": "MIT",
+  "copyright": "Copyright (c) 2022-2026 Liviu Ionescu. All rights reserved.",
+  "$comments": [
+    "There is no explicit micro-os-plus.device.synthetic-posix,",
+    "the (empty) `device.h` header is included in the architecture."
+  ],
+  "cdlComponents": [
+    {
+      "id": "micro-os-plus.architectures.synthetic-posix",
+      "display": "Synthetic POSIX architecture",
+      "description": "The synthetic POSIX architecture is an environment that allows to run µOS++ applications on a POSIX host, using the POSIX API",
+      "publicIncludeFolders": [
+        "include"
+      ],
+      "sourceFiles": [
+        "src/diag/trace-posix.cpp"
+      ],
+      "implements": [
+        "micro-os-plus.architectures.interface",
+        "micro-os-plus.devices.interface"
+      ],
+      "dependencies": [
+        "micro-os-plus.diag.trace"
+      ],
+      "generatedFile": {
+        "type": "header",
+        "filePath": "{{buildFolderPath}}/generated/include/micro-os-plus/architectures-defines.h"
+      },
+      // "customDefine": "MICRO_OS_PLUS_INCLUDE_ARCHITECTURE_SYNTHETIC_POSIX_ENABLED"
+    },
+    {
+      "id": "micro-os-plus.diag.trace.posix",
+      "display": "Diagnostics trace over POSIX",
+      "description": "The POSIX trace::printf() implementation",
+      "publicIncludeFolders": [],
+      "sourceFiles": [
+        "src/diag/trace-posix.cpp"
+      ],
+      "implements": [
+        "diag.trace.output-channel-interface"
+      ],
+      // The definitions are written to the parent diag/trace-defines.h file.
+      // "$customDefine": "MICRO_OS_PLUS_DIAG_TRACE_POSIX_ENABLED",
+      "cdlOptions": [
+        {
+          "id": "stdout",
+          "display": "STDOUT",
+          "description": "The diag trace channel is implemented over the POSIX standard output",
+          "valueType": "boolean",
+          "defaultValue": false,
+          "activeIf": "!isEnabled('stderr')",
+          // "customDefine": "MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED"
+        },
+        {
+          "id": "stderr",
+          "display": "STDERR",
+          "description": "The diag trace channel is implemented over the POSIX standard error",
+          "valueType": "boolean",
+          "defaultValue": false,
+          "activeIf": "!isEnabled('stdout')",
+          // "customDefine": "MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED"
+        }
+      ]
+    }
+  ]
+}
