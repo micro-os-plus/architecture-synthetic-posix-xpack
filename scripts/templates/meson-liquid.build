@@ -1,5 +1,5 @@
 {%- assign packageScope = package.name | remove_first: '@' | split: '/' | first %}
-{%- assign packageName = package.name | remove_first: '@' | split: '/' | last %}
+{%- assign packageName = package.name | remove_first: '@' | split: '/' | last -%}
 # -----------------------------------------------------------------------------
 # DO NOT EDIT!
 # Automatically generated from {{libraryFilePath}}.
@@ -19,7 +19,7 @@
 #
 # `subdir('xpacks/@{{packageScope}}/{{packageName}}')`
 #
-# This creates a dependency that can be linked to a target with:
+# This creates dependencies that can be linked to a target with:
 #
 {% for component in xcdl.cdlComponents -%}
 {%- assign nameUnderscore = component.id | replace: '-', '_' | replace: '.', '_' -%}
@@ -35,13 +35,13 @@
 message('Processing xPack @{{packageScope}}/{{packageName}}...')
 
 # -----------------------------------------------------------------------------
-{% for component in xcdl.cdlComponents %}
-{%- assign nameUnderscore = component.id | replace: '-', '_' | replace: '.', '_' %}
+#
 # Meson's DSL does not provide introspection methods on dependency objects
 # to retrieve their properties after creation. The `_local_*` variables
 # therefore serve a dual purpose: populating the dependency object and
 # iterating over its components for the `message()` calls at the end.
-
+{% for component in xcdl.cdlComponents %}
+{%- assign nameUnderscore = component.id | replace: '-', '_' | replace: '.', '_' %}
 _local_compile_args = [] # Common C/C++ args.
 _local_compile_c_args = [] # C only args.
 _local_compile_cpp_args = [] # C++ only args.

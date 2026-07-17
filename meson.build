@@ -1,4 +1,3 @@
-
 # -----------------------------------------------------------------------------
 # DO NOT EDIT!
 # Automatically generated from xcdl-package.jsonc.
@@ -18,7 +17,7 @@
 #
 # `subdir('xpacks/@micro-os-plus/architecture-synthetic-posix')`
 #
-# This creates a dependency that can be linked to a target with:
+# This creates dependencies that can be linked to a target with:
 #
 # `dependencies: [micro_os_plus_diag_trace_posix_dependency],`
 # `dependencies: [micro_os_plus_architectures_synthetic_posix_dependency],`
@@ -32,7 +31,7 @@
 message('Processing xPack @micro-os-plus/architecture-synthetic-posix...')
 
 # -----------------------------------------------------------------------------
-
+#
 # Meson's DSL does not provide introspection methods on dependency objects
 # to retrieve their properties after creation. The `_local_*` variables
 # therefore serve a dual purpose: populating the dependency object and
@@ -76,11 +75,6 @@ endforeach
 message('> micro_os_plus_diag_trace_posix_dependency')
 
 # -----------------------------------------------------------------------------
-
-# Meson's DSL does not provide introspection methods on dependency objects
-# to retrieve their properties after creation. The `_local_*` variables
-# therefore serve a dual purpose: populating the dependency object and
-# iterating over its components for the `message()` calls at the end.
 
 _local_compile_args = [] # Common C/C++ args.
 _local_compile_c_args = [] # C only args.

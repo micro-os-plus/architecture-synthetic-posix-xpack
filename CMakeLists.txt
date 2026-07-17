@@ -1,4 +1,3 @@
-
 # -----------------------------------------------------------------------------
 # DO NOT EDIT! Automatically generated from xcdl-package.jsonc.
 #
@@ -30,7 +29,8 @@
 cmake_minimum_required (VERSION 3.20)
 project (
   micro-os-plus-architecture-synthetic-posix
-  DESCRIPTION "A source code library with the µOS++ synthetic POSIX architecture port"
+  DESCRIPTION
+    "A source code library with the µOS++ synthetic POSIX architecture port"
   LANGUAGES CXX
 )
 
@@ -48,20 +48,29 @@ if (COMMAND xpack_get_package_name_and_version)
 endif ()
 
 # -----------------------------------------------------------------------------
-#
-# The interface library is the main target of this package, which consumers
-# (like embedded applications) link against. It defines the public API and
-# properties of the library; sources are propagated to and compiled by each
-# consumer.
+
+# Interface libraries are the main targets, which consumers (like embedded
+# applications) link against. It defines the public API and properties of the
+# library; sources are propagated to and compiled by each consumer.
+
+# They are aliased using namespaced syntax (Project::Target). This is the
+# canonical pattern for consumption via target_link_libraries(), whether the
+# dependency is added via add_subdirectory(), FetchContent, or an installed
+# package via find_package(). Using "::" lets CMake detect an invalid or
+# misspelled target name at configure time, rather than silently passing it
+# through to the linker as a plain string or flag. Note: alias targets are
+# read-only; properties must be set on the underlying target, not on the alias
+# itself.
 
 # https://cmake.org/cmake/help/v3.20/command/add_library.html?highlight=interface#interface-libraries
 # Visibility keywords: PRIVATE applies to the target itself; INTERFACE passes
 # properties up to targets that link against it; PUBLIC does both.
-add_library (micro-os-plus-diag-trace-posix-interface INTERFACE EXCLUDE_FROM_ALL)
+add_library (
+  micro-os-plus-diag-trace-posix-interface INTERFACE EXCLUDE_FROM_ALL
+)
 
 target_sources (
-  micro-os-plus-diag-trace-posix-interface
-  INTERFACE "src/diag/trace-posix.cpp"
+  micro-os-plus-diag-trace-posix-interface INTERFACE "src/diag/trace-posix.cpp"
 )
 
 if (COMMAND xpack_display_target_lists)
@@ -71,17 +80,10 @@ endif ()
 # -----------------------------------------------------------------------------
 # Alias.
 
-# Export an alias target using namespaced syntax (Project::Target). This is the
-# canonical pattern for consumption via target_link_libraries(), whether the
-# dependency is added via add_subdirectory(), FetchContent, or an installed
-# package via find_package(). Using "::" lets CMake detect an invalid or
-# misspelled target name at configure time, rather than silently passing it
-# through to the linker as a plain string or flag. Note: alias targets are
-# read-only; properties must be set on the underlying target, not on the alias
-# itself.
 # https://cmake.org/cmake/help/v3.20/command/add_library.html#alias-libraries
 add_library (
-  micro-os-plus::diag-trace-posix ALIAS micro-os-plus-diag-trace-posix-interface
+  micro-os-plus::diag-trace-posix ALIAS
+  micro-os-plus-diag-trace-posix-interface
 )
 message (
   VERBOSE
@@ -90,47 +92,36 @@ message (
 
 # -----------------------------------------------------------------------------
 
-
-#
-# The interface library is the main target of this package, which consumers
-# (like embedded applications) link against. It defines the public API and
-# properties of the library; sources are propagated to and compiled by each
-# consumer.
-
 # https://cmake.org/cmake/help/v3.20/command/add_library.html?highlight=interface#interface-libraries
 # Visibility keywords: PRIVATE applies to the target itself; INTERFACE passes
 # properties up to targets that link against it; PUBLIC does both.
-add_library (micro-os-plus-architectures-synthetic-posix-interface INTERFACE EXCLUDE_FROM_ALL)
+add_library (
+  micro-os-plus-architectures-synthetic-posix-interface INTERFACE
+  EXCLUDE_FROM_ALL
+)
 
 target_include_directories (
-  micro-os-plus-architectures-synthetic-posix-interface 
-  INTERFACE "include"
+  micro-os-plus-architectures-synthetic-posix-interface INTERFACE "include"
 )
 
 target_link_libraries (
-  micro-os-plus-architectures-synthetic-posix-interface 
-  INTERFACE "micro-os-plus::diag-trace"
-            "micro-os-plus::diag-trace-posix"
+  micro-os-plus-architectures-synthetic-posix-interface
+  INTERFACE "micro-os-plus::diag-trace" "micro-os-plus::diag-trace-posix"
 )
 
 if (COMMAND xpack_display_target_lists)
-  xpack_display_target_lists (micro-os-plus-architectures-synthetic-posix-interface)
+  xpack_display_target_lists (
+    micro-os-plus-architectures-synthetic-posix-interface
+  )
 endif ()
 
 # -----------------------------------------------------------------------------
 # Alias.
 
-# Export an alias target using namespaced syntax (Project::Target). This is the
-# canonical pattern for consumption via target_link_libraries(), whether the
-# dependency is added via add_subdirectory(), FetchContent, or an installed
-# package via find_package(). Using "::" lets CMake detect an invalid or
-# misspelled target name at configure time, rather than silently passing it
-# through to the linker as a plain string or flag. Note: alias targets are
-# read-only; properties must be set on the underlying target, not on the alias
-# itself.
 # https://cmake.org/cmake/help/v3.20/command/add_library.html#alias-libraries
 add_library (
-  micro-os-plus::architectures-synthetic-posix ALIAS micro-os-plus-architectures-synthetic-posix-interface
+  micro-os-plus::architectures-synthetic-posix ALIAS
+  micro-os-plus-architectures-synthetic-posix-interface
 )
 message (
   VERBOSE
@@ -138,5 +129,3 @@ message (
 )
 
 # -----------------------------------------------------------------------------
-
-
