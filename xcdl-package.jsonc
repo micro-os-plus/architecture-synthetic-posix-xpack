@@ -25,7 +25,7 @@
         "micro-os-plus.diag.trace.posix"
       ],
       "generatedFile": {
-        "type": "header",
+        "type": "c-header",
         "filePath": "{{buildFolderPath}}/generated/include/micro-os-plus/architectures-defines.h"
       },
       // "customDefine": "MICRO_OS_PLUS_INCLUDE_ARCHITECTURE_SYNTHETIC_POSIX_ENABLED"
