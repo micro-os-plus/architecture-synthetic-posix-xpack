@@ -214,7 +214,7 @@ TBD
 According to [semver](https://semver.org) rules:
 
 > Major version X (X.y.z | X > 0) MUST be incremented if any
-backwards incompatible changes are introduced to the public API.
+> backwards incompatible changes are introduced to the public API.
 
 The incompatible changes, in reverse chronological order,
 are:
@@ -228,6 +228,6 @@ are:
 ## License
 
 Unless otherwise stated, the content is released under the terms of the
-[MIT License](https://opensource.org/licenses/mit/),
+[MIT License](https://opensource.org/licenses/mit),
 with all rights reserved to
 [Liviu Ionescu](https://github.com/ilg-ul).
