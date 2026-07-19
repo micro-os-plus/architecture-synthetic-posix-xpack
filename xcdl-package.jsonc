@@ -28,7 +28,7 @@
         "type": "c-header",
         "filePath": "{{buildFolderPath}}/generated/include/micro-os-plus/architectures-defines.h"
       },
-      // "customDefine": "MICRO_OS_PLUS_INCLUDE_ARCHITECTURE_SYNTHETIC_POSIX_ENABLED"
+      // "defaultDefine": "MICRO_OS_PLUS_ARCHITECTURES_SYNTHETIC_POSIX_ENABLED"
     },
     {
       "id": "micro-os-plus.diag.trace.posix",
@@ -42,7 +42,7 @@
         "diag.trace.output-channel-interface"
       ],
       // The definitions are written to the parent diag/trace-defines.h file.
-      // "$customDefine": "MICRO_OS_PLUS_DIAG_TRACE_POSIX_ENABLED",
+      // "defaultDefine": "MICRO_OS_PLUS_DIAG_TRACE_POSIX_ENABLED",
       "cdlOptions": [
         {
           "id": "stdout",
@@ -51,7 +51,7 @@
           "valueType": "boolean",
           "defaultValue": false,
           "activeIf": "!isEnabled('stderr')",
-          // "customDefine": "MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED"
+          // "defaultDefine": "MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED"
         },
         {
           "id": "stderr",
@@ -60,7 +60,7 @@
           "valueType": "boolean",
           "defaultValue": false,
           "activeIf": "!isEnabled('stdout')",
-          // "customDefine": "MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED"
+          // "defaultDefine": "MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED"
         }
       ]
     }
