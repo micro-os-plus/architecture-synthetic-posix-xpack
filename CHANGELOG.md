@@ -6,9 +6,48 @@ Please check
 [GitHub](https://github.com/micro-os-plus/architecture-synthetic-posix-xpack/issues/)
 and close existing issues and pull requests.
 
+## 2026-07-19
+
+* 43bd13c re-generate top commons
+* b0a109d README update
+* ac7aff5 xcdl defaultDefine
+* 2ee8a58 xcdl c-header
+
+## 2026-07-17
+
+* 5bb7474 re-generate top commons
+* 365ea10 trace-posix.cpp: includes cleanup
+
+## 2026-07-16
+
+* 2140a6b rework xcdl-package.jsonc and re-generate
+* e6a7928 migrate to xcdl-export.mjs
+* b36c0a8 trace-posix.cpp: move includes before #if
+* 6684648 package.json 5.0.0-pre
+* 3133481 package.json* update
+* d435465 trace-posix.cpp update for trace-defines.h
+* e02cd9b cmake & meson xcdl export
+* c810a5b add xcdl-package.jsonc
+* fca575a re-generate top commons
+
+## 2026-06-20
+
+* 32e5490 trace-posix.cpp: update for  detail namespace
+
+## 2026-06-11
+
+* c4f70bc prefer project-config.h
+
+## 2026-06-06
+
+* 5d72225 use __has_include(<micro-os-plus/config.h>)
+
 ## 2026-03-08
 
-* v4.0.4
+* f68bd1b README update
+* 7631bbe 4.0.4
+* e49d9a3 README update
+* f55125b prepare v4.0.4
 * fe0424a trace-posix.cpp: silence warnings
 * 3cb574f copyright 2026 update
 
