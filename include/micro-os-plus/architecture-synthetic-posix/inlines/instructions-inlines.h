@@ -2,15 +2,15 @@
  * This file is part of the µOS++ project (https://micro-os-plus.github.io/).
  * Copyright (c) 2017-2026 Liviu Ionescu. All rights reserved.
  *
- * Permission to use, copy, modify, and/or distribute this software
- * for any purpose is hereby granted, under the terms of the MIT license.
+ * Permission to use, copy, modify, and/or distribute this software for any
+ * purpose is hereby granted, under the terms of the MIT license.
  *
- * If a copy of the license was not distributed with this file, it can
- * be obtained from https://opensource.org/licenses/mit.
+ * If a copy of the license was not distributed with this file, it can be
+ * obtained from https://opensource.org/licenses/mit.
  */
 
-#ifndef MICRO_OS_PLUS_ARCHITECTURE_POSIX_INSTRUCTIONS_INLINES_H_
-#define MICRO_OS_PLUS_ARCHITECTURE_POSIX_INSTRUCTIONS_INLINES_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_SYNTHETIC_POSIX_INLINES_INSTRUCTIONS_INLINES_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_SYNTHETIC_POSIX_INLINES_INSTRUCTIONS_INLINES_H_
 
 // ----------------------------------------------------------------------------
 
@@ -144,6 +144,6 @@ namespace micro_os_plus
 
 // ----------------------------------------------------------------------------
 
-#endif // MICRO_OS_PLUS_ARCHITECTURE_POSIX_INSTRUCTIONS_INLINES_H_
+#endif // MICRO_OS_PLUS_ARCHITECTURE_SYNTHETIC_POSIX_INLINES_INSTRUCTIONS_INLINES_H_
 
 // ----------------------------------------------------------------------------

@@ -18,10 +18,6 @@
 // #include <micro-os-plus/architecture-posix/declarations.h>
 
 #include <micro-os-plus/architecture-synthetic-posix/instructions.h>
-#include <micro-os-plus/architecture-synthetic-posix/instructions-inlines.h>
-
-// #include <micro-os-plus/architecture-posix/semihosting-inlines.h>
-
 #include <micro-os-plus/architecture-synthetic-posix/defines.h>
 
 // ----------------------------------------------------------------------------

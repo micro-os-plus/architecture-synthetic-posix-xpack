@@ -147,6 +147,11 @@ namespace micro_os_plus
 
 #endif // defined(__cplusplus)
 
+// ============================================================================
+// Templates, inlines & constexpr implementations.
+
+#include "inlines/instructions-inlines.h"
+
 // ----------------------------------------------------------------------------
 
 #endif // MICRO_OS_PLUS_ARCHITECTURE_POSIX_INSTRUCTIONS_H_
