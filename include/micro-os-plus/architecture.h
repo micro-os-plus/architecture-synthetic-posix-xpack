@@ -31,7 +31,7 @@
 
 // ----------------------------------------------------------------------------
 
-// No need for it, there can be only one architecture in a build.
+// No guard is needed; there can be only one architecture in a build.
 // #if defined(MICRO_OS_PLUS_ARCHITECTURES_SYNTHETIC_POSIX_ENABLED)
 
 // ----------------------------------------------------------------------------
