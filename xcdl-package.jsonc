@@ -10,6 +10,7 @@
   "cdlComponents": [
     {
       "id": "micro-os-plus.architectures.synthetic-posix",
+      "alias": "micro-os-plus.architecture",
       "display": "Synthetic POSIX architecture",
       "description": "The synthetic POSIX architecture is an environment that allows to run µOS++ applications on a POSIX host, using the POSIX API",
       "publicIncludeFolders": [
@@ -26,7 +27,7 @@
       ],
       "generatedFile": {
         "type": "c-header",
-        "filePath": "{{buildFolderPath}}/generated/include/micro-os-plus/architectures-defines.h"
+        "filePath": "{{buildFolderPath}}/generated/include/micro-os-plus/architecture-defines.h"
       },
       // "defaultDefine": "MICRO_OS_PLUS_ARCHITECTURES_SYNTHETIC_POSIX_ENABLED"
     },
@@ -39,7 +40,7 @@
         "src/diag/trace-posix.cpp"
       ],
       "implements": [
-        "diag.trace.output-channel-interface"
+        "diag.trace.output-channel"
       ],
       // The definitions are written to the parent diag/trace-defines.h file.
       // "defaultDefine": "MICRO_OS_PLUS_DIAG_TRACE_POSIX_ENABLED",

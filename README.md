@@ -126,7 +126,7 @@ The following folders should be passed to the compiler during the build:
 The header files to be included in user projects are:
 
 ```c++
-#include <micro-os-plus/architecture.h>
+#include "micro-os-plus/architecture.h"
 ```
 
 #### Source files

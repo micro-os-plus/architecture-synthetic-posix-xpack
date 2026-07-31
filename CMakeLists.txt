@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------------
-# DO NOT EDIT! Automatically generated from xcdl-package.jsonc.
+# DO NOT EDIT! Automatically generated from template file: xcdl-package.jsonc
 #
 # This file is part of the µOS++ project (https://micro-os-plus.github.io/).
 # Copyright (c) 2021-2026 Liviu Ionescu. All rights reserved.
@@ -31,7 +31,7 @@ project (
   micro-os-plus-architecture-synthetic-posix
   DESCRIPTION
     "A source code library with the µOS++ synthetic POSIX architecture port"
-  LANGUAGES CXX
+  LANGUAGES C CXX ASM
 )
 
 # To access the optional functions, include the
@@ -126,6 +126,15 @@ add_library (
 message (
   VERBOSE
   "> micro-os-plus::architectures-synthetic-posix -> micro-os-plus-architectures-synthetic-posix-interface"
+)
+
+add_library (
+  micro-os-plus::architecture ALIAS
+  micro-os-plus-architectures-synthetic-posix-interface
+)
+message (
+  VERBOSE
+  "> micro-os-plus::architecture -> micro-os-plus-architectures-synthetic-posix-interface"
 )
 
 # -----------------------------------------------------------------------------
