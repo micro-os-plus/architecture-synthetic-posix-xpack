@@ -31,8 +31,17 @@
 
 // ----------------------------------------------------------------------------
 
+// No need for it, there can be only one architecture in a build.
+// #if defined(MICRO_OS_PLUS_ARCHITECTURES_SYNTHETIC_POSIX_ENABLED)
+
+// ----------------------------------------------------------------------------
+
 #include "micro-os-plus/architecture-synthetic-posix/instructions.h"
 #include "micro-os-plus/architecture-synthetic-posix/defines.h"
+
+// ----------------------------------------------------------------------------
+
+// #endif // defined(MICRO_OS_PLUS_ARCHITECTURES_SYNTHETIC_POSIX_ENABLED)
 
 // ----------------------------------------------------------------------------
 

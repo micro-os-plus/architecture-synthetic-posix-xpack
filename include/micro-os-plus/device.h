@@ -25,6 +25,7 @@
 #include "micro-os-plus/project-config.h"
 #endif // __has_include("micro-os-plus/project-config.h")
 
+// Nothing expected in this file for now.
 #if __has_include("micro-os-plus/device-defines.h")
 #include "micro-os-plus/device-defines.h"
 #endif // __has_include("micro-os-plus/device-defines.h")
