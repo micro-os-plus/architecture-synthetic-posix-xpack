@@ -17,7 +17,7 @@
 // Borrowed from architecture-synthetic-posix.
 // TODO: get it via dependencies.
 
-#include <micro-os-plus/diag/trace.h>
+#include "micro-os-plus/diag/trace.h"
 
 #include <cstddef>
 #include <unistd.h>

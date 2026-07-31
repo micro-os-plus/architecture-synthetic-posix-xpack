@@ -14,7 +14,7 @@
 
 // ----------------------------------------------------------------------------
 
-#include <micro-os-plus/architecture-synthetic-posix/defines.h>
+#include "micro-os-plus/architecture-synthetic-posix/defines.h"
 
 #include <stdint.h>
 
