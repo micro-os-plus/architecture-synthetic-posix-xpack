@@ -6,8 +6,16 @@ Please check
 [GitHub](https://github.com/micro-os-plus/architecture-synthetic-posix-xpack/issues/)
 and close existing issues and pull requests.
 
+## 2026-08-04
+
+* v5.0.0
+* bb20793 re-generate top commons
+
 ## 2026-07-31
 
+* fa10496 README update
+* ae37a4f CHANGELOG update
+* b186c62 cosmetics
 * ab4a44f some comments
 * 34ab6d5 re-generate top xcdl
 * 8995508 re-generate top commons
