@@ -1,6 +1,6 @@
 {
   "name": "@micro-os-plus/architecture-synthetic-posix",
-  "version": "5.0.0",
+  "version": "5.0.1-pre",
   "description": "A source code library with the µOS++ synthetic POSIX architecture port",
   "repository": {
     "type": "git",
