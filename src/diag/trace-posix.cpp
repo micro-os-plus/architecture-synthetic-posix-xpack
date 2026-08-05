@@ -32,12 +32,15 @@
 
 // ----------------------------------------------------------------------------
 
+#if defined(__GNUC__)
 #pragma GCC diagnostic push
+
 #if defined(__clang__)
 // #pragma clang diagnostic ignored "-Wunknown-warning-option"
 #pragma clang diagnostic ignored "-Wc++98-compat"
 #pragma clang diagnostic ignored "-Wpre-c++17-compat"
-#endif
+#endif // defined(__clang__)
+#endif // defined(__GNUC__)
 
 namespace micro_os_plus::trace::detail
 {
@@ -45,6 +48,7 @@ namespace micro_os_plus::trace::detail
 
 #if defined(__GNUC__)
 #pragma GCC diagnostic push
+
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wglobal-constructors"
 #elif defined(__GNUC__)
@@ -59,20 +63,25 @@ namespace micro_os_plus::trace::detail
     write (msg, sizeof (msg) - 1);
     // STDOUT & STDERR are always available in POSIX; no inits are required.
   }
+
+#if defined(__GNUC__)
 #pragma GCC diagnostic pop
+#endif // defined(__GNUC__)
 
   // --------------------------------------------------------------------------
 
   ssize_t
   implementation::write (const void* buf, std::size_t nbyte) noexcept
   {
+#if defined(__GNUC__)
 #pragma GCC diagnostic push
 
 #if defined(__MINGW32__)
 // warning: conversion from 'std::size_t' {aka 'long long unsigned int'} to
 // 'unsigned int' may change value [-Wconversion]
 #pragma GCC diagnostic ignored "-Wconversion"
-#endif
+#endif // defined(__MINGW32__)
+#endif // defined(__GNUC__)
 
 #if defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED)
     return ::write (1, buf, nbyte); // Forward to STDOUT.
@@ -84,7 +93,9 @@ namespace micro_os_plus::trace::detail
     return nbyte;
 #endif
 
+#if defined(__GNUC__)
 #pragma GCC diagnostic pop
+#endif // defined(__GNUC__)
   }
 
   void
@@ -106,7 +117,9 @@ namespace micro_os_plus::trace::detail
   // --------------------------------------------------------------------------
 } // namespace micro_os_plus::trace::detail
 
+#if defined(__GNUC__)
 #pragma GCC diagnostic pop
+#endif // defined(__GNUC__)
 
 #else
 #error #    "No trace output channel. Define either MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED or MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED."

@@ -27,8 +27,11 @@ using namespace micro_os_plus;
 
 // ----------------------------------------------------------------------------
 
+#if defined(__GNUC__)
 #pragma GCC diagnostic push
+
 #pragma GCC diagnostic ignored "-Wunused-parameter"
+#endif // defined(__GNUC__)
 
 int
 main (int argc, char* argv[])
@@ -42,6 +45,8 @@ main (int argc, char* argv[])
   return 0;
 }
 
+#if defined(__GNUC__)
 #pragma GCC diagnostic pop
+#endif // defined(__GNUC__)
 
 // ----------------------------------------------------------------------------
