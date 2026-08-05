@@ -43,10 +43,15 @@ namespace micro_os_plus::trace::detail
 {
   // --------------------------------------------------------------------------
 
+#if defined(__GNUC__)
 #pragma GCC diagnostic push
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wglobal-constructors"
-#endif
+#elif defined(__GNUC__)
+#pragma GCC diagnostic ignored "-Wattributes"
+#endif // defined(__clang__)
+#endif // defined(__GNUC__)
+
   void __attribute__ ((constructor))
   implementation::initialise (void) noexcept
   {
