@@ -28,7 +28,7 @@
 # -----------------------------------------------------------------------------
 
 # A source code library with the µOS++ synthetic POSIX architecture port.
-message('Processing xPack @micro-os-plus/architecture-synthetic-posix...')
+message('Processing xpm package @micro-os-plus/architecture-synthetic-posix...')
 
 # -----------------------------------------------------------------------------
 
