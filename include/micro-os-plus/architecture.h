@@ -36,8 +36,13 @@
 
 // ----------------------------------------------------------------------------
 
-#include "micro-os-plus/architecture-synthetic-posix/instructions.h"
 #include "micro-os-plus/architecture-synthetic-posix/defines.h"
+
+#if !defined(__ASSEMBLY__)
+
+#include "micro-os-plus/architecture-synthetic-posix/instructions.h"
+
+#endif // !defined(__ASSEMBLY__)
 
 // ----------------------------------------------------------------------------
 
