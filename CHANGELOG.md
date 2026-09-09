@@ -6,9 +6,19 @@ Please check
 [GitHub](https://github.com/micro-os-plus/architecture-synthetic-posix-xpack/issues/)
 and close existing issues and pull requests.
 
+## 2026-09-09
+
+* v5.0.2
+* 0c9bf8c architecture.h __ASSEMBLY__
+
+## 2026-09-07
+
+* f7f6043 cosmetics xpm packages
+
 ## 2026-08-05
 
-* v5.0.1
+* 7eeb679 5.0.1
+* 40957fc prepare v5.0.1
 * 1aeb16e README cosmetics
 * 8f587ac #if defined() cosmetics
 * bdf0bb5 silence -Wattributes
