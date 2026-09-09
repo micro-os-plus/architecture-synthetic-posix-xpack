@@ -8,7 +8,8 @@ and close existing issues and pull requests.
 
 ## 2026-09-09
 
-* v5.0.2
+* d2efa3a cmake re-format
+* 2b495b2 prepare v5.0.2
 * 0c9bf8c architecture.h __ASSEMBLY__
 
 ## 2026-09-07
