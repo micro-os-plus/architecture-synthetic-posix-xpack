@@ -21,12 +21,18 @@
 
 #include <atomic>
 #include <cstddef>
-#include <unistd.h>
+#include <cstdio>
 #include <cstring>
 
 // ----------------------------------------------------------------------------
 
 #if defined(MICRO_OS_PLUS_DIAG_TRACE_ENABLED)
+
+#if defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED) \
+    && defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED)
+#error "Define only one MICRO_OS_PLUS_DIAG_TRACE_POSIX_*_ENABLED channel."
+#endif // defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED)
+// && defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED)
 
 #if defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED) \
     || defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED)
@@ -105,6 +111,51 @@ namespace micro_os_plus::trace::detail
 
   // --------------------------------------------------------------------------
 
+  /**
+   * @brief Write the bytes to the trace stream and flush it.
+   *
+   * @param buf Pointer to the bytes to write.
+   * @param nbyte The number of bytes to write.
+   * @return The number of bytes written, or -1 if nothing could be
+   * written because of an error.
+   *
+   * @details
+   * The output goes through the standard I/O library, not directly to the
+   * file descriptor, so that it is correctly interleaved with the
+   * application output produced by `printf()`, `fprintf(stdout, ...)`, or
+   * `std::cout` (which is synchronised with `stdout` by default), even
+   * when the output is redirected to a file or a pipe, where `stdout` is
+   * fully buffered.
+   *
+   * - With the STDOUT channel, the trace shares the `stdout` buffer with
+   *   the application, so the order is preserved by construction; the
+   *   buffer is flushed after each write, so that trace messages are not
+   *   lost if the process crashes or is stopped by a debugger.
+   * - With the STDERR channel, `stdout` is flushed before writing, so
+   *   that when both streams are merged (for example with `2>&1`) the
+   *   application output produced before the trace message precedes it;
+   *   `stderr` is unbuffered.
+   *
+   * The standard I/O functions are not async-signal-safe; calling the
+   * trace from a signal handler (for example from code run by the µOS++
+   * clock tick handler) while the interrupted code is inside a standard
+   * I/O call on the same stream may corrupt the stream buffer.
+   *
+   * Blocking the signals with `sigprocmask()` around the output was
+   * considered and deliberately not implemented, for the following
+   * reasons:
+   * - the risk is low: the trace calls in the µOS++ tick handler path are
+   *   compiled only when specific debug definitions are present, and even
+   *   then the handler traces only rarely;
+   * - the cost is paid by every message: the pair of system calls adds
+   *   about 1 µs per message (measured on macOS);
+   * - while the signals are blocked, the clock tick is deferred; if the
+   *   output blocks (a stalled pipe or a paused terminal) for longer than
+   *   a tick period, pending ticks are merged and lost, and the µOS++
+   *   clock falls behind real time;
+   * - it would protect only trace messages, not the application's own
+   *   `printf()` calls interrupted by a handler that traces.
+   */
   ssize_t
   implementation::write (const void* buf, std::size_t nbyte) noexcept
   {
@@ -113,31 +164,33 @@ namespace micro_os_plus::trace::detail
         initialise ();
       }
 
-#if defined(__GNUC__)
-#pragma GCC diagnostic push
-
-#if defined(__MINGW32__)
-// warning: conversion from 'std::size_t' {aka 'long long unsigned int'} to
-// 'unsigned int' may change value [-Wconversion]
-#pragma GCC diagnostic ignored "-Wconversion"
-#endif // defined(__MINGW32__)
-#endif // defined(__GNUC__)
-
 #if defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED)
-    return ::write (1, buf, nbyte); // Forward to STDOUT.
+    std::FILE* const stream = stdout;
 #elif defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED)
-    return ::write (2, buf, nbyte); // Forward to STDERR.
-#else
-#warning "No trace output channel."
-    buf = buf;
-    return nbyte;
-#endif
+    std::FILE* const stream = stderr;
+    // Emit the pending application output first.
+    std::fflush (stdout);
+#endif // defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED)
 
-#if defined(__GNUC__)
-#pragma GCC diagnostic pop
-#endif // defined(__GNUC__)
+    const std::size_t count = std::fwrite (buf, 1, nbyte, stream);
+    std::fflush (stream);
+
+    if (count == 0 && nbyte != 0)
+      {
+        return -1;
+      }
+    return static_cast<ssize_t> (count);
   }
 
+  /**
+   * @brief Flush the standard output streams.
+   *
+   * @details
+   * Since `write()` already flushes after each message, this only
+   * matters for application output still pending in the `stdout` buffer;
+   * both `stdout` and `stderr` are flushed, regardless of the selected
+   * channel.
+   */
   void
   implementation::flush (void) noexcept
   {
@@ -146,17 +199,8 @@ namespace micro_os_plus::trace::detail
         initialise ();
       }
 
-#if !defined(__MINGW32__)
-#if defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED)
-    fsync (1); // Sync STDOUT.
-#elif defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED)
-    fsync (2); // Sync STDERR.
-#else
-      // Nothing.
-#endif
-#else
-// error: 'fsync' was not declared in this scope
-#endif
+    std::fflush (stdout);
+    std::fflush (stderr);
   }
 
   // --------------------------------------------------------------------------
