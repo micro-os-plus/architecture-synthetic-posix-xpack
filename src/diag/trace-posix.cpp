@@ -219,7 +219,8 @@ namespace micro_os_plus::trace::detail
 #else
 #error \
     "No trace output channel. Define either MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED or MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED."
-#endif // defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STD*)
+#endif /* defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED)
+          || defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED) */
 
 // ----------------------------------------------------------------------------
 
@@ -231,6 +232,7 @@ namespace micro_os_plus::trace::detail
 
 // ----------------------------------------------------------------------------
 
-#endif // Unix || mingw32
+#endif /* defined(__APPLE__) || defined(__linux__) || defined(__unix__)
+          || defined(__MINGW32__) */
 
 // ----------------------------------------------------------------------------
