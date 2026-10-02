@@ -33,19 +33,44 @@ extern "C"
   // Architecture assembly instructions in C.
 
   /**
-   * `nop` instruction.
+   * @brief No operation.
+   *
+   * @details
+   * On the synthetic POSIX platform this is an empty function; there is
+   * no reason to emit a host `nop` instruction in a hosted process.
    */
   static void
   posix_architecture_nop (void);
 
   /**
-   * `bkpt` instruction.
+   * @brief Breakpoint; does nothing on this platform.
+   *
+   * @details
+   * On bare-metal platforms the `bkpt` instruction stops the processor
+   * when a debugger is attached. On the synthetic POSIX platform this is
+   * an empty function, so execution continues; to stop at this point,
+   * set a breakpoint on the caller in the host debugger.
+   *
+   * It is not implemented with `raise (SIGTRAP)` or
+   * `__builtin_debugtrap ()` because, without a debugger attached, these
+   * would terminate the process.
    */
   static void
   posix_architecture_bkpt (void);
 
   /**
-   * `wfi` instruction.
+   * @brief Wait for interrupt; does nothing on this platform.
+   *
+   * @details
+   * On bare-metal platforms the `wfi` instruction suspends the processor
+   * until an interrupt occurs. On the synthetic POSIX platform this is an
+   * empty function, so a loop that calls it busy-waits.
+   *
+   * It is not implemented with `pause ()`, because when the interrupts
+   * (the signals) are disabled, `pause ()` would never return, whereas
+   * `wfi` on Cortex-M also wakes on pending masked interrupts. The µOS++
+   * POSIX scheduler port does not use this function; it waits for the
+   * clock tick with `pause ()` directly.
    */
   static void
   posix_architecture_wfi (void);
@@ -66,19 +91,31 @@ extern "C"
   // Portable architecture assembly instructions in C.
 
   /**
-   * `nop` instruction.
+   * @brief No operation.
+   *
+   * @details
+   * The portable name of `posix_architecture_nop()`; on the synthetic
+   * POSIX platform it does nothing.
    */
   static void
   micro_os_plus_architecture_nop (void);
 
   /**
-   * `break` instruction.
+   * @brief Breakpoint.
+   *
+   * @details
+   * The portable name of `posix_architecture_bkpt()`; on the synthetic
+   * POSIX platform it does nothing, and execution continues.
    */
   static void
   micro_os_plus_architecture_brk (void);
 
   /**
-   * `wfi` instruction.
+   * @brief Wait for interrupt.
+   *
+   * @details
+   * The portable name of `posix_architecture_wfi()`; on the synthetic
+   * POSIX platform it does nothing, so a loop that calls it busy-waits.
    */
   static void
   micro_os_plus_architecture_wfi (void);
@@ -131,19 +168,30 @@ namespace posix
     // Architecture assembly instructions in C++.
 
     /**
-     * The assembler `nop` instruction.
+     * @brief No operation.
+     *
+     * @details
+     * The C++ equivalent of `posix_architecture_nop()`; it does nothing.
      */
     void
     nop (void);
 
     /**
-     * The assembler `bkpt` instruction.
+     * @brief Breakpoint; does nothing on this platform.
+     *
+     * @details
+     * The C++ equivalent of `posix_architecture_bkpt()`; it does nothing,
+     * and execution continues.
      */
     void
     bkpt (void);
 
     /**
-     * The assembler `wfi` instruction.
+     * @brief Wait for interrupt; does nothing on this platform.
+     *
+     * @details
+     * The C++ equivalent of `posix_architecture_wfi()`; it does nothing,
+     * so a loop that calls it busy-waits.
      */
     void
     wfi (void);
@@ -174,19 +222,32 @@ namespace micro_os_plus
     // Portable architecture assembly instructions in C++.
 
     /**
-     * The assembler `nop` instruction.
+     * @brief No operation.
+     *
+     * @details
+     * The C++ equivalent of `micro_os_plus_architecture_nop()`; on the
+     * synthetic POSIX platform it does nothing.
      */
     void
     nop (void);
 
     /**
-     * The assembler `bkpt` instruction.
+     * @brief Breakpoint.
+     *
+     * @details
+     * The C++ equivalent of `micro_os_plus_architecture_brk()`; on the
+     * synthetic POSIX platform it does nothing, and execution continues.
      */
     void
     brk (void);
 
     /**
-     * The assembler `wfi` instruction.
+     * @brief Wait for interrupt.
+     *
+     * @details
+     * The C++ equivalent of `micro_os_plus_architecture_wfi()`; on the
+     * synthetic POSIX platform it does nothing, so a loop that calls it
+     * busy-waits.
      */
     void
     wfi (void);

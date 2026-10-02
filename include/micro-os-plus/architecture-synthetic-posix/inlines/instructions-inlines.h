@@ -67,7 +67,7 @@ extern "C"
   }
 
   /**
-   * `break` instruction.
+   * Breakpoint; empty on this platform.
    */
   static inline __attribute__ ((always_inline)) void
   micro_os_plus_architecture_brk (void)
@@ -76,7 +76,7 @@ extern "C"
   }
 
   /**
-   * `wfi` instruction.
+   * Wait for interrupt; empty on this platform.
    */
   static inline __attribute__ ((always_inline)) void
   micro_os_plus_architecture_wfi (void)
