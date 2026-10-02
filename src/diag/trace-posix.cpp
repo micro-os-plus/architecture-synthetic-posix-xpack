@@ -14,8 +14,11 @@
 
 // ----------------------------------------------------------------------------
 
-// Borrowed from architecture-synthetic-posix.
-// TODO: get it via dependencies.
+// Compile the trace channel only when the `diag-trace` package is
+// available.
+#if __has_include("micro-os-plus/diag/trace.h")
+
+// ----------------------------------------------------------------------------
 
 #include "micro-os-plus/diag/trace.h"
 
@@ -27,6 +30,8 @@
 // ----------------------------------------------------------------------------
 
 #if defined(MICRO_OS_PLUS_DIAG_TRACE_ENABLED)
+
+// ----------------------------------------------------------------------------
 
 #if defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED) \
     && defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED)
@@ -100,9 +105,11 @@ namespace micro_os_plus::trace::detail
         return; // Already initialised.
       }
 
+    // The standard streams are set up by the C library before any
+    // constructor runs, so no other initialisation is required.
+
     static const char msg[] = "micro_os_plus::trace::initialise()\n";
     write (msg, sizeof (msg) - 1);
-    // STDOUT & STDERR are always available in POSIX; no inits are required.
   }
 
 #if defined(__GNUC__)
@@ -215,7 +222,13 @@ namespace micro_os_plus::trace::detail
     "No trace output channel. Define either MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED or MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED."
 #endif // defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STD*)
 
+// ----------------------------------------------------------------------------
+
 #endif // defined(MICRO_OS_PLUS_DIAG_TRACE_ENABLED)
+
+// ----------------------------------------------------------------------------
+
+#endif // __has_include("micro-os-plus/diag/trace.h")
 
 // ----------------------------------------------------------------------------
 
