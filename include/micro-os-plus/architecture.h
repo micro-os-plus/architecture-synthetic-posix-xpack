@@ -31,22 +31,21 @@
 
 // ----------------------------------------------------------------------------
 
-// No guard is needed; there can be only one architecture in a build.
-// #if defined(MICRO_OS_PLUS_ARCHITECTURES_SYNTHETIC_POSIX_ENABLED)
+#if defined(MICRO_OS_PLUS_ARCHITECTURES_SYNTHETIC_POSIX_ENABLED)
 
 // ----------------------------------------------------------------------------
 
 #include "micro-os-plus/architecture-synthetic-posix/defines.h"
 
-#if !defined(__ASSEMBLY__)
+#if !defined(__ASSEMBLER__)
 
 #include "micro-os-plus/architecture-synthetic-posix/instructions.h"
 
-#endif // !defined(__ASSEMBLY__)
+#endif // !defined(__ASSEMBLER__)
 
 // ----------------------------------------------------------------------------
 
-// #endif // defined(MICRO_OS_PLUS_ARCHITECTURES_SYNTHETIC_POSIX_ENABLED)
+#endif // defined(MICRO_OS_PLUS_ARCHITECTURES_SYNTHETIC_POSIX_ENABLED)
 
 // ----------------------------------------------------------------------------
 
