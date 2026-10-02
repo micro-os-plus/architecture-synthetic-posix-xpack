@@ -1,0 +1,142 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with
+code in this repository.
+
+@.github/copilot-instructions.md
+
+## Project Overview
+
+`@micro-os-plus/architecture-synthetic-posix` is a small, source-only xPack
+that provides the µOS++ architecture port for running µOS++ applications as
+ordinary processes on a POSIX host (GNU/Linux, macOS, and partly MinGW). It is
+consumed by other µOS++ packages and applications; it is not built on its own.
+
+The package provides two components (see `xcdl-package.jsonc`):
+
+- `micro-os-plus.architectures.synthetic-posix` (alias
+  `micro-os-plus.architecture`): header-only; exposes `include/` and depends
+  on `micro-os-plus.diag.trace` and `micro-os-plus.diag.trace.posix`.
+- `micro-os-plus.diag.trace.posix`: `src/diag/trace-posix.cpp`, the
+  `trace` output channel implemented with `::write()` to STDOUT or STDERR,
+  selected by `MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED` or
+  `MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED` (mutually exclusive; one is
+  required when `MICRO_OS_PLUS_DIAG_TRACE_ENABLED` is defined).
+
+The `micro-os-plus/diag/trace.h` header and the
+`micro_os_plus::trace::detail::implementation` class come from the separate
+`@micro-os-plus/diag-trace` package, not from this repository.
+
+## Header Layout
+
+- `include/micro-os-plus/architecture.h`: the generic entry point used by
+  portable µOS++ code. It includes the optional `project-config.h` and
+  `architecture-defines.h` (both supplied by the application; nothing
+  generates them), then, only if
+  `MICRO_OS_PLUS_ARCHITECTURES_SYNTHETIC_POSIX_ENABLED` is defined, pulls in
+  `defines.h` and (outside `__ASSEMBLER__`) `instructions.h`. If the macro
+  is not defined, the header silently declares nothing.
+- `include/micro-os-plus/device.h`: intentionally empty device layer; there is
+  no separate synthetic POSIX device component, so it only includes
+  `architecture.h`.
+- `include/micro-os-plus/architecture-synthetic-posix/instructions.h`:
+  declarations; `inlines/instructions-inlines.h`: the `always_inline`
+  definitions.
+
+Every instruction exists in four parallel forms, which must be kept in step
+when adding or changing one:
+
+1. C, architecture-specific: `posix_architecture_*()`.
+2. C, portable: `micro_os_plus_architecture_*()`, forwarding to (1).
+3. C++, architecture-specific: `posix::architecture::*()`.
+4. C++, portable: `micro_os_plus::architecture::*()`, forwarding to (3).
+
+The portable names must match those of the other architecture ports (for
+example `architecture-cortexm-xpack`), since portable code calls them without
+knowing the target. Note the deliberate naming asymmetry: the portable
+breakpoint is `brk`, the POSIX one is `bkpt`.
+
+On a hosted process `nop`, `bkpt`, and `wfi` are empty; `data_barrier` is
+`__atomic_thread_fence (__ATOMIC_SEQ_CST)`; `instruction_barrier` is only a
+compiler barrier.
+
+Design background (cooperative scheduling via `makecontext()`,
+`getcontext()`, and `setcontext()`, the `setitimer()` tick, and
+static-constructor ordering constraints) is in `NOTES.md`; that code lives
+in the µOS++ RTOS packages, not here.
+
+## Configuration Macros
+
+As the xcdl section of the Copilot instructions explains, no `*-defines.h`
+file is generated. The application must define the macros itself, typically
+in `micro-os-plus/project-config.h`:
+
+- `MICRO_OS_PLUS_ARCHITECTURES_SYNTHETIC_POSIX_ENABLED`, to enable the
+  architecture headers;
+- `MICRO_OS_PLUS_DIAG_TRACE_ENABLED`, plus exactly one of
+  `MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED` or
+  `MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED`, for the trace channel.
+
+The `activeIf` and `defaultValue` properties in `xcdl-package.jsonc` are not
+enforced by any tool; only the preprocessor checks in the sources are.
+
+## Generated Files — Do Not Edit by Hand
+
+Many files carry a `DO NOT EDIT!` banner and are overwritten by tooling:
+
+- `CMakeLists.txt` and `meson.build` are generated from
+  `xcdl-package.jsonc` via `scripts/templates/*-liquid.*`. To change build
+  targets, sources, or dependencies, edit `xcdl-package.jsonc` and run
+  `xpm run xcdl-export`. This is how the "add new files to CMake and Meson"
+  rule in the Copilot instructions is satisfied.
+- `.github/workflows/test-ci.yml`, `.github/skills/**`, `scripts/*.mjs`,
+  `.gitignore`, `.npmignore`, `.vscode/settings.json`, and
+  `config/.prettierignore` come from the `@xpack/npm-packages-helper`
+  templates (`npm run generate-top-commons`, parameterised by
+  `config/top-templates.json`). Fix those upstream in the helper, not here.
+
+## Commands
+
+```sh
+npm install                 # install the Node.js helpers
+xpm install                 # install the xpm devDependencies (clang)
+xpm run clang-format        # format C/C++ sources with .clang-format
+xpm run cmake-format        # format CMake files
+xpm run jsonc-format        # format JSON/JSONC files
+xpm run xcdl-export         # regenerate CMakeLists.txt and meson.build
+npm run generate-top-commons  # regenerate the shared template files
+```
+
+Always reformat the changed source files before committing.
+
+## Testing
+
+There are no functional tests in this repository; the package is tested
+indirectly by the projects that consume it (for example the µOS++ RTOS and
+`diag-trace` tests on a POSIX host).
+
+- Do **not** run `xpm run test` or `xpm run test -C tests`; they are not
+  functional (see `tests/README.md`).
+- `tests/trace-stdout/main.cpp` and `tests/trace-stderr/main.cpp` are not
+  integrated into any build, and do not compile against the current
+  `diag-trace` API (`trace::initialize ()` and `trace_puts ()` no longer
+  exist).
+- CI tests are disabled for this project. `.github/workflows/test-ci.yml`
+  is still generated and calls `xpm run install-ci` and `xpm run test-ci`,
+  which are not defined; do not treat it, or the README CI badges (which
+  point to a non-existent `ci.yml`), as evidence of testing.
+
+To check a change locally, compile the affected files directly with strict
+warnings against the sibling `diag-trace-xpack.git` headers, and state
+explicitly which checks were and were not performed.
+
+## Branches and Releases
+
+- `xpack-development`: development branch; `xpack`: stable branch (PR target).
+- The version lives in `package.json` (`x.y.z-pre` during development);
+  the release procedure is in `README-MAINTAINER.md`; `CHANGELOG.md` records
+  changes.
+- `website/`, mentioned in the Copilot instructions, contains only a
+  placeholder `README.md`.
+- `CODE-REVIEW.md` holds the latest code review; issues are referred to by
+  their `#N` labels.

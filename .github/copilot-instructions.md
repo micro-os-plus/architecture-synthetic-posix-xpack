@@ -62,18 +62,34 @@ folder, and add corresponding entries in the top CMake and Meson configurations.
 
 ## Testing
 
-After making changes, run in a terminal:
+Note: Tests are not yet available. They are performed indirectly in
+other projects.
 
-- `xpm run test -C tests` to execute the test with the system compiler
-- `xpm run test-native-clang -C tests` to execute the test with clang
-- `xpm run test-qemu-cortex-m7f-gcc -C tests` to execute the test with cross gcc
+CI tests are disabled for this project.
 
 ## Code Review
 
-- When asked for a code review, follow the separate instructions in `.github/skills/code-review/SKILL.md` for a thorough and uncompromising review of the codebase.
+- When asked for a code review, follow the separate instructions in
+`.github/skills/code-review/SKILL.md` for a thorough and uncompromising
+review of the codebase.
 
 ## Version Control
 
 When making changes to the codebase, follow these guidelines for version control:
 
 - Use descriptive commit messages that clearly explain the purpose of the changes
+
+## xcdl
+
+The `xcdl` tool is not yet available; `xcdl-package.jsonc` is used only to
+generate the top-level CMake and Meson files (`xpm run xcdl-export`). Only
+`publicIncludeFolders`, `sourceFiles`, and `dependencies` affect the
+generated files; all other properties (`generatedFile`, `activeIf`,
+`defaultValue`, `implements`, and the commented-out `defaultDefine`
+entries) are informative only.
+
+In particular, no `*-defines.h` file is generated, so a commented-out
+`defaultDefine` does not mean that the macro is disabled. Its name
+documents the macro that the application must define itself, either in
+`micro-os-plus/project-config.h` or in project specific header files 
+(e.g., `micro-os-plus/startup-defines.h`).
