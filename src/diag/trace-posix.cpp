@@ -25,7 +25,6 @@
 #include <atomic>
 #include <cstddef>
 #include <cstdio>
-#include <cstring>
 
 // ----------------------------------------------------------------------------
 
