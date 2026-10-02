@@ -24,7 +24,6 @@
     "jsonc-parser": "https://www.npmjs.com/package/jsonc-parser",
     "liquidjs": "https://www.npmjs.com/package/liquidjs"
   },
-  "dependencies": {},
   "devDependencies": {
     "@xpack/npm-packages-helper": "github:xpack/npm-packages-helper",
     "del-cli": "^7.0.0",
@@ -32,7 +31,8 @@
     "json": "^11.0.0",
     "json5": "^2.2.3",
     "jsonc-parser": "^3.3.1",
-    "liquidjs": "^10.25.0"
+    "liquidjs": "^10.25.0",
+    "prettier": "^3.9.9"
   },
   "scripts": {
     "generate-top-commons": "node node_modules/@xpack/npm-packages-helper/maintenance-scripts/generate-top-commons.mjs --micro-os-plus",
