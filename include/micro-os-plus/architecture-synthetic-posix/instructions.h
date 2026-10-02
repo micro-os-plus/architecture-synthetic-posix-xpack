@@ -50,6 +50,18 @@ extern "C"
   static void
   posix_architecture_wfi (void);
 
+  /**
+   * Data barrier; a sequentially consistent atomic thread fence.
+   */
+  static void
+  posix_architecture_data_barrier (void);
+
+  /**
+   * Instruction barrier; a compiler barrier only.
+   */
+  static void
+  posix_architecture_instruction_barrier (void);
+
   // --------------------------------------------------------------------------
   // Portable architecture assembly instructions in C.
 
@@ -70,6 +82,34 @@ extern "C"
    */
   static void
   micro_os_plus_architecture_wfi (void);
+
+  /**
+   * @brief Data synchronisation barrier.
+   *
+   * @details
+   * Ensures that all memory accesses issued before this call are ordered
+   * before any memory access after it, both for the compiler and for
+   * the host processor.
+   *
+   * On the synthetic POSIX platform, it is implemented with
+   * `__atomic_thread_fence (__ATOMIC_SEQ_CST)`.
+   */
+  static void
+  micro_os_plus_architecture_data_barrier (void);
+
+  /**
+   * @brief Instruction synchronisation barrier.
+   *
+   * @details
+   * On a hosted process there is no user-level equivalent of an
+   * instruction synchronisation barrier; the host operating system is
+   * responsible for instruction cache coherency.
+   *
+   * On the synthetic POSIX platform, it is implemented only as a
+   * compiler barrier.
+   */
+  static void
+  micro_os_plus_architecture_instruction_barrier (void);
 
   // --------------------------------------------------------------------------
 
@@ -108,6 +148,18 @@ namespace posix
     void
     wfi (void);
 
+    /**
+     * Data barrier; a sequentially consistent atomic thread fence.
+     */
+    void
+    data_barrier (void);
+
+    /**
+     * Instruction barrier; a compiler barrier only.
+     */
+    void
+    instruction_barrier (void);
+
     // ------------------------------------------------------------------------
   } // namespace architecture
 } // namespace posix
@@ -139,6 +191,28 @@ namespace micro_os_plus
     void
     wfi (void);
 
+    /**
+     * @brief Data synchronisation barrier.
+     *
+     * @details
+     * The C++ equivalent of `micro_os_plus_architecture_data_barrier()`;
+     * on the synthetic POSIX platform, it is a sequentially consistent
+     * atomic thread fence.
+     */
+    void
+    data_barrier (void);
+
+    /**
+     * @brief Instruction synchronisation barrier.
+     *
+     * @details
+     * The C++ equivalent of
+     * `micro_os_plus_architecture_instruction_barrier()`; on the
+     * synthetic POSIX platform, it is only a compiler barrier.
+     */
+    void
+    instruction_barrier (void);
+
     // ------------------------------------------------------------------------
   } // namespace architecture
 } // namespace micro_os_plus
@@ -154,6 +228,6 @@ namespace micro_os_plus
 
 // ----------------------------------------------------------------------------
 
-#endif // MICRO_OS_PLUS_ARCHITECTURE_POSIX_INSTRUCTIONS_H_
+#endif // MICRO_OS_PLUS_ARCHITECTURE_SYNTHETIC_POSIX_INSTRUCTIONS_H_
 
 // ----------------------------------------------------------------------------

@@ -45,6 +45,22 @@ extern "C"
   }
 
   static inline __attribute__ ((always_inline)) void
+  posix_architecture_data_barrier (void)
+  {
+    __atomic_thread_fence (__ATOMIC_SEQ_CST);
+  }
+
+  static inline __attribute__ ((always_inline)) void
+  posix_architecture_instruction_barrier (void)
+  {
+    __asm__ volatile (""
+                      : /* Outputs */
+                      : /* Inputs */
+                      : "memory" /* Clobbers */
+    );
+  }
+
+  static inline __attribute__ ((always_inline)) void
   micro_os_plus_architecture_nop (void)
   {
     posix_architecture_nop ();
@@ -66,6 +82,24 @@ extern "C"
   micro_os_plus_architecture_wfi (void)
   {
     posix_architecture_wfi ();
+  }
+
+  /**
+   * Data synchronisation barrier (atomic thread fence).
+   */
+  static inline __attribute__ ((always_inline)) void
+  micro_os_plus_architecture_data_barrier (void)
+  {
+    posix_architecture_data_barrier ();
+  }
+
+  /**
+   * Instruction synchronisation barrier (compiler barrier).
+   */
+  static inline __attribute__ ((always_inline)) void
+  micro_os_plus_architecture_instruction_barrier (void)
+  {
+    posix_architecture_instruction_barrier ();
   }
 
   // --------------------------------------------------------------------------
@@ -104,6 +138,18 @@ namespace posix
       posix_architecture_wfi ();
     }
 
+    inline __attribute__ ((always_inline)) void
+    data_barrier (void)
+    {
+      posix_architecture_data_barrier ();
+    }
+
+    inline __attribute__ ((always_inline)) void
+    instruction_barrier (void)
+    {
+      posix_architecture_instruction_barrier ();
+    }
+
     // ------------------------------------------------------------------------
   } // namespace architecture
 } // namespace posix
@@ -132,6 +178,18 @@ namespace micro_os_plus
     wfi (void)
     {
       posix::architecture::wfi ();
+    }
+
+    inline __attribute__ ((always_inline)) void
+    data_barrier (void)
+    {
+      posix::architecture::data_barrier ();
+    }
+
+    inline __attribute__ ((always_inline)) void
+    instruction_barrier (void)
+    {
+      posix::architecture::instruction_barrier ();
     }
 
     // ------------------------------------------------------------------------
