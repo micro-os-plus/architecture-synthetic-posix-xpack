@@ -122,7 +122,8 @@ namespace micro_os_plus::trace::detail
 #endif // defined(__GNUC__)
 
 #else
-#error #    "No trace output channel. Define either MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED or MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED."
+#error \
+    "No trace output channel. Define either MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED or MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED."
 #endif // defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STD*)
 
 #endif // defined(MICRO_OS_PLUS_DIAG_TRACE_ENABLED)
