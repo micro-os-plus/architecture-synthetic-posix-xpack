@@ -6,7 +6,7 @@
 
 # A source code library with the µOS++ synthetic POSIX platform
 
-This project provides the **architecture-synthetic-posix** source library as an xPack
+This project provides the **architecture-synthetic-posix** source library as an `xpm`
 dependency and includes files specific for running on POSIX platforms.
 
 The project is hosted on GitHub as
@@ -22,7 +22,7 @@ For maintainer info, please see the
 
 ## Install
 
-As a source library xPack, the easiest way to add it to a project is via
+As a source library xpm package, the easiest way to add it to a project is via
 **xpm**, but it can also be used as any Git project, for example as a submodule.
 
 ### Prerequisites
@@ -41,18 +41,7 @@ For details please follow the instructions in the
 
 ### xpm
 
-Note: the package will be available from npmjs.com at a later date.
-
-For now, it can be installed from GitHub:
-
-```sh
-cd my-project
-xpm init # Unless a package.json is already present
-
-xpm install github:micro-os-plus/architecture-synthetic-posix-xpack
-```
-
-When ready, this package will be available as
+This package is available as
 [`@micro-os-plus/architecture-synthetic-posix`](https://www.npmjs.com/package/@micro-os-plus/architecture-synthetic-posix)
 from the `npmjs.com` registry:
 
@@ -96,7 +85,7 @@ into `xpack`.
 
 ### Overview
 
-This xPack provides the implementation for the µOS++ scheduler,
+This source xpm package provides the implementation for the µOS++ scheduler,
 running on a synthetic POSIX platform, as an user mode process under
 macOS and GNU/Linux.
 
