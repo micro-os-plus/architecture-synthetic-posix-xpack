@@ -178,7 +178,24 @@ namespace micro_os_plus::trace::detail
     std::fflush (stdout);
 #endif // defined(MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED)
 
+#if defined(__GNUC__)
+#pragma GCC diagnostic push
+
+#if defined(__clang__)
+#if __has_warning("-Wunsafe-buffer-usage-in-libc-call")
+// The (pointer, length) pair comes from the caller; there is no checked
+// alternative to fwrite().
+#pragma clang diagnostic ignored "-Wunsafe-buffer-usage-in-libc-call"
+#endif // __has_warning("-Wunsafe-buffer-usage-in-libc-call")
+#endif // defined(__clang__)
+#endif // defined(__GNUC__)
+
     const std::size_t count = std::fwrite (buf, 1, nbyte, stream);
+
+#if defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif // defined(__GNUC__)
+
     std::fflush (stream);
 
     if (count == 0 && nbyte != 0)
