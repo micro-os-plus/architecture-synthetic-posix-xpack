@@ -17,10 +17,6 @@
 
 #include "micro-os-plus/diag/trace.h"
 
-#include <cstdio>
-#include <cassert>
-#include <cstring>
-
 // ----------------------------------------------------------------------------
 
 using namespace micro_os_plus;
