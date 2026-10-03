@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: 'Perform a thorough, uncompromising code review of C++ sources, headers, and documentation in the µOS++ Intrusive Lists project. Use when the user asks for a "code review", to "review the code", to "review changes", or to check a file, folder, or pull request for style, naming, documentation, and correctness issues.'
+description: 'Perform a thorough, uncompromising code review of C++ sources, headers, and documentation in the µOS++ project. Use when the user asks for a "code review", to "review the code", to "review changes", or to check a file, folder, or pull request for style, naming, documentation, and correctness issues.'
 argument-hint: 'Optional: path or folder to review; defaults to the whole repository'
 ---
 
@@ -77,7 +77,7 @@ specifically, with file and line references.
 - Every `#endif` is followed by a C++ comment (`// ...`) repeating the
   exact expression from its paired `#if`/`#if defined`/`#if !defined`,
   so nested and distant guards remain traceable.
-- The above applies to pragmas where `#if defined(__GNUC__)`, 
+- The above applies to pragmas where `#if defined(__GNUC__)`,
   `#if defined(__clang__)` or similar are used.
 
 ### Modern C++

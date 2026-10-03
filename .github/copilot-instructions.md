@@ -70,8 +70,8 @@ CI tests are disabled for this project.
 ## Code Review
 
 - When asked for a code review, follow the separate instructions in
-`.github/skills/code-review/SKILL.md` for a thorough and uncompromising
-review of the codebase.
+  `.github/skills/code-review/SKILL.md` for a thorough and uncompromising
+  review of the codebase.
 
 ## Version Control
 
@@ -91,5 +91,5 @@ entries) are informative only.
 In particular, no `*-defines.h` file is generated, so a commented-out
 `defaultDefine` does not mean that the macro is disabled. Its name
 documents the macro that the application must define itself, either in
-`micro-os-plus/project-config.h` or in project specific header files 
+`micro-os-plus/project-config.h` or in project-specific header files
 (e.g., `micro-os-plus/startup-defines.h`).
