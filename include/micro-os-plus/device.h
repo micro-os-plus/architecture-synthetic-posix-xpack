@@ -9,6 +9,20 @@
  * obtained from https://opensource.org/licenses/mit.
  */
 
+// ----------------------------------------------------------------------------
+
+/**
+ * @file
+ * @brief The µOS++ device header for the synthetic POSIX platform.
+ *
+ * @details
+ * The generic device entry point used by portable µOS++ code. The
+ * synthetic POSIX platform runs in a hosted process and has no device
+ * layer, so this header only includes the optional configuration headers
+ * and `micro-os-plus/architecture.h`; it exists to satisfy the
+ * `micro-os-plus.devices.interface` contract.
+ */
+
 #ifndef MICRO_OS_PLUS_DEVICE_H_
 #define MICRO_OS_PLUS_DEVICE_H_
 
@@ -25,7 +39,8 @@
 #include "micro-os-plus/project-config.h"
 #endif // __has_include("micro-os-plus/project-config.h")
 
-// Nothing expected in this file for now.
+// Included for consistency with the other device packages; no
+// definitions are expected in it for the synthetic POSIX platform.
 #if __has_include("micro-os-plus/device-defines.h")
 #include "micro-os-plus/device-defines.h"
 #endif // __has_include("micro-os-plus/device-defines.h")
@@ -33,10 +48,6 @@
 // ----------------------------------------------------------------------------
 
 #include "micro-os-plus/architecture.h"
-
-// ----------------------------------------------------------------------------
-
-// ...
 
 // ----------------------------------------------------------------------------
 

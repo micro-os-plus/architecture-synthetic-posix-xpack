@@ -9,6 +9,24 @@
  * obtained from https://opensource.org/licenses/mit.
  */
 
+// ----------------------------------------------------------------------------
+
+/**
+ * @file
+ * @brief The `diag-trace` output channel for the synthetic POSIX platform.
+ *
+ * @details
+ * Implements the `micro_os_plus::trace::detail::implementation` class
+ * declared by the `diag-trace` package, writing the trace messages to the
+ * standard output or to the standard error, as selected by
+ * `MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED` or
+ * `MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDERR_ENABLED`.
+ *
+ * The file is compiled only on POSIX hosts (and MinGW), only when the
+ * `diag-trace` headers are available, and only when
+ * `MICRO_OS_PLUS_DIAG_TRACE_ENABLED` is defined.
+ */
+
 #if defined(__APPLE__) || defined(__linux__) || defined(__unix__) \
     || defined(__MINGW32__)
 
@@ -90,11 +108,22 @@ namespace micro_os_plus::trace::detail
 #endif // defined(__clang__)
 #endif // defined(__GNUC__)
 
-  // On POSIX the startup code is part of the system library, so the
-  // initialisation runs as a constructor, before main(). Priority 101 is
-  // the earliest available to user code (0-100 are reserved); it is
-  // honoured across files on ELF platforms, but ignored on macOS, where
-  // the link order decides. Subsequent calls do nothing.
+  /**
+   * @details
+   * On bare-metal platforms this function is called by the µOS++ startup
+   * code. On POSIX the startup code is part of the system library and
+   * cannot be modified, so the function is marked as a constructor and
+   * runs automatically, before `main()`; applications must not call it.
+   *
+   * The constructor priority 101 is the earliest available to user code
+   * (0-100 are reserved). It is honoured across files on ELF platforms,
+   * but ignored on macOS, where the link order decides; this is why
+   * `write()` and `flush()` also call this function if it has not yet
+   * run.
+   *
+   * Only the first call has an effect: it prints a banner on the trace
+   * channel. Subsequent calls return immediately.
+   */
   void __attribute__ ((constructor (101)))
   implementation::initialise (void) noexcept
   {
@@ -118,13 +147,6 @@ namespace micro_os_plus::trace::detail
   // --------------------------------------------------------------------------
 
   /**
-   * @brief Write the bytes to the trace stream and flush it.
-   *
-   * @param buf Pointer to the bytes to write.
-   * @param nbyte The number of bytes to write.
-   * @return The number of bytes written, or -1 if nothing could be
-   * written because of an error.
-   *
    * @details
    * The output goes through the standard I/O library, not directly to the
    * file descriptor, so that it is correctly interleaved with the
@@ -206,8 +228,6 @@ namespace micro_os_plus::trace::detail
   }
 
   /**
-   * @brief Flush the standard output streams.
-   *
    * @details
    * Since `write()` already flushes after each message, this only
    * matters for application output still pending in the `stdout` buffer;

@@ -9,12 +9,25 @@
  * obtained from https://opensource.org/licenses/mit.
  */
 
-#ifndef MICRO_OS_PLUS_ARCHITECTURE_SYNTHETIC_POSIX_DEFINES_H_
-#define MICRO_OS_PLUS_ARCHITECTURE_SYNTHETIC_POSIX_DEFINES_H_
-
 // ----------------------------------------------------------------------------
 
-// ...
+/**
+ * @file
+ * @brief Preprocessor definitions for the synthetic POSIX platform.
+ *
+ * @details
+ * The place for the architecture definitions that must also be visible
+ * to assembly files, since `micro-os-plus/architecture.h` includes it
+ * even when `__ASSEMBLER__` is defined; it must therefore contain only
+ * preprocessor definitions.
+ *
+ * The synthetic POSIX platform needs no such definitions, so the file is
+ * currently empty; it is kept for symmetry with the other architecture
+ * ports.
+ */
+
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_SYNTHETIC_POSIX_DEFINES_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_SYNTHETIC_POSIX_DEFINES_H_
 
 // ----------------------------------------------------------------------------
 
