@@ -45,8 +45,6 @@
 
 #include "micro-os-plus/architecture-synthetic-posix/defines.h"
 
-#include <stdint.h>
-
 // ----------------------------------------------------------------------------
 
 #if defined(__cplusplus)
