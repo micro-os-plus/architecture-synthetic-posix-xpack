@@ -62,7 +62,7 @@ extern "C"
    * On the synthetic POSIX platform this is an empty function; there is
    * no reason to emit a host `nop` instruction in a hosted process.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   posix_architecture_nop (void);
 
   /**
@@ -78,7 +78,7 @@ extern "C"
    * `__builtin_debugtrap ()` because, without a debugger attached, these
    * would terminate the process.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   posix_architecture_bkpt (void);
 
   /**
@@ -95,7 +95,7 @@ extern "C"
    * POSIX scheduler port does not use this function; it waits for the
    * clock tick with `pause ()` directly.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   posix_architecture_wfi (void);
 
   /**
@@ -109,7 +109,7 @@ extern "C"
    *
    * It is the hosted equivalent of the Cortex-M `dsb` instruction.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   posix_architecture_data_barrier (void);
 
   /**
@@ -126,7 +126,7 @@ extern "C"
    * only prevents the compiler from moving memory accesses across the
    * call.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   posix_architecture_instruction_barrier (void);
 
   // --------------------------------------------------------------------------
@@ -139,7 +139,7 @@ extern "C"
    * The portable name of `posix_architecture_nop()`; on the synthetic
    * POSIX platform it does nothing.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_nop (void);
 
   /**
@@ -149,7 +149,7 @@ extern "C"
    * The portable name of `posix_architecture_bkpt()`; on the synthetic
    * POSIX platform it does nothing, and execution continues.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_brk (void);
 
   /**
@@ -159,7 +159,7 @@ extern "C"
    * The portable name of `posix_architecture_wfi()`; on the synthetic
    * POSIX platform it does nothing, so a loop that calls it busy-waits.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_wfi (void);
 
   /**
@@ -173,7 +173,7 @@ extern "C"
    * The portable name of `posix_architecture_data_barrier()`, which is
    * implemented with `__atomic_thread_fence (__ATOMIC_SEQ_CST)`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_data_barrier (void);
 
   /**
@@ -187,7 +187,7 @@ extern "C"
    * The portable name of `posix_architecture_instruction_barrier()`,
    * which is only a compiler barrier.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_instruction_barrier (void);
 
   // --------------------------------------------------------------------------
@@ -230,7 +230,7 @@ namespace posix
      * @details
      * The C++ equivalent of `posix_architecture_nop()`; it does nothing.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     nop (void) noexcept;
 
     /**
@@ -240,7 +240,7 @@ namespace posix
      * The C++ equivalent of `posix_architecture_bkpt()`; it does nothing,
      * and execution continues.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     bkpt (void) noexcept;
 
     /**
@@ -250,7 +250,7 @@ namespace posix
      * The C++ equivalent of `posix_architecture_wfi()`; it does nothing,
      * so a loop that calls it busy-waits.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     wfi (void) noexcept;
 
     /**
@@ -260,7 +260,7 @@ namespace posix
      * The C++ equivalent of `posix_architecture_data_barrier()`; a
      * sequentially consistent atomic thread fence.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     data_barrier (void) noexcept;
 
     /**
@@ -271,7 +271,7 @@ namespace posix
      * it only prevents the compiler from moving memory accesses across
      * the call.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     instruction_barrier (void) noexcept;
 
     // ------------------------------------------------------------------------
@@ -303,7 +303,7 @@ namespace micro_os_plus
      * The C++ equivalent of `micro_os_plus_architecture_nop()`; on the
      * synthetic POSIX platform it does nothing.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     nop (void) noexcept;
 
     /**
@@ -313,7 +313,7 @@ namespace micro_os_plus
      * The C++ equivalent of `micro_os_plus_architecture_brk()`; on the
      * synthetic POSIX platform it does nothing, and execution continues.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     brk (void) noexcept;
 
     /**
@@ -324,7 +324,7 @@ namespace micro_os_plus
      * synthetic POSIX platform it does nothing, so a loop that calls it
      * busy-waits.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     wfi (void) noexcept;
 
     /**
@@ -335,7 +335,7 @@ namespace micro_os_plus
      * on the synthetic POSIX platform, it is a sequentially consistent
      * atomic thread fence.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     data_barrier (void) noexcept;
 
     /**
@@ -346,7 +346,7 @@ namespace micro_os_plus
      * `micro_os_plus_architecture_instruction_barrier()`; on the
      * synthetic POSIX platform, it is only a compiler barrier.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     instruction_barrier (void) noexcept;
 
     // ------------------------------------------------------------------------

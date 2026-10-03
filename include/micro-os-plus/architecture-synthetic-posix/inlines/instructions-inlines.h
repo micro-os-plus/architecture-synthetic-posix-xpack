@@ -41,7 +41,7 @@ extern "C"
    * Implemented as an empty function, which the compiler removes
    * completely.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   posix_architecture_nop (void)
   {
   }
@@ -53,7 +53,7 @@ extern "C"
    * Implemented as an empty function, which the compiler removes
    * completely; execution continues.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   posix_architecture_bkpt (void)
   {
   }
@@ -65,7 +65,7 @@ extern "C"
    * Implemented as an empty function, which the compiler removes
    * completely; the caller continues without waiting.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   posix_architecture_wfi (void)
   {
   }
@@ -78,7 +78,7 @@ extern "C"
    * sequentially consistent fence that orders memory accesses both for
    * the compiler and for the host processor.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   posix_architecture_data_barrier (void)
   {
     __atomic_thread_fence (__ATOMIC_SEQ_CST);
@@ -92,7 +92,7 @@ extern "C"
    * clobber, which prevents the compiler from moving memory accesses
    * across it, and generates no instruction.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   posix_architecture_instruction_barrier (void)
   {
     __asm__ volatile (""
@@ -108,7 +108,7 @@ extern "C"
    * @details
    * Implemented by forwarding to `posix_architecture_nop()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_nop (void)
   {
     posix_architecture_nop ();
@@ -120,7 +120,7 @@ extern "C"
    * @details
    * Implemented by forwarding to `posix_architecture_bkpt()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_brk (void)
   {
     posix_architecture_bkpt ();
@@ -132,7 +132,7 @@ extern "C"
    * @details
    * Implemented by forwarding to `posix_architecture_wfi()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_wfi (void)
   {
     posix_architecture_wfi ();
@@ -144,7 +144,7 @@ extern "C"
    * @details
    * Implemented by forwarding to `posix_architecture_data_barrier()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_data_barrier (void)
   {
     posix_architecture_data_barrier ();
@@ -156,7 +156,7 @@ extern "C"
    * @details
    * Implemented by forwarding to `posix_architecture_instruction_barrier()`.
    */
-  MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+  MICRO_OS_PLUS_ALWAYS_INLINE void
   micro_os_plus_architecture_instruction_barrier (void)
   {
     posix_architecture_instruction_barrier ();
@@ -184,7 +184,7 @@ namespace posix
      * @details
      * Implemented by calling `posix_architecture_nop()`.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     nop (void) noexcept
     {
       posix_architecture_nop ();
@@ -194,7 +194,7 @@ namespace posix
      * @details
      * Implemented by calling `posix_architecture_bkpt()`.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     bkpt (void) noexcept
     {
       posix_architecture_bkpt ();
@@ -204,7 +204,7 @@ namespace posix
      * @details
      * Implemented by calling `posix_architecture_wfi()`.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     wfi (void) noexcept
     {
       posix_architecture_wfi ();
@@ -214,7 +214,7 @@ namespace posix
      * @details
      * Implemented by calling `posix_architecture_data_barrier()`.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     data_barrier (void) noexcept
     {
       posix_architecture_data_barrier ();
@@ -224,7 +224,7 @@ namespace posix
      * @details
      * Implemented by calling `posix_architecture_instruction_barrier()`.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     instruction_barrier (void) noexcept
     {
       posix_architecture_instruction_barrier ();
@@ -246,7 +246,7 @@ namespace micro_os_plus
      * @details
      * Implemented by forwarding to `posix::architecture::nop()`.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     nop (void) noexcept
     {
       posix::architecture::nop ();
@@ -256,7 +256,7 @@ namespace micro_os_plus
      * @details
      * Implemented by forwarding to `posix::architecture::bkpt()`.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     brk (void) noexcept
     {
       posix::architecture::bkpt ();
@@ -266,7 +266,7 @@ namespace micro_os_plus
      * @details
      * Implemented by forwarding to `posix::architecture::wfi()`.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     wfi (void) noexcept
     {
       posix::architecture::wfi ();
@@ -276,7 +276,7 @@ namespace micro_os_plus
      * @details
      * Implemented by forwarding to `posix::architecture::data_barrier()`.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     data_barrier (void) noexcept
     {
       posix::architecture::data_barrier ();
@@ -287,7 +287,7 @@ namespace micro_os_plus
      * Implemented by forwarding to
      * `posix::architecture::instruction_barrier()`.
      */
-    MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE void
+    MICRO_OS_PLUS_ALWAYS_INLINE void
     instruction_barrier (void) noexcept
     {
       posix::architecture::instruction_barrier ();

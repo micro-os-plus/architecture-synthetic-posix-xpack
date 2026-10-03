@@ -52,7 +52,7 @@ The `micro-os-plus/diag/trace.h` header and the
   `architecture.h`.
 - `include/micro-os-plus/architecture-synthetic-posix/instructions.h`:
   declarations; `inlines/instructions-inlines.h`: the definitions. Both
-  use `MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE` (defined in `defines.h`,
+  use `MICRO_OS_PLUS_ALWAYS_INLINE` (defined in `defines.h`,
   as in the RISC-V, AArch32, and AArch64 ports): `static inline` and
   always inlined in C, `[[gnu::always_inline]] inline` in C++. The C++
   functions are also `noexcept`.
