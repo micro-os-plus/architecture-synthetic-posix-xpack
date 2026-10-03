@@ -231,7 +231,7 @@ namespace posix
      * The C++ equivalent of `posix_architecture_nop()`; it does nothing.
      */
     void
-    nop (void);
+    nop (void) noexcept;
 
     /**
      * @brief Breakpoint; does nothing on this platform.
@@ -241,7 +241,7 @@ namespace posix
      * and execution continues.
      */
     void
-    bkpt (void);
+    bkpt (void) noexcept;
 
     /**
      * @brief Wait for interrupt; does nothing on this platform.
@@ -251,7 +251,7 @@ namespace posix
      * so a loop that calls it busy-waits.
      */
     void
-    wfi (void);
+    wfi (void) noexcept;
 
     /**
      * @brief Data synchronisation barrier.
@@ -261,7 +261,7 @@ namespace posix
      * sequentially consistent atomic thread fence.
      */
     void
-    data_barrier (void);
+    data_barrier (void) noexcept;
 
     /**
      * @brief Instruction synchronisation barrier; a compiler barrier only.
@@ -272,7 +272,7 @@ namespace posix
      * the call.
      */
     void
-    instruction_barrier (void);
+    instruction_barrier (void) noexcept;
 
     // ------------------------------------------------------------------------
   } // namespace architecture
@@ -304,7 +304,7 @@ namespace micro_os_plus
      * synthetic POSIX platform it does nothing.
      */
     void
-    nop (void);
+    nop (void) noexcept;
 
     /**
      * @brief Breakpoint.
@@ -314,7 +314,7 @@ namespace micro_os_plus
      * synthetic POSIX platform it does nothing, and execution continues.
      */
     void
-    brk (void);
+    brk (void) noexcept;
 
     /**
      * @brief Wait for interrupt.
@@ -325,7 +325,7 @@ namespace micro_os_plus
      * busy-waits.
      */
     void
-    wfi (void);
+    wfi (void) noexcept;
 
     /**
      * @brief Data synchronisation barrier.
@@ -336,7 +336,7 @@ namespace micro_os_plus
      * atomic thread fence.
      */
     void
-    data_barrier (void);
+    data_barrier (void) noexcept;
 
     /**
      * @brief Instruction synchronisation barrier.
@@ -347,7 +347,7 @@ namespace micro_os_plus
      * synthetic POSIX platform, it is only a compiler barrier.
      */
     void
-    instruction_barrier (void);
+    instruction_barrier (void) noexcept;
 
     // ------------------------------------------------------------------------
   } // namespace architecture

@@ -185,7 +185,7 @@ namespace posix
      * Implemented by calling `posix_architecture_nop()`.
      */
     inline __attribute__ ((always_inline)) void
-    nop (void)
+    nop (void) noexcept
     {
       posix_architecture_nop ();
     }
@@ -195,7 +195,7 @@ namespace posix
      * Implemented by calling `posix_architecture_bkpt()`.
      */
     inline __attribute__ ((always_inline)) void
-    bkpt (void)
+    bkpt (void) noexcept
     {
       posix_architecture_bkpt ();
     }
@@ -205,7 +205,7 @@ namespace posix
      * Implemented by calling `posix_architecture_wfi()`.
      */
     inline __attribute__ ((always_inline)) void
-    wfi (void)
+    wfi (void) noexcept
     {
       posix_architecture_wfi ();
     }
@@ -215,7 +215,7 @@ namespace posix
      * Implemented by calling `posix_architecture_data_barrier()`.
      */
     inline __attribute__ ((always_inline)) void
-    data_barrier (void)
+    data_barrier (void) noexcept
     {
       posix_architecture_data_barrier ();
     }
@@ -225,7 +225,7 @@ namespace posix
      * Implemented by calling `posix_architecture_instruction_barrier()`.
      */
     inline __attribute__ ((always_inline)) void
-    instruction_barrier (void)
+    instruction_barrier (void) noexcept
     {
       posix_architecture_instruction_barrier ();
     }
@@ -247,7 +247,7 @@ namespace micro_os_plus
      * Implemented by forwarding to `posix::architecture::nop()`.
      */
     inline __attribute__ ((always_inline)) void
-    nop (void)
+    nop (void) noexcept
     {
       posix::architecture::nop ();
     }
@@ -257,7 +257,7 @@ namespace micro_os_plus
      * Implemented by forwarding to `posix::architecture::bkpt()`.
      */
     inline __attribute__ ((always_inline)) void
-    brk (void)
+    brk (void) noexcept
     {
       posix::architecture::bkpt ();
     }
@@ -267,7 +267,7 @@ namespace micro_os_plus
      * Implemented by forwarding to `posix::architecture::wfi()`.
      */
     inline __attribute__ ((always_inline)) void
-    wfi (void)
+    wfi (void) noexcept
     {
       posix::architecture::wfi ();
     }
@@ -277,7 +277,7 @@ namespace micro_os_plus
      * Implemented by forwarding to `posix::architecture::data_barrier()`.
      */
     inline __attribute__ ((always_inline)) void
-    data_barrier (void)
+    data_barrier (void) noexcept
     {
       posix::architecture::data_barrier ();
     }
@@ -288,7 +288,7 @@ namespace micro_os_plus
      * `posix::architecture::instruction_barrier()`.
      */
     inline __attribute__ ((always_inline)) void
-    instruction_barrier (void)
+    instruction_barrier (void) noexcept
     {
       posix::architecture::instruction_barrier ();
     }
