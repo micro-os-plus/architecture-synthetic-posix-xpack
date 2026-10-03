@@ -22,8 +22,8 @@
  * the implementation. This file should not be included directly.
  */
 
-#ifndef MICRO_OS_PLUS_ARCHITECTURE_SYNTHETIC_POSIX_INLINES_INSTRUCTIONS_INLINES_H_
-#define MICRO_OS_PLUS_ARCHITECTURE_SYNTHETIC_POSIX_INLINES_INSTRUCTIONS_INLINES_H_
+#ifndef MICRO_OS_PLUS_ARCHITECTURE_SYNTHETIC_POSIX_INSTRUCTIONS_INLINES_H_
+#define MICRO_OS_PLUS_ARCHITECTURE_SYNTHETIC_POSIX_INSTRUCTIONS_INLINES_H_
 
 // ----------------------------------------------------------------------------
 
@@ -303,6 +303,6 @@ namespace micro_os_plus
 
 // ----------------------------------------------------------------------------
 
-#endif // MICRO_OS_PLUS_ARCHITECTURE_SYNTHETIC_POSIX_INLINES_INSTRUCTIONS_INLINES_H_
+#endif // MICRO_OS_PLUS_ARCHITECTURE_SYNTHETIC_POSIX_INSTRUCTIONS_INLINES_H_
 
 // ----------------------------------------------------------------------------
