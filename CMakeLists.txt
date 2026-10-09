@@ -1,5 +1,6 @@
 # -----------------------------------------------------------------------------
-# DO NOT EDIT! Automatically generated from template file: xcdl-package.jsonc
+# DO NOT EDIT! Automatically generated from template file:
+# xcdl-package.jsonc
 #
 # This file is part of the µOS++ project (https://micro-os-plus.github.io/).
 # Copyright (c) 2021-2026 Liviu Ionescu. All rights reserved.
@@ -20,7 +21,7 @@
 #
 # ~~~
 # target_link_libraries(your-target PUBLIC micro-os-plus::diag-trace-posix)
-# target_link_libraries(your-target PUBLIC micro-os-plus::architectures-synthetic-posix)
+# target_link_libraries(your-target PUBLIC micro-os-plus::architecture-synthetic-posix)
 # ~~~
 
 # -----------------------------------------------------------------------------
@@ -29,8 +30,7 @@
 cmake_minimum_required (VERSION 3.20)
 project (
   micro-os-plus-architecture-synthetic-posix
-  DESCRIPTION
-    "A source code library with the µOS++ synthetic POSIX architecture port"
+  DESCRIPTION "A source code library with the µOS++ synthetic POSIX architecture port"
   LANGUAGES C CXX ASM
 )
 
@@ -42,9 +42,8 @@ if (COMMAND xpack_get_package_name_and_version)
   xpack_get_package_name_and_version (
     "${CMAKE_CURRENT_SOURCE_DIR}/package.json"
   )
-  message (
-    VERBOSE
-    "Processing xpm package ${PACKAGE_JSON_NAME}@${PACKAGE_JSON_VERSION}..."
+  message (VERBOSE
+           "Processing xpm package ${PACKAGE_JSON_NAME}@${PACKAGE_JSON_VERSION}..."
   )
 endif ()
 
@@ -63,15 +62,16 @@ endif ()
 # read-only; properties must be set on the underlying target, not on the alias
 # itself.
 
+
+
 # https://cmake.org/cmake/help/v3.20/command/add_library.html?highlight=interface#interface-libraries
 # Visibility keywords: PRIVATE applies to the target itself; INTERFACE passes
 # properties up to targets that link against it; PUBLIC does both.
-add_library (
-  micro-os-plus-diag-trace-posix-interface INTERFACE EXCLUDE_FROM_ALL
-)
+add_library (micro-os-plus-diag-trace-posix-interface INTERFACE EXCLUDE_FROM_ALL)
 
 target_sources (
-  micro-os-plus-diag-trace-posix-interface INTERFACE "src/diag/trace-posix.cpp"
+  micro-os-plus-diag-trace-posix-interface
+  INTERFACE "src/diag/trace-posix.cpp"
 )
 
 if (COMMAND xpack_display_target_lists)
@@ -83,8 +83,7 @@ endif ()
 
 # https://cmake.org/cmake/help/v3.20/command/add_library.html#alias-libraries
 add_library (
-  micro-os-plus::diag-trace-posix ALIAS
-  micro-os-plus-diag-trace-posix-interface
+  micro-os-plus::diag-trace-posix ALIAS micro-os-plus-diag-trace-posix-interface
 )
 message (
   VERBOSE
@@ -93,27 +92,25 @@ message (
 
 # -----------------------------------------------------------------------------
 
+
 # https://cmake.org/cmake/help/v3.20/command/add_library.html?highlight=interface#interface-libraries
 # Visibility keywords: PRIVATE applies to the target itself; INTERFACE passes
 # properties up to targets that link against it; PUBLIC does both.
-add_library (
-  micro-os-plus-architectures-synthetic-posix-interface INTERFACE
-  EXCLUDE_FROM_ALL
-)
+add_library (micro-os-plus-architecture-synthetic-posix-interface INTERFACE EXCLUDE_FROM_ALL)
 
 target_include_directories (
-  micro-os-plus-architectures-synthetic-posix-interface INTERFACE "include"
+  micro-os-plus-architecture-synthetic-posix-interface 
+  INTERFACE "include"
 )
 
 target_link_libraries (
-  micro-os-plus-architectures-synthetic-posix-interface
-  INTERFACE "micro-os-plus::diag-trace" "micro-os-plus::diag-trace-posix"
+  micro-os-plus-architecture-synthetic-posix-interface 
+  INTERFACE "micro-os-plus::diag-trace"
+            "micro-os-plus::diag-trace-posix"
 )
 
 if (COMMAND xpack_display_target_lists)
-  xpack_display_target_lists (
-    micro-os-plus-architectures-synthetic-posix-interface
-  )
+  xpack_display_target_lists (micro-os-plus-architecture-synthetic-posix-interface)
 endif ()
 
 # -----------------------------------------------------------------------------
@@ -121,21 +118,11 @@ endif ()
 
 # https://cmake.org/cmake/help/v3.20/command/add_library.html#alias-libraries
 add_library (
-  micro-os-plus::architectures-synthetic-posix ALIAS
-  micro-os-plus-architectures-synthetic-posix-interface
+  micro-os-plus::architecture-synthetic-posix ALIAS micro-os-plus-architecture-synthetic-posix-interface
 )
 message (
   VERBOSE
-  "> micro-os-plus::architectures-synthetic-posix -> micro-os-plus-architectures-synthetic-posix-interface"
-)
-
-add_library (
-  micro-os-plus::architecture ALIAS
-  micro-os-plus-architectures-synthetic-posix-interface
-)
-message (
-  VERBOSE
-  "> micro-os-plus::architecture -> micro-os-plus-architectures-synthetic-posix-interface"
+  "> micro-os-plus::architecture-synthetic-posix -> micro-os-plus-architecture-synthetic-posix-interface"
 )
 
 # -----------------------------------------------------------------------------
