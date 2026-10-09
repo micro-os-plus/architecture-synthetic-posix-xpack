@@ -23,7 +23,7 @@
  * It first includes the optional configuration headers
  * `micro-os-plus/project-config.h` and
  * `micro-os-plus/architecture-defines.h`, if present. Then, only if
- * `MICRO_OS_PLUS_ARCHITECTURES_SYNTHETIC_POSIX_ENABLED` is defined, it
+ * `MICRO_OS_PLUS_ARCHITECTURE_SYNTHETIC_POSIX_ENABLED` is defined, it
  * includes the platform definitions and, except when included from
  * assembly files, the architecture instructions.
  *
@@ -55,7 +55,7 @@
 
 // ----------------------------------------------------------------------------
 
-#if defined(MICRO_OS_PLUS_ARCHITECTURES_SYNTHETIC_POSIX_ENABLED)
+#if defined(MICRO_OS_PLUS_ARCHITECTURE_SYNTHETIC_POSIX_ENABLED)
 
 // ----------------------------------------------------------------------------
 
@@ -69,7 +69,7 @@
 
 // ----------------------------------------------------------------------------
 
-#endif // defined(MICRO_OS_PLUS_ARCHITECTURES_SYNTHETIC_POSIX_ENABLED)
+#endif // defined(MICRO_OS_PLUS_ARCHITECTURE_SYNTHETIC_POSIX_ENABLED)
 
 // ----------------------------------------------------------------------------
 

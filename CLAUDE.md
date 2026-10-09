@@ -14,8 +14,7 @@ consumed by other µOS++ packages and applications; it is not built on its own.
 
 The package provides two components (see `xcdl-package.jsonc`):
 
-- `micro-os-plus.architectures.synthetic-posix` (alias
-  `micro-os-plus.architecture`): header-only; exposes `include/` and depends
+- `micro-os-plus.architecture.synthetic-posix`: header-only; exposes `include/` and depends
   on `micro-os-plus.diag.trace` and `micro-os-plus.diag.trace.posix`.
 - `micro-os-plus.diag.trace.posix`: `src/diag/trace-posix.cpp`, the
   `trace` output channel, writing to `stdout` or `stderr`, selected by
@@ -43,7 +42,7 @@ The `micro-os-plus/diag/trace.h` header and the
 - `include/micro-os-plus/architecture.h`: the generic entry point used by
   portable µOS++ code. It includes the optional `project-config.h` and
   `architecture-defines.h` (both supplied by the application), then, only
-  if `MICRO_OS_PLUS_ARCHITECTURES_SYNTHETIC_POSIX_ENABLED` is defined,
+  if `MICRO_OS_PLUS_ARCHITECTURE_SYNTHETIC_POSIX_ENABLED` is defined,
   pulls in `defines.h` and (outside `__ASSEMBLER__`) `instructions.h`. The
   guard is intentional; if the macro is not defined, the header declares
   nothing.
@@ -91,7 +90,7 @@ present (`micro-os-plus/architecture-defines.h` for this package,
 `micro-os-plus/diag/trace-defines.h` for the trace macros); `-D` on the
 compiler command line also works, but document the headers first:
 
-- `MICRO_OS_PLUS_ARCHITECTURES_SYNTHETIC_POSIX_ENABLED`, to enable the
+- `MICRO_OS_PLUS_ARCHITECTURE_SYNTHETIC_POSIX_ENABLED`, to enable the
   architecture headers;
 - `MICRO_OS_PLUS_DIAG_TRACE_ENABLED`, plus exactly one of
   `MICRO_OS_PLUS_DIAG_TRACE_POSIX_STDOUT_ENABLED` or
