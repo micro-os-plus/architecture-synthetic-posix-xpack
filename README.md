@@ -134,7 +134,7 @@ The source files to be added to user projects are:
 The architecture headers are enabled only when the following macro is
 defined:
 
-- `MICRO_OS_PLUS_ARCHITECTURES_SYNTHETIC_POSIX_ENABLED`
+- `MICRO_OS_PLUS_ARCHITECTURE_SYNTHETIC_POSIX_ENABLED`
 
 As for all µOS++ configuration macros, the preferred place to define it
 is `micro-os-plus/project-config.h` or the package specific
@@ -242,7 +242,7 @@ exe = executable(
 ```
 
 `micro_os_plus_architecture_dependency` is equivalent to
-`micro_os_plus_architectures_synthetic_posix_dependency`; either name can
+`micro_os_plus_architecture_synthetic_posix_dependency`; either name can
 be used. It also brings in the trace output channel
 (`micro_os_plus_diag_trace_posix_dependency`), and it refers to
 `micro_os_plus_diag_trace_dependency`, so the `@micro-os-plus/diag-trace`
