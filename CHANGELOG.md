@@ -6,6 +6,60 @@ Please check
 [GitHub](https://github.com/micro-os-plus/architecture-synthetic-posix-xpack/issues/)
 and close existing issues and pull requests.
 
+## 2026-11-07
+
+* v6.0.0
+* 2b19c97 meson.build re-generate
+* 386e4cf rename device.interface singular
+* ba2e64e re-generate top commons
+
+## 2026-10-09
+
+* 4f8553d MICRO_OS_PLUS_ARCHITECTURE_SYNTHETIC_POSIX_ENABLED
+* 68cf047 micro-os-plus.architecture.synthetic-posix
+* 1b09d73 re-generate top commons
+* 29a1ddf move to maintenance
+
+## 2026-10-03
+
+* 302b854 rename MICRO_OS_PLUS_ALWAYS_INLINE
+* 60a25d0 NOTES updates
+* 7ba8757 CLAUDE update
+* 91c41e6 use MICRO_OS_PLUS_ARCHITECTURE_ALWAYS_INLINE
+* b6de396 add noexcept
+* 0ac6a68 trace-posix.cpp re-format
+* ca1f788 fix guard name
+* cbdbdb7 cleanup unused stdint.h
+* f53c7d5 add more doxygen comments
+* ff14eb7 README update
+* fe939de skills and copilot updates
+
+## 2026-10-02
+
+* 971e0f4 trace-posix.cpp silence warning
+* b2570a8 trace-posix.cpp header guards cosmetics
+* 7bad5ed instructions.h doxygen updates
+* 5e707ef tests headers updates
+* 31ef37a trace-posix.cpp header cleanup
+* 4958d76 trace-posix.cpp with optional diag-trace.h
+* 6aef616 trace-posix.cpp use buffered writes
+* 39fa54e initialise diag-trace only once, starting with 101 priority
+* d57df34 .gitignore CODE-REVIEW
+* 005ddf1 README update
+* 2816639 package*.json add prettier to deps
+* 407252f copilot & claude updates
+* 3b0b394 add empty website
+* e4a3f5d add tests/README.md
+* e2108a8 trace-posix.cpp: fix #error syntax
+* cc23b44 architecture.h check __ASSEMBLER__
+* ec5ae2a add data/instruxtion barriers
+
+## 2026-09-09
+
+* 2cd268d 5.0.2
+* cf223db cmake re-format
+* 2b495b2 prepare v5.0.2
+
 ## 2026-09-09
 
 * d2efa3a cmake re-format

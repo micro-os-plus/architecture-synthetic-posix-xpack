@@ -1,6 +1,6 @@
 {
   "name": "@micro-os-plus/architecture-synthetic-posix",
-  "version": "5.0.2",
+  "version": "6.0.0-pre",
   "description": "A source code library with the µOS++ synthetic POSIX architecture port",
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
     "jsonc-parser": "https://www.npmjs.com/package/jsonc-parser",
     "liquidjs": "https://www.npmjs.com/package/liquidjs"
   },
+  "dependencies": {},
   "devDependencies": {
     "@xpack/npm-packages-helper": "github:xpack/npm-packages-helper",
     "del-cli": "^7.0.0",
@@ -62,6 +63,5 @@
   },
   "engines": {
     "node": ">=20.0"
-  },
-  "dependencies": {}
+  }
 }
