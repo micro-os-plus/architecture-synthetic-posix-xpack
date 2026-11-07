@@ -206,13 +206,15 @@ dependency with:
 
 ```cmake
 target_link_libraries(your-target PRIVATE
-  micro-os-plus::architecture
+  micro-os-plus::architectures-synthetic-posix
 )
 ```
 
-`micro-os-plus::architecture` is an alias of
-`micro-os-plus::architectures-synthetic-posix`; either name can be used.
-It also brings in the trace output channel
+Architecture agnostic applications that refer to the generic
+`micro-os-plus::architecture` library must define it in their platform
+specific part, as an alias to `micro-os-plus::architectures-synthetic-posix`.
+
+The library also brings in the trace output channel
 (`micro-os-plus::diag-trace-posix`) and requires the
 `micro-os-plus::diag-trace` target, from the `@micro-os-plus/diag-trace`
 package.
@@ -236,14 +238,18 @@ exe = executable(
     # Nothing, not static.
   ],
   dependencies: [
-    micro_os_plus_architecture_dependency,
+    micro_os_plus_architecture_synthetic_posix_dependency,
   ]
 )
 ```
 
-`micro_os_plus_architecture_dependency` is equivalent to
-`micro_os_plus_architecture_synthetic_posix_dependency`; either name can
-be used. It also brings in the trace output channel
+Architecture agnostic applications that refer to the generic
+`micro_os_plus_architecture_dependency` object (with the corresponding
+`_compile_c_args` and `_compile_cpp_args` variables) must define them in
+their platform specific part, as copies of
+`micro_os_plus_architecture_synthetic_posix_dependency` and its variables.
+
+The dependency also brings in the trace output channel
 (`micro_os_plus_diag_trace_posix_dependency`), and it refers to
 `micro_os_plus_diag_trace_dependency`, so the `@micro-os-plus/diag-trace`
 folder must be processed with `subdir()` before this one.
