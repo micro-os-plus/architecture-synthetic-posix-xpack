@@ -20,7 +20,7 @@
  * synthetic POSIX platform runs in a hosted process and has no device
  * layer, so this header only includes the optional configuration headers
  * and `micro-os-plus/architecture.h`; it exists to satisfy the
- * `micro-os-plus.devices.interface` contract.
+ * `micro-os-plus.device.interface` contract.
  */
 
 #ifndef MICRO_OS_PLUS_DEVICE_H_

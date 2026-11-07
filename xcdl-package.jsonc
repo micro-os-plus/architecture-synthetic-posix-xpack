@@ -18,7 +18,7 @@
       "sourceFiles": [],
       "implements": [
         "micro-os-plus.architecture.interface",
-        "micro-os-plus.devices.interface"
+        "micro-os-plus.device.interface"
       ],
       "dependencies": [
         "micro-os-plus.diag.trace",
